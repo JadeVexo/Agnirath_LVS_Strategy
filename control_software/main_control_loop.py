@@ -1,31 +1,30 @@
 #   Control Systems Design - Aarush
 #          Team Agnirath
- 
+
 #   Created By: Jaay ED21
 #
 #   With the support of:
 #    - Jaivel EE22
 #    - Vishu EE22
-#    - Veadesh CE22 
+#    - Veadesh CE22
 
 # Class Imports
 from gps import ZED_F9P
 from can import CANbus
 
-#Library Imports
+# Library Imports
 import time
 import threading
 import numpy
 
 if __name__ == "__main__":
-
-    #GPS Initialization
-    zed_f9p = ZED_F9P('/dev/ttyS1', 9600)
+    # GPS Initialization
+    zed_f9p = ZED_F9P("/dev/ttyS1", 9600)
     if not zed_f9p.initialize():
         exit(1)
     zed_f9p.start_processing()
 
-    #CANBus Initalization
+    # CANBus Initalization
     can_bus = CANbus()
     can_bus.initialize_can()
     can_bus.initialize_uart()
@@ -46,8 +45,7 @@ if __name__ == "__main__":
         # GPS output
         zed_f9p.print_output_data()
 
-    
-    #Thread Termination
+    # Thread Termination
     can_bus.stop()
     zed_f9p.stop_processing()
     zed_f9p.close()

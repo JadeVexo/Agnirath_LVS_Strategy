@@ -48,7 +48,6 @@ if __name__ == "__main__":
 
     
     #Thread Termination
-    # Stop the thread
     can_bus.stop()
     zed_f9p.stop_processing()
     zed_f9p.close()

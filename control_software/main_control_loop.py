@@ -27,8 +27,11 @@ if __name__ == "__main__":
 
     #CANBus Initalization
     can_bus = CANbus()
-    can_bus.start()
-
+    can_bus.initialize_can()
+    can_bus.initialize_uart()
+    if can_bus.is_initialized():
+        # Start the thread
+        can_bus.start()
 
     # Main loop
     while True:
@@ -40,6 +43,7 @@ if __name__ == "__main__":
         for message in received:
             print(f"Received message: ID={message.arbitration_id} Data={message.data}")
 
+        # GPS output
         zed_f9p.print_output_data()
 
     

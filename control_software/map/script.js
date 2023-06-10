@@ -10,7 +10,6 @@ var map = new mapboxgl.Map({
 
 // Array of nearby coordinates
 var coordinates = [
-    [80.23021913617647, 12.993036661158213],
     [80.23221913617647, 12.997036661158213],
     [80.23521913617647, 12.998036661158213],
     [80.23121913617647, 12.993036661158213],
@@ -30,7 +29,7 @@ var coordinates = [
     [80.23921913617647, 12.993036661158213],
     [80.23021913617647, 12.992036661158213],
     [80.23221913617647, 12.998036661158213],
-    [80.23121913617647, 12.998036661158213]
+    [80.23121913617647, 12.998036661158213],
 ];
 
 // Create a GeoJSON feature collection for the path
@@ -78,9 +77,11 @@ function moveMarker() {
 
 // Create a custom marker element
 function createMarkerElement() {
-    var el = document.createElement('div');
-    el.className = 'marker';
-    return el;
+    var img = document.createElement('img');
+    img.src = 'location_marker.png'; // Replace 'marker.png' with your marker image file name
+    img.style.width = '30px';
+    img.style.height = '30px';
+    return img;
 }
 
 // Update marker rotation based on movement direction

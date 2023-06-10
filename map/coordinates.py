@@ -2,6 +2,7 @@ import csv
 from datetime import datetime, timedelta
 import time
 
+## asdasdasdasda
 # Define the list of coordinates
 coordinates = [
     [80.23221913617647, 12.997036661158213],

@@ -109,37 +109,37 @@ class SteeringDisplay(QWidget):
 
         self.image_above = QLabel(self)
         self.image_above.setGeometry(300, 100, 200, 100)
-        self.image_above.setPixmap(QPixmap("/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/ellipse_2.png").scaled(200, 100, Qt.AspectRatioMode.KeepAspectRatio))
+        self.image_above.setPixmap(QPixmap("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/ellipse_2.png").scaled(200, 100, Qt.AspectRatioMode.KeepAspectRatio))
 
         self.image_below = QLabel(self)
         self.image_below.setGeometry(300, 230, 200, 100)
-        self.image_below.setPixmap(QPixmap("/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/ellipse_3.png").scaled(200, 100, Qt.AspectRatioMode.KeepAspectRatio))
+        self.image_below.setPixmap(QPixmap("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/ellipse_3.png").scaled(200, 100, Qt.AspectRatioMode.KeepAspectRatio))
 
         self.disellipse = QLabel(self)
         self.disellipse.setGeometry(40, 40, 200, 100)
-        self.disellipse.setPixmap(QPixmap("/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/ellipse_7.png").scaled(200, 100, Qt.AspectRatioMode.KeepAspectRatio))
+        self.disellipse.setPixmap(QPixmap("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/ellipse_7.png").scaled(200, 100, Qt.AspectRatioMode.KeepAspectRatio))
 
         self.rpmellipse = QLabel(self)
         self.rpmellipse.setGeometry(30, 290, 350, 175)
-        self.rpmellipse.setPixmap(QPixmap("/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/rpm.png").scaled(350, 175, Qt.AspectRatioMode.KeepAspectRatio))
+        self.rpmellipse.setPixmap(QPixmap("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/rpm.png").scaled(350, 175, Qt.AspectRatioMode.KeepAspectRatio))
 
         self.regenellipse = QLabel(self)
         self.regenellipse.setGeometry(600, 290, 350, 175)
-        self.regenellipse.setPixmap(QPixmap("/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/Regen.png").scaled(350, 175, Qt.AspectRatioMode.KeepAspectRatio))
+        self.regenellipse.setPixmap(QPixmap("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/Regen.png").scaled(350, 175, Qt.AspectRatioMode.KeepAspectRatio))
 
         transform = QTransform().rotate(180)
         self.image_below.setPixmap(self.image_below.pixmap().transformed(transform))
 
-        self.left_signal_active = QImage("/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/left_active.png")
-        self.left_signal_inactive = QImage("/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/left_inactive.png")
-        self.right_signal_active = QImage("/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/union1_state_property_1_Variant2.png")
-        self.right_signal_inactive = QImage("/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/union1_state_property_1_Default.png")
-        self.horn_active = QImage("/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/Horn_active.png")
-        self.horn_inactive = QImage("/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/Horn_Inactive.png")
-        self.radio_active = QImage("/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/radio_active.png")
-        self.radio_inactive = QImage("/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/radio_inactive.png")
-        self.cruise_active = QImage("/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/cruise_active.png")
-        self.cruise_inactive = QImage("/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/cruise_inactive.png")
+        self.left_signal_active = QImage("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/left_active.png")
+        self.left_signal_inactive = QImage("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/left_inactive.png")
+        self.right_signal_active = QImage("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/union1_state_property_1_Variant2.png")
+        self.right_signal_inactive = QImage("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/union1_state_property_1_Default.png")
+        self.horn_active = QImage("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/Horn_active.png")
+        self.horn_inactive = QImage("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/Horn_Inactive.png")
+        self.radio_active = QImage("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/radio_active.png")
+        self.radio_inactive = QImage("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/radio_inactive.png")
+        self.cruise_active = QImage("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/cruise_active.png")
+        self.cruise_inactive = QImage("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/cruise_inactive.png")
 
         self.current_time = ""
         self.timer = QTimer()
@@ -295,22 +295,22 @@ class SteeringDisplay(QWidget):
    
     def batterystatus(self, painter):
         if self.battery == 0:
-            image  = QImage('/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/battery 0.png')
+            image  = QImage('/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/battery 0.png')
             painter.drawImage(QPoint(630,50), image)
         elif self.battery >= 0 and self.battery <= 20:
-            image  = QImage('/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/battery 20.png')
+            image  = QImage('/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/battery 20.png')
             painter.drawImage(QPoint(630,50), image)
         elif self.battery > 20 and self.battery <= 40:
-            image  = QImage('/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/battery 40.png')
+            image  = QImage('/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/battery 40.png')
             painter.drawImage(QPoint(630,50), image)
         elif self.battery > 40 and self.battery <= 60:
-            image  = QImage('/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/battery 60.png')
+            image  = QImage('/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/battery 60.png')
             painter.drawImage(QPoint(630,50), image)
         elif self.battery > 60 and self.battery <= 80:
-            image  = QImage('/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/battery 80.png')
+            image  = QImage('/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/battery 80.png')
             painter.drawImage(QPoint(630,50), image)
         else:
-            image  = QImage('/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/battery.png')
+            image  = QImage('/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/battery.png')
             painter.drawImage(QPoint(630,50), image)
 
         pen = QPen(Qt.white)
@@ -394,7 +394,7 @@ class SteeringDisplay(QWidget):
     def time(self, painter):
         painter.begin(self)
 
-        image  = QImage('/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/Rectangle.png')
+        image  = QImage('/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/Rectangle.png')
         painter.drawImage(QPoint(325,390), image)
 
         pen = QPen(Qt.white)

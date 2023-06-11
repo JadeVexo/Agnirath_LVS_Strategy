@@ -59,9 +59,11 @@ def send_data():
         Rindicator = random.randint(0, 1)
 
         variable_data = f"{speed} {rpm} {mode} {regen} {battery} {disrem} {brake} {horn} {radio} {cruise} {Lindicator} {Rindicator}\n"
-
+        data =[speed,mode,rpm,regen,battery,disrem,brake,horn,radio,cruise,Lindicator,Rindicator]
+        #print(data)
+        print(variable_data)
         client_socket.sendall(variable_data.encode())
-        time.sleep(1)
+        time.sleep(0.1)
 
     client_socket.close()
 

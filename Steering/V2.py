@@ -1,150 +1,75 @@
-# import sys
-# from PyQt5.QtWidgets import QApplication, QWidget, QLabel
-# from PyQt5.QtGui import QPainter, QColor, QPen, QPixmap, QFont, QTransform
-# from PyQt5.QtCore import Qt, QRectF, QTimer, QSize
-
-
-# class SteeringDisplay(QWidget):
-#     def __init__(self):
-#         super().__init__()
-#         self.setWindowTitle("Steering Display")
-#         self.setGeometry(100, 100, 800, 480)
-
-#         self.speed = 0
-#         self.max_speed = 150
-#         self.brake_pressed = False
-
-#         self.timer = QTimer()
-#         self.timer.timeout.connect(self.update_speed)
-#         self.timer.start(100)  # Update speed every 100 milliseconds
-
-#         self.speed_label = QLabel(self)
-#         self.speed_label.setGeometry(350, 250, 100, 50)
-#         self.speed_label.setAlignment(Qt.AlignCenter)
-#         self.speed_label.setStyleSheet("font-family: 'Good Times'; font-size: 40px; font-weight: 400; "
-#                                         "line-height: 48px; letter-spacing: 0em; color: #FFFFFF; "
-#                                         "background-color: #1E1E1E")
-
-#         self.image_above = QLabel(self)
-#         self.image_above.setGeometry(300, 100, 200, 100)
-#         self.image_above.setPixmap(QPixmap("/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/ellipse_2.png").scaled(200, 100, Qt.AspectRatioMode.KeepAspectRatio))
-
-#         self.image_below = QLabel(self)
-#         self.image_below.setGeometry(300, 300, 200, 100)
-#         self.image_below.setPixmap(QPixmap("/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/ellipse_3.png").scaled(200, 100, Qt.AspectRatioMode.KeepAspectRatio))
-
-#         transform = QTransform().rotate(180)
-#         self.image_below.setPixmap(self.image_below.pixmap().transformed(transform))
-
-
-#     def paintEvent(self, event):
-#         painter = QPainter(self)
-#         painter.setRenderHint(QPainter.Antialiasing)
-
-#         # Set the background color
-#         self.set_background_color(painter)
-
-#         # Draw speedometer arc
-#         self.draw_speedometer(painter)
-
-#     def set_background_color(self, painter):
-#         painter.fillRect(self.rect(), QColor("#1E1E1E"))
-
-#     def draw_speedometer(self, painter):
-#         arc_radius = min(self.width(), self.height()) * 0.4
-#         arc_center = self.rect().center()
-#         arc_rect = QRectF(arc_center.x() - arc_radius, arc_center.y() - arc_radius, 2 * arc_radius, 2 * arc_radius)
-
-#         # Draw the base arc
-#         base_color = QColor(200, 200, 200)
-#         painter.setPen(QPen(base_color, 30))
-#         painter.drawArc(arc_rect, -130 * 16, -280 * 16)  #-50 * 16, 280 * 16
-
-#         # Draw the dynamic arc
-#         if self.brake_pressed:
-#             arc_color = QColor(255, 0, 0)
-#         else:
-#             arc_color = QColor(0, 255, 0)
-
-#         painter.setPen(QPen(arc_color, 30))
-#         start_angle = -130 * 16
-#         span_angle = int(-280 * (self.speed / self.max_speed))
-
-#         painter.drawArc(arc_rect, start_angle, span_angle * 16)
-
-#     def update_speed(self):
-#         if self.speed == 150:
-#             self.speed = 0
-#         else:
-#             self.speed += 1
-
-#         self.speed_label.setText(str(self.speed))
-
-#         self.update()
-
-#     def keyPressEvent(self, event):
-#         if event.key() == Qt.Key_S:
-#             self.brake_pressed = True
-
-#     def keyReleaseEvent(self, event):
-#         if event.key() == Qt.Key_S:
-#             self.brake_pressed = False
-
-
-# if __name__ == '__main__':
-#     app = QApplication(sys.argv)
-#     steering_display = SteeringDisplay()
-#     steering_display.show()
-#     sys.exit(app.exec_())
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel
-from PyQt5.QtGui import QPainter, QColor, QPen, QPixmap, QFont, QTransform, QImage, QPolygon
-from PyQt5.QtCore import Qt, QRectF, QTimer, QSize, QThread, pyqtSignal, QPoint
+from PyQt5.QtGui import QPainter, QColor, QPen, QPixmap, QFont, QTransform, QImage, QPolygon, QFontMetrics
+from PyQt5.QtCore import Qt, QRectF, QTimer, QThread, pyqtSignal, QPoint, QTime
 import socket
 
-class SpeedThread(QThread):
-    speed_received = pyqtSignal(int)
+class VariableThread(QThread):
+    variables_received = pyqtSignal(list)
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.variables = ["speed", "rpm", "mode", "regen", "battery", "disrem","brake", "horn", "radio", "cruise", "Lindicator", "Rindicator"]
+        self.socket = None
 
     def run(self):
-        host = 'localhost'  # IP address of the C++ server
-        port = 8888  # port number used by the C++ server
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.socket.connect(('localhost', 8888))
 
-        try:
-            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client_socket:
-                client_socket.connect((host, port))
-                while True:
-                    speed_data = client_socket.recv(1024)
-                    if not speed_data:
-                        break
-                    speed = int(speed_data.decode().strip())
-                    self.speed_received.emit(speed)
+        while True:
+            variable_data = self.socket.recv(1024)
+            if not variable_data:
+                break
+            variable_values = variable_data.decode().strip().split()
 
-        except Exception as e:
-            print("Error occurred:", str(e))
+            values = []
+            for i, value in enumerate(variable_values):
+                variable_name = self.variables[i]
+                variable_value = int(value)
+                values.append((variable_name, variable_value))
 
+            self.variables_received.emit(values)
+
+        self.socket.close()
 
 class SteeringDisplay(QWidget):
     def __init__(self):
         super().__init__()
+        self.setWindowFlag(Qt.FramelessWindowHint)
         self.setWindowTitle("Steering Display")
-        self.setGeometry(100, 100, 800, 480)
+        # self.setGeometry(500, 100, 800, 480)
+        self.setFixedSize(800, 480)
 
         self.speed = 0
         self.max_speed = 150
-        self.brake_pressed = False
-
-        self.rpm_value = 0
+        
+        self.rpm = 0
         self.rpm_max = 1700
         self.rpm_angle = 0
         self.rpm_needle_length = 75
 
-        self.regen_value = 0
+        self.regen = 0
         self.regen_max = 100
         self.regen_angle = 0
         self.regen_needle_length = 75
 
+        self.battery = 0
+        self.battery_max = 100
+
+        self.mode = 0 
+        self.horn_value = 0
+        self.radio_value = 0
+        self.cruise_value = 0
+        self.l_indicator_value = 0
+        self.r_indicator_value = 0 
+        self.brake_value = 0
+
+        self.variable_thread = VariableThread()
+        self.variable_thread.variables_received.connect(self.update_values)
+        self.variable_thread.start()
+        
         self.speed_label = QLabel(self)
-        self.speed_label.setGeometry(350, 250, 100, 50)
+        self.speed_label.setGeometry(350, 200, 100, 50)
         self.speed_label.setAlignment(Qt.AlignCenter)
         self.speed_label.setStyleSheet("font-family: 'Good Times'; font-size: 40px; font-weight: 400; "
                                         "line-height: 48px; letter-spacing: 0em; color: #FF4D00; "
@@ -164,7 +89,7 @@ class SteeringDisplay(QWidget):
         self.regen_label.setStyleSheet("font-family: 'Good Times'; font-size: 12px; font-weight: 400; "
                                         "line-height: 48px; letter-spacing: 0em; color: #FFFFFF; "
                                         )
-        self.regen_label.setText("100%")
+        self.regen_label.setText("0%")
 
         self.rpm_label = QLabel(self)
         self.rpm_label.setGeometry(65, 400, 100, 50)
@@ -172,7 +97,15 @@ class SteeringDisplay(QWidget):
         self.rpm_label.setStyleSheet("font-family: 'Good Times'; font-size: 12px; font-weight: 400; "
                                         "line-height: 48px; letter-spacing: 0em; color: #FFFFFF; "
                                         )
-        self.rpm_label.setText("1000")
+        self.rpm_label.setText("0")
+
+        self.dmode_label = QLabel(self)
+        self.dmode_label.setGeometry(350, 265, 100, 50)
+        self.dmode_label.setAlignment(Qt.AlignCenter)
+        self.dmode_label.setStyleSheet("font-family: 'Good Times'; font-size: 35px; font-weight: 400; "
+                                        "line-height: 48px; letter-spacing: 0em; color: #FFFFFF; "
+                                        )
+        self.dmode_label.setText("N")
 
         self.image_above = QLabel(self)
         self.image_above.setGeometry(300, 100, 200, 100)
@@ -194,20 +127,8 @@ class SteeringDisplay(QWidget):
         self.regenellipse.setGeometry(600, 290, 350, 175)
         self.regenellipse.setPixmap(QPixmap("/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/Regen.png").scaled(350, 175, Qt.AspectRatioMode.KeepAspectRatio))
 
-        self.battery = QLabel(self)
-        self.battery.setGeometry(630, 50, 250, 125)
-        self.battery.setPixmap(QPixmap("/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/battery.png").scaled(250, 125, Qt.AspectRatioMode.KeepAspectRatio))
-
-        self.rectangle = QLabel(self)
-        self.rectangle.setGeometry(310, 370, 200, 100)
-        self.rectangle.setPixmap(QPixmap("/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/Rectangle.png").scaled(175, 175, Qt.AspectRatioMode.KeepAspectRatio))
-
         transform = QTransform().rotate(180)
         self.image_below.setPixmap(self.image_below.pixmap().transformed(transform))
-
-        self.speed_thread = SpeedThread()
-        self.speed_thread.speed_received.connect(self.update_speed)
-        self.speed_thread.start()
 
         self.left_signal_active = QImage("/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/left_active.png")
         self.left_signal_inactive = QImage("/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/left_inactive.png")
@@ -220,38 +141,49 @@ class SteeringDisplay(QWidget):
         self.cruise_active = QImage("/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/cruise_active.png")
         self.cruise_inactive = QImage("/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/cruise_inactive.png")
 
-        self.left_signal_on = False
-        self.right_signal_on = False
-        self.horn_on = False
-        self.radio_on = False
-        self.cruise_on = False
+        self.current_time = ""
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.update_time)
+        self.timer.start(1000)  
+
+    def update_time(self):
+        current = QTime.currentTime()
+        self.current_time = current.toString("hh:mm")  
+        self.update()
         
-        self.key_press_mapping = {
-            Qt.Key_1: self.toggle_left_signal,
-            Qt.Key_2: self.toggle_right_signal,
-            Qt.Key_3: self.toggle_horn,
-            Qt.Key_4: self.toggle_radio,
-            Qt.Key_5: self.toggle_cruise
-        }
+    def update_values(self, values):
+        for variable_name, variable_value in values:
+            if variable_name == "speed":
+                self.speed_value = variable_value
+                self.update_speed()
+            elif variable_name == "rpm":
+                self.rpm_value = variable_value
+                self.update_rpm()
+            elif variable_name == "mode":
+                self.mode_value = variable_value
+                self.update_mode()
+            elif variable_name == "regen":
+                self.regen_value = variable_value
+                self.update_regen()
+            elif variable_name == "battery":
+                self.battery_value = variable_value
+                self.update_battery()
+            elif variable_name == "disrem":
+                self.disrem_value = variable_value
+                self.update_disrem()
+            elif variable_name == "brake":
+                self.brake_value = variable_value
+            elif variable_name == "horn":
+                self.horn_value = variable_value
+            elif variable_name == "radio":
+                self.radio_value = variable_value
+            elif variable_name == "cruise":
+                self.cruise_value = variable_value
+            elif variable_name == "Lindicator":
+                self.l_indicator_value = variable_value
+            elif variable_name == "Rindicator":
+                self.r_indicator_value = variable_value
 
-    def toggle_left_signal(self):
-        self.left_signal_on = not self.left_signal_on
-        self.update()
-
-    def toggle_right_signal(self):
-        self.right_signal_on = not self.right_signal_on
-        self.update()
-
-    def toggle_horn(self):
-        self.horn_on = not self.horn_on
-        self.update()
-
-    def toggle_radio(self):
-        self.radio_on = not self.radio_on
-        self.update()
-
-    def toggle_cruise(self):
-        self.cruise_on = not self.cruise_on
         self.update()
 
     def paintEvent(self, event):
@@ -271,6 +203,10 @@ class SteeringDisplay(QWidget):
 
         self.draw_needleregen(painter)
 
+        self.batterystatus(painter)
+
+        self.time(painter)
+
     def set_background_color(self, painter):
         painter.fillRect(self.rect(), QColor("#1E1E1E"))
 
@@ -285,7 +221,7 @@ class SteeringDisplay(QWidget):
         painter.drawArc(arc_rect, -130 * 16, -280 * 16)  #-50 * 16, 280 * 16
 
         # Draw the dynamic arc
-        if self.brake_pressed:
+        if self.brake_value:
             arc_color = QColor(255, 0, 0)
         else:
             arc_color = QColor(0, 255, 0)
@@ -296,74 +232,114 @@ class SteeringDisplay(QWidget):
 
         painter.drawArc(arc_rect, start_angle, span_angle * 16)
 
-    def update_speed(self, speed):
-        self.speed = speed
+    def update_speed(self):
+        self.speed = self.speed_value
         self.speed_label.setText(str(self.speed))
         self.update()
 
-    def keyPressEvent(self, event):
-        if event.key() == Qt.Key_S:
-            self.brake_pressed = True
+    def update_mode(self):
+        self.mode = self.mode_value
+        if self.mode == 0:
+            self.dmode_label.setText("N")
+        elif self.mode == 1:
+            self.dmode_label.setText("D1")
+        elif self.mode == 2:
+            self.dmode_label.setText("D2")
+        else:
+            self.dmode_label.setText("R")
+        self.update()
 
-    def keyReleaseEvent(self, event):
-        if event.key() == Qt.Key_S:
-            self.brake_pressed = False
+    def update_disrem(self):
+        self.dist_label.setText("DST.RMN\n" + str(self.disrem_value))
+        self.update()
 
     def draw_indicators(self, painter):
-        indicator_width = 40
-        indicator_height = 40
-        indicator_spacing = 10
-        indicator_margin = 20
-
         # Draw left turn signal
-        left_signal_rect = QRectF(200, indicator_margin, indicator_width, indicator_height)
-        if self.left_signal_on:
+        left_signal_rect = QRectF(205, 20, 40, 40)
+        if self.l_indicator_value:
             painter.drawImage(left_signal_rect, self.left_signal_active)
         else:
             painter.drawImage(left_signal_rect, self.left_signal_inactive)
 
         # Draw right turn signal
-        right_signal_rect = QRectF(500 + indicator_width + indicator_spacing, indicator_margin,
-                                   indicator_width, indicator_height)
-        if self.right_signal_on:
+        right_signal_rect = QRectF(555,20,40,40)
+        if self.r_indicator_value:
             painter.drawImage(right_signal_rect, self.right_signal_active)
         else:
             painter.drawImage(right_signal_rect, self.right_signal_inactive)
 
         # Draw horn status
-        horn_rect = QRectF(310, 325,
-                           indicator_width, indicator_height)
-        if self.horn_on:
+        horn_rect = QRectF(310, 325, 35, 35)
+        if self.horn_value:
             painter.drawImage(horn_rect, self.horn_active)
         else:
             painter.drawImage(horn_rect, self.horn_inactive)
 
         # Draw radio communication status
-        radio_rect = QRectF(450, 325,
-                            indicator_width, indicator_height)
-        if self.radio_on:
+        radio_rect = QRectF(450, 325, 35, 35)
+        if self.radio_value:
             painter.drawImage(radio_rect, self.radio_active)
         else:
             painter.drawImage(radio_rect, self.radio_inactive)
 
         # Draw cruise control status
-        cruise_rect = QRectF(375, 160,
-                             indicator_width, indicator_height)
-        if self.cruise_on:
+        cruise_rect = QRectF(375, 125,40,40)
+        if self.cruise_value:
             painter.drawImage(cruise_rect, self.cruise_active)
         else:
             painter.drawImage(cruise_rect, self.cruise_inactive)
+
+    def update_battery(self):
+        self.battery = self.battery_value
+        self.update()
+   
+    def batterystatus(self, painter):
+        if self.battery == 0:
+            image  = QImage('/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/battery 0.png')
+            painter.drawImage(QPoint(630,50), image)
+        elif self.battery >= 0 and self.battery <= 20:
+            image  = QImage('/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/battery 20.png')
+            painter.drawImage(QPoint(630,50), image)
+        elif self.battery > 20 and self.battery <= 40:
+            image  = QImage('/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/battery 40.png')
+            painter.drawImage(QPoint(630,50), image)
+        elif self.battery > 40 and self.battery <= 60:
+            image  = QImage('/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/battery 60.png')
+            painter.drawImage(QPoint(630,50), image)
+        elif self.battery > 60 and self.battery <= 80:
+            image  = QImage('/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/battery 80.png')
+            painter.drawImage(QPoint(630,50), image)
+        else:
+            image  = QImage('/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/battery.png')
+            painter.drawImage(QPoint(630,50), image)
+
+        pen = QPen(Qt.white)
+        pen.setWidth(5)
+        painter.setPen(pen)        
+
+        font = QFont()
+        font.setFamily('Good Times')
+        font.setBold(True)
+        font.setPointSize(10)
+        painter.setFont(font)
+        painter.drawText(673, 112, str(self.battery)+"%")
+        painter.end()
+
+    def update_rpm(self):
+        self.rpm = self.rpm_value
+        self.rpm_label.setText(str(self.rpm))
+        self.update()
 
     def draw_needlerpm(self, painter):
         needle_length = self.rpm_needle_length
         needle_center = QPoint(self.width() - 682, self.height()-100)
 
         # Calculate the angle based on the RPM value
-        rpm_angle = (self.rpm_value / self.rpm_max) * 300
+        rpm_angle = (self.rpm / self.rpm_max) * 270
 
         # Rotate the painter to the desired angle
         painter.translate(needle_center)
-        painter.rotate(45)
+        painter.rotate(45 + rpm_angle)
         painter.translate(-needle_center)
 
         # Define the needle shape as a polygon
@@ -382,16 +358,21 @@ class SteeringDisplay(QWidget):
         # Reset the painter transform
         painter.resetTransform()
 
+    def update_regen(self):
+        self.regen = self.regen_value
+        self.regen_label.setText(str(self.regen))
+        self.update()
+
     def draw_needleregen(self, painter):
-        needle_length = self.rpm_needle_length
+        needle_length = self.regen_needle_length
         needle_center = QPoint(self.width() - 113, self.height()-100)
 
         # Calculate the angle based on the RPM value
-        rpm_angle = (self.rpm_value / self.rpm_max) * 300
+        regen_angle = (self.regen / self.regen_max) * 270
 
         # Rotate the painter to the desired angle
         painter.translate(needle_center)
-        painter.rotate(45)
+        painter.rotate(45 + regen_angle)
         painter.translate(-needle_center)
 
         # Define the needle shape as a polygon
@@ -410,11 +391,30 @@ class SteeringDisplay(QWidget):
         # Reset the painter transform
         painter.resetTransform()
     
-    def keyPressEvent(self, event):
-        key = event.key()
-        if key in self.key_press_mapping:
-            self.key_press_mapping[key]()
+    def time(self, painter):
+        painter.begin(self)
 
+        image  = QImage('/home/veadesh/Agnirath/GUI/Steering/SteeringV2/Speedometer final/assets/Rectangle.png')
+        painter.drawImage(QPoint(325,390), image)
+
+        pen = QPen(Qt.white)
+        pen.setWidth(5)
+        painter.setPen(pen)        
+
+        font = QFont()
+        font.setFamily('Good Times')
+        font.setBold(True)
+        font.setPointSize(29)
+        painter.setFont(font)
+        fm = QFontMetrics(font)
+        time = self.current_time
+        text_width = fm.width(time)
+        text_height = fm.height()
+        text_x = 323 + (image.width() - text_width) // 2
+        text_y = 430 + (image.height() - text_height) // 2
+        painter.drawText(text_x, text_y, time)
+
+        painter.end()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

@@ -50,6 +50,7 @@ var marker = new mapboxgl.Marker({
         rotationAlignment: 'map',
         draggable: false
     })
+    
     .setLngLat(coordinates[0])
     .addTo(map);
 

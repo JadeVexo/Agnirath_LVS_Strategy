@@ -3,35 +3,33 @@ import Adafruit_BBIO.ADC as ADC
 import smbus
 import time
 import socket
-import random
+
 
 class Button:
-
-    def __init__(self,PIN):
-        self.PIN = PIN #give pin no. as a string like P9_13
-        GPIO.setup(self.PIN,GPIO.IN,initial=GPIO.LOW)
+    def __init__(self, PIN):
+        self.PIN = PIN  # give pin no. as a string like P9_13
+        GPIO.setup(self.PIN, GPIO.IN, initial=GPIO.LOW)
 
     def isPressed(self):
         if GPIO.input(self.PIN):
             return 1
-     
+
         else:
             return 0
-        
-class AnalogIn:
 
-    def __init__(self,aPin):
+
+class AnalogIn:
+    def __init__(self, aPin):
         self.aPin = aPin
         ADC.setup()
 
     def readVal(self):
-            self.val = ADC.read(self.aPin)
-            return(self.val)
+        self.val = ADC.read(self.aPin)
+        return self.val
+
 
 class MPU_6050:
-
-    def __init__(self,MPU_BUS_NO):
-        
+    def __init__(self, MPU_BUS_NO):
         # MPU6050 registers addresses
         self.MPU6050_ADDR = 0x68
         self.PWR_MGMT_1 = 0x6B
@@ -45,7 +43,7 @@ class MPU_6050:
         self.GYRO_XOUT = 0x43
         self.GYRO_YOUT = 0x45
         self.GYRO_ZOUT = 0x47
-        
+
         self.MPU_BUS_NO = MPU_BUS_NO
         self.MPU_BUS = smbus.SMBus(self.MPU_BUS_NO)
         self.MPU_BUS.write_byte_data(self.MPU6050_ADDR, self.PWR_MGMT_1, 0x00)
@@ -55,8 +53,7 @@ class MPU_6050:
         self.MPU_BUS.write_byte_data(self.MPU6050_ADDR, self.GYRO_CONFIG, 0x18)
         self.MPU_BUS.write_byte_data(self.MPU6050_ADDR, self.ACCEL_CONFIG, 0x01)
 
-    def read_raw_data(self,addr):
-            
+    def read_raw_data(self, addr):
         self.high = self.MPU_BUS.read_byte_data(self.MPU6050_ADDR, addr)
         self.low = self.MPU_BUS.read_byte_data(self.MPU6050_ADDR, addr + 1)
         self.value = (self.high << 8) + self.low
@@ -66,17 +63,16 @@ class MPU_6050:
         return self.value
 
     def get_data(self):
-        
- #       def read_raw_data(self,addr):
- #               
- #           self.high = self.MPU_BUS.read_byte_data(self.MPU6050_ADDR, addr)
- #           self.low = self.MPU_BUS.read_byte_data(self.MPU6050_ADDR, addr + 1)
- #           self.value = (self.high << 8) + self.lowlow
-#
- #           if self.value > 32767:
- #               self.value = self.value - 65536
- #           return self.value
-    
+        #       def read_raw_data(self,addr):
+        #
+        #           self.high = self.MPU_BUS.read_byte_data(self.MPU6050_ADDR, addr)
+        #           self.low = self.MPU_BUS.read_byte_data(self.MPU6050_ADDR, addr + 1)
+        #           self.value = (self.high << 8) + self.lowlow
+        #
+        #           if self.value > 32767:
+        #               self.value = self.value - 65536
+        #           return self.value
+
         self.accel_x = self.read_raw_data(self.ACCEL_XOUT)
         self.accel_y = self.read_raw_data(self.ACCEL_YOUT)
         self.accel_z = self.read_raw_data(self.ACCEL_ZOUT)
@@ -86,12 +82,18 @@ class MPU_6050:
         self.gyro_y = self.read_raw_data(self.GYRO_YOUT)
         self.gyro_z = self.read_raw_data(self.GYRO_ZOUT)
 
-        return (self.accel_x,self.accel_y,self.accel_z,self.gyro_x,self.gyro_y,self.gyro_z) 
+        return (
+            self.accel_x,
+            self.accel_y,
+            self.accel_z,
+            self.gyro_x,
+            self.gyro_y,
+            self.gyro_z,
+        )
+
 
 class Indicator:
-
-    def __init__(self,IND_X_PIN,IND_SW_PIN):
-
+    def __init__(self, IND_X_PIN, IND_SW_PIN):
         self.IND_X_PIN = IND_X_PIN
         self.IND_SW_PIN = IND_SW_PIN
 
@@ -99,14 +101,13 @@ class Indicator:
 
         self.rt_th = 0.75
         self.lt_th = 0.25
-        
+
         # make instances of the Classes you are using to get inputs from the joystick
 
         self.xIn = AnalogIn(self.IND_X_PIN)
         self.swIn = Button(self.IND_SW_PIN)
 
     def indicate(self):
-
         self.xVal = self.xIn.readVal()
         # self.yVal = self.yIn.readVal()
         self.swVal = self.swIn.isPressed()
@@ -125,8 +126,7 @@ class Indicator:
 
 
 class DriveSelect:
-
-    def __init__(self,X_PIN,Y_PIN,SW_PIN):
+    def __init__(self, X_PIN, Y_PIN, SW_PIN):
         self.X_PIN = X_PIN
         self.Y_PIN = Y_PIN
         self.SW_PIN = SW_PIN
@@ -141,55 +141,52 @@ class DriveSelect:
         self.swIn = Button(self.SW_PIN)
         self.mode = 0
 
-
     def mode_select(self):
-
         self.xVal = self.xIn.readVal()
         self.yVal = self.yIn.readVal()
         self.swVal = self.swIn.isPressed()
-        
-        
-        if self.xVal >= self.rt_th :
+
+        if self.xVal >= self.rt_th:
             print("D1")
             self.mode = 2
             return self.mode
 
-        elif self.xVal <= self.lt_th :
+        elif self.xVal <= self.lt_th:
             print("D2")
             self.mode = 1
             return self.mode
 
-        elif self.yVal >= self.up_th :
+        elif self.yVal >= self.up_th:
             print("N")
             self.mode = 0
             return self.mode
 
-        elif self.yVal <= self.dn_th :
+        elif self.yVal <= self.dn_th:
             print("R")
             self.mode = 3
             return self.mode
 
-        elif self.swVal : 
+        elif self.swVal:
             print("Cruise off")
 
         else:
             return self.mode
 
 
-#MPU PINS AND BUS
+# MPU PINS AND BUS
 MPU_I2C_BUS = 2
 
-#DRIVE SELECT PINS
-CLUTCH_PIN = "P9_23" #change this
+# DRIVE SELECT PINS
+CLUTCH_PIN = "P9_23"  # change this
 DS_X_PIN = "P9_40"
 DS_Y_PIN = "P9_39"
-DS_SW_PIN  = "P8_14"
+DS_SW_PIN = "P8_14"
 
-#Indicator Pins
+# Indicator Pins
 IND_X_PIN = "P9_38"
 IND_SW_PIN = "P9_41"
 
-#OTHER BUTTON PINS
+# OTHER BUTTON PINS
 HORN_PIN = "P9_11"
 B3_PIN = "P9_27"
 B4_PIN = "P8_26"
@@ -197,19 +194,19 @@ B5_PIN = "P8_19"
 
 # test_stick = Joystick(xpin,ypin,swpin)
 
-#imu1 = MPU_6050(MPU_I2C_BUS)
+# imu1 = MPU_6050(MPU_I2C_BUS)
 clutch = Button(CLUTCH_PIN)
-dr_sel = DriveSelect(DS_X_PIN,DS_Y_PIN,DS_SW_PIN)
+dr_sel = DriveSelect(DS_X_PIN, DS_Y_PIN, DS_SW_PIN)
 horn = Button(HORN_PIN)
 button3 = Button(B3_PIN)
 button4 = Button(B4_PIN)
 button5 = Button(B5_PIN)
-indicator = Indicator(IND_X_PIN,IND_SW_PIN)
+indicator = Indicator(IND_X_PIN, IND_SW_PIN)
 
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
-server_address = ('', 8888)
+server_address = ("", 8888)
 server_socket.bind(server_address)
 server_socket.listen(1)
 
@@ -246,25 +243,25 @@ while True:
         Rindicator = 0
         Lindicator = 0
 
-    speed +=1
+    speed += 1
     if speed > 150:
         speed = 0
-    
+
     if clutch.isPressed():
         mode = dr_sel.mode_select()
         omode = mode
     else:
         mode = omode
 
-    #mode = dr_sel.mode_return()
-    #mode1 = dr_sel.mode_select()
-    #mode = 0
+    # mode = dr_sel.mode_return()
+    # mode1 = dr_sel.mode_select()
+    # mode = 0
 
-    rpm+=10
+    rpm += 10
     if rpm > 1700:
         rpm = 0
 
-    regen +=1
+    regen += 1
     if regen > 100:
         regen = 0
 
@@ -272,8 +269,8 @@ while True:
     if battery > 100:
         battery = 0
 
-    disrem -=10
-    if disrem <0:
+    disrem -= 10
+    if disrem < 0:
         disrem == 3000
 
     brake = button3.isPressed()
@@ -290,8 +287,20 @@ while True:
     else:
         cruise = old_cruise
 
-    data = [speed,rpm,regen,battery,disrem,brake,horn_1,radio,cruise,Lindicator,Rindicator]
-        
+    data = [
+        speed,
+        rpm,
+        regen,
+        battery,
+        disrem,
+        brake,
+        horn_1,
+        radio,
+        cruise,
+        Lindicator,
+        Rindicator,
+    ]
+
     variable_data = f"{speed} {rpm} {mode} {regen} {battery} {disrem} {brake} {horn_1} {radio} {cruise} {Lindicator} {Rindicator}\n"
     print(variable_data)
     client_socket.sendall(variable_data.encode())

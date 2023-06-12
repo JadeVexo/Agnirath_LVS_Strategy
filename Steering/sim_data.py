@@ -2,11 +2,12 @@ import socket
 import time
 import random
 
+
 def send_data():
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
-    server_address = ('', 8888)
+    server_address = ("", 8888)
     server_socket.bind(server_address)
     server_socket.listen(1)
 
@@ -59,12 +60,26 @@ def send_data():
         Rindicator = random.randint(0, 1)
 
         variable_data = f"{speed} {rpm} {mode} {regen} {battery} {disrem} {brake} {horn} {radio} {cruise} {Lindicator} {Rindicator}\n"
-        data =[speed,mode,rpm,regen,battery,disrem,brake,horn,radio,cruise,Lindicator,Rindicator]
-        #print(data)
+        data = [
+            speed,
+            mode,
+            rpm,
+            regen,
+            battery,
+            disrem,
+            brake,
+            horn,
+            radio,
+            cruise,
+            Lindicator,
+            Rindicator,
+        ]
+        # print(data)
         print(variable_data)
         client_socket.sendall(variable_data.encode())
         time.sleep(0.1)
 
     client_socket.close()
+
 
 send_data()

@@ -1,20 +1,44 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel
-from PyQt5.QtGui import QPainter, QColor, QPen, QPixmap, QFont, QTransform, QImage, QPolygon, QFontMetrics
+from PyQt5.QtGui import (
+    QPainter,
+    QColor,
+    QPen,
+    QPixmap,
+    QFont,
+    QTransform,
+    QImage,
+    QPolygon,
+    QFontMetrics,
+)
 from PyQt5.QtCore import Qt, QRectF, QTimer, QThread, pyqtSignal, QPoint, QTime
 import socket
+
 
 class VariableThread(QThread):
     variables_received = pyqtSignal(list)
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.variables = ["speed", "rpm", "mode", "regen", "battery", "disrem","brake", "horn", "radio", "cruise", "Lindicator", "Rindicator"]
+        self.variables = [
+            "speed",
+            "rpm",
+            "mode",
+            "regen",
+            "battery",
+            "disrem",
+            "brake",
+            "horn",
+            "radio",
+            "cruise",
+            "Lindicator",
+            "Rindicator",
+        ]
         self.socket = None
 
     def run(self):
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.socket.connect(('localhost', 8888))
+        self.socket.connect(("localhost", 8888))
 
         while True:
             variable_data = self.socket.recv(1024)
@@ -32,6 +56,7 @@ class VariableThread(QThread):
 
         self.socket.close()
 
+
 class SteeringDisplay(QWidget):
     def __init__(self):
         super().__init__()
@@ -42,7 +67,7 @@ class SteeringDisplay(QWidget):
 
         self.speed = 0
         self.max_speed = 150
-        
+
         self.rpm = 0
         self.rpm_max = 1700
         self.rpm_angle = 0
@@ -56,101 +81,148 @@ class SteeringDisplay(QWidget):
         self.battery = 0
         self.battery_max = 100
 
-        self.mode = 0 
+        self.mode = 0
         self.horn_value = 0
         self.radio_value = 0
         self.cruise_value = 0
         self.l_indicator_value = 0
-        self.r_indicator_value = 0 
+        self.r_indicator_value = 0
         self.brake_value = 0
 
         self.variable_thread = VariableThread()
         self.variable_thread.variables_received.connect(self.update_values)
         self.variable_thread.start()
-        
+
         self.speed_label = QLabel(self)
         self.speed_label.setGeometry(350, 200, 100, 50)
         self.speed_label.setAlignment(Qt.AlignCenter)
-        self.speed_label.setStyleSheet("font-family: 'Good Times'; font-size: 40px; font-weight: 400; "
-                                        "line-height: 48px; letter-spacing: 0em; color: #FF4D00; "
-                                        "background-color: #1E1E1E")
-        
+        self.speed_label.setStyleSheet(
+            "font-family: 'Good Times'; font-size: 40px; font-weight: 400; "
+            "line-height: 48px; letter-spacing: 0em; color: #FF4D00; "
+            "background-color: #1E1E1E"
+        )
+
         self.dist_label = QLabel(self)
         self.dist_label.setGeometry(40, 65, 100, 50)
         self.dist_label.setAlignment(Qt.AlignCenter)
-        self.dist_label.setStyleSheet("font-family: 'Good Times'; font-size: 15px; font-weight: 400; "
-                                        "line-height: 48px; letter-spacing: 0em; color: #FFFFFF; "
-                                        "background-color: #1E1E1E")
+        self.dist_label.setStyleSheet(
+            "font-family: 'Good Times'; font-size: 15px; font-weight: 400; "
+            "line-height: 48px; letter-spacing: 0em; color: #FFFFFF; "
+            "background-color: #1E1E1E"
+        )
         self.dist_label.setText("DST.RMN\n3000")
 
         self.regen_label = QLabel(self)
         self.regen_label.setGeometry(640, 400, 100, 50)
         self.regen_label.setAlignment(Qt.AlignCenter)
-        self.regen_label.setStyleSheet("font-family: 'Good Times'; font-size: 12px; font-weight: 400; "
-                                        "line-height: 48px; letter-spacing: 0em; color: #FFFFFF; "
-                                        )
+        self.regen_label.setStyleSheet(
+            "font-family: 'Good Times'; font-size: 12px; font-weight: 400; "
+            "line-height: 48px; letter-spacing: 0em; color: #FFFFFF; "
+        )
         self.regen_label.setText("0%")
 
         self.rpm_label = QLabel(self)
         self.rpm_label.setGeometry(65, 400, 100, 50)
         self.rpm_label.setAlignment(Qt.AlignCenter)
-        self.rpm_label.setStyleSheet("font-family: 'Good Times'; font-size: 12px; font-weight: 400; "
-                                        "line-height: 48px; letter-spacing: 0em; color: #FFFFFF; "
-                                        )
+        self.rpm_label.setStyleSheet(
+            "font-family: 'Good Times'; font-size: 12px; font-weight: 400; "
+            "line-height: 48px; letter-spacing: 0em; color: #FFFFFF; "
+        )
         self.rpm_label.setText("0")
 
         self.dmode_label = QLabel(self)
         self.dmode_label.setGeometry(350, 265, 100, 50)
         self.dmode_label.setAlignment(Qt.AlignCenter)
-        self.dmode_label.setStyleSheet("font-family: 'Good Times'; font-size: 35px; font-weight: 400; "
-                                        "line-height: 48px; letter-spacing: 0em; color: #FFFFFF; "
-                                        )
+        self.dmode_label.setStyleSheet(
+            "font-family: 'Good Times'; font-size: 35px; font-weight: 400; "
+            "line-height: 48px; letter-spacing: 0em; color: #FFFFFF; "
+        )
         self.dmode_label.setText("N")
 
         self.image_above = QLabel(self)
         self.image_above.setGeometry(300, 100, 200, 100)
-        self.image_above.setPixmap(QPixmap("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/ellipse_2.png").scaled(200, 100, Qt.AspectRatioMode.KeepAspectRatio))
+        self.image_above.setPixmap(
+            QPixmap(
+                "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/ellipse_2.png"
+            ).scaled(200, 100, Qt.AspectRatioMode.KeepAspectRatio)
+        )
 
         self.image_below = QLabel(self)
         self.image_below.setGeometry(300, 230, 200, 100)
-        self.image_below.setPixmap(QPixmap("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/ellipse_3.png").scaled(200, 100, Qt.AspectRatioMode.KeepAspectRatio))
+        self.image_below.setPixmap(
+            QPixmap(
+                "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/ellipse_3.png"
+            ).scaled(200, 100, Qt.AspectRatioMode.KeepAspectRatio)
+        )
 
         self.disellipse = QLabel(self)
         self.disellipse.setGeometry(40, 40, 200, 100)
-        self.disellipse.setPixmap(QPixmap("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/ellipse_7.png").scaled(200, 100, Qt.AspectRatioMode.KeepAspectRatio))
+        self.disellipse.setPixmap(
+            QPixmap(
+                "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/ellipse_7.png"
+            ).scaled(200, 100, Qt.AspectRatioMode.KeepAspectRatio)
+        )
 
         self.rpmellipse = QLabel(self)
         self.rpmellipse.setGeometry(30, 290, 350, 175)
-        self.rpmellipse.setPixmap(QPixmap("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/rpm.png").scaled(350, 175, Qt.AspectRatioMode.KeepAspectRatio))
+        self.rpmellipse.setPixmap(
+            QPixmap(
+                "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/rpm.png"
+            ).scaled(350, 175, Qt.AspectRatioMode.KeepAspectRatio)
+        )
 
         self.regenellipse = QLabel(self)
         self.regenellipse.setGeometry(600, 290, 350, 175)
-        self.regenellipse.setPixmap(QPixmap("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/Regen.png").scaled(350, 175, Qt.AspectRatioMode.KeepAspectRatio))
+        self.regenellipse.setPixmap(
+            QPixmap(
+                "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/Regen.png"
+            ).scaled(350, 175, Qt.AspectRatioMode.KeepAspectRatio)
+        )
 
         transform = QTransform().rotate(180)
         self.image_below.setPixmap(self.image_below.pixmap().transformed(transform))
 
-        self.left_signal_active = QImage("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/left_active.png")
-        self.left_signal_inactive = QImage("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/left_inactive.png")
-        self.right_signal_active = QImage("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/union1_state_property_1_Variant2.png")
-        self.right_signal_inactive = QImage("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/union1_state_property_1_Default.png")
-        self.horn_active = QImage("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/Horn_active.png")
-        self.horn_inactive = QImage("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/Horn_Inactive.png")
-        self.radio_active = QImage("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/radio_active.png")
-        self.radio_inactive = QImage("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/radio_inactive.png")
-        self.cruise_active = QImage("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/cruise_active.png")
-        self.cruise_inactive = QImage("/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/cruise_inactive.png")
+        self.left_signal_active = QImage(
+            "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/left_active.png"
+        )
+        self.left_signal_inactive = QImage(
+            "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/left_inactive.png"
+        )
+        self.right_signal_active = QImage(
+            "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/union1_state_property_1_Variant2.png"
+        )
+        self.right_signal_inactive = QImage(
+            "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/union1_state_property_1_Default.png"
+        )
+        self.horn_active = QImage(
+            "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/Horn_active.png"
+        )
+        self.horn_inactive = QImage(
+            "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/Horn_Inactive.png"
+        )
+        self.radio_active = QImage(
+            "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/radio_active.png"
+        )
+        self.radio_inactive = QImage(
+            "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/radio_inactive.png"
+        )
+        self.cruise_active = QImage(
+            "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/cruise_active.png"
+        )
+        self.cruise_inactive = QImage(
+            "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/cruise_inactive.png"
+        )
 
         self.current_time = ""
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_time)
-        self.timer.start(1000)  
+        self.timer.start(1000)
 
     def update_time(self):
         current = QTime.currentTime()
-        self.current_time = current.toString("hh:mm")  
+        self.current_time = current.toString("hh:mm")
         self.update()
-        
+
     def update_values(self, values):
         for variable_name, variable_value in values:
             if variable_name == "speed":
@@ -213,12 +285,17 @@ class SteeringDisplay(QWidget):
     def draw_speedometer(self, painter):
         arc_radius = min(self.width(), self.height()) * 0.39
         arc_center = self.rect().center()
-        arc_rect = QRectF(arc_center.x() - arc_radius, arc_center.y() - arc_radius, 2 * arc_radius, 2 * arc_radius)
+        arc_rect = QRectF(
+            arc_center.x() - arc_radius,
+            arc_center.y() - arc_radius,
+            2 * arc_radius,
+            2 * arc_radius,
+        )
 
         # Draw the base arc
         base_color = QColor(200, 200, 200)
         painter.setPen(QPen(base_color, 30))
-        painter.drawArc(arc_rect, -130 * 16, -280 * 16)  #-50 * 16, 280 * 16
+        painter.drawArc(arc_rect, -130 * 16, -280 * 16)  # -50 * 16, 280 * 16
 
         # Draw the dynamic arc
         if self.brake_value:
@@ -262,7 +339,7 @@ class SteeringDisplay(QWidget):
             painter.drawImage(left_signal_rect, self.left_signal_inactive)
 
         # Draw right turn signal
-        right_signal_rect = QRectF(555,20,40,40)
+        right_signal_rect = QRectF(555, 20, 40, 40)
         if self.r_indicator_value:
             painter.drawImage(right_signal_rect, self.right_signal_active)
         else:
@@ -283,7 +360,7 @@ class SteeringDisplay(QWidget):
             painter.drawImage(radio_rect, self.radio_inactive)
 
         # Draw cruise control status
-        cruise_rect = QRectF(375, 125,40,40)
+        cruise_rect = QRectF(375, 125, 40, 40)
         if self.cruise_value:
             painter.drawImage(cruise_rect, self.cruise_active)
         else:
@@ -292,37 +369,49 @@ class SteeringDisplay(QWidget):
     def update_battery(self):
         self.battery = self.battery_value
         self.update()
-   
+
     def batterystatus(self, painter):
         if self.battery == 0:
-            image  = QImage('/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/battery 0.png')
-            painter.drawImage(QPoint(630,50), image)
+            image = QImage(
+                "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/battery 0.png"
+            )
+            painter.drawImage(QPoint(630, 50), image)
         elif self.battery >= 0 and self.battery <= 20:
-            image  = QImage('/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/battery 20.png')
-            painter.drawImage(QPoint(630,50), image)
+            image = QImage(
+                "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/battery 20.png"
+            )
+            painter.drawImage(QPoint(630, 50), image)
         elif self.battery > 20 and self.battery <= 40:
-            image  = QImage('/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/battery 40.png')
-            painter.drawImage(QPoint(630,50), image)
+            image = QImage(
+                "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/battery 40.png"
+            )
+            painter.drawImage(QPoint(630, 50), image)
         elif self.battery > 40 and self.battery <= 60:
-            image  = QImage('/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/battery 60.png')
-            painter.drawImage(QPoint(630,50), image)
+            image = QImage(
+                "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/battery 60.png"
+            )
+            painter.drawImage(QPoint(630, 50), image)
         elif self.battery > 60 and self.battery <= 80:
-            image  = QImage('/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/battery 80.png')
-            painter.drawImage(QPoint(630,50), image)
+            image = QImage(
+                "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/battery 80.png"
+            )
+            painter.drawImage(QPoint(630, 50), image)
         else:
-            image  = QImage('/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/battery.png')
-            painter.drawImage(QPoint(630,50), image)
+            image = QImage(
+                "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/battery.png"
+            )
+            painter.drawImage(QPoint(630, 50), image)
 
         pen = QPen(Qt.white)
         pen.setWidth(5)
-        painter.setPen(pen)        
+        painter.setPen(pen)
 
         font = QFont()
-        font.setFamily('Good Times')
+        font.setFamily("Good Times")
         font.setBold(True)
         font.setPointSize(10)
         painter.setFont(font)
-        painter.drawText(673, 112, str(self.battery)+"%")
+        painter.drawText(673, 112, str(self.battery) + "%")
         painter.end()
 
     def update_rpm(self):
@@ -332,7 +421,7 @@ class SteeringDisplay(QWidget):
 
     def draw_needlerpm(self, painter):
         needle_length = self.rpm_needle_length
-        needle_center = QPoint(self.width() - 682, self.height()-100)
+        needle_center = QPoint(self.width() - 682, self.height() - 100)
 
         # Calculate the angle based on the RPM value
         rpm_angle = (self.rpm / self.rpm_max) * 270
@@ -343,14 +432,16 @@ class SteeringDisplay(QWidget):
         painter.translate(-needle_center)
 
         # Define the needle shape as a polygon
-        needle_points = QPolygon([
-            QPoint(needle_center.x() - 3, needle_center.y() - 10),
-            QPoint(needle_center.x() + 3, needle_center.y() - 10),
-            QPoint(needle_center.x(), needle_center.y() + needle_length)
-        ])
+        needle_points = QPolygon(
+            [
+                QPoint(needle_center.x() - 3, needle_center.y() - 10),
+                QPoint(needle_center.x() + 3, needle_center.y() - 10),
+                QPoint(needle_center.x(), needle_center.y() + needle_length),
+            ]
+        )
 
         # Set the needle color and draw it
-        needle_color = QColor(255, 255, 255)  
+        needle_color = QColor(255, 255, 255)
         painter.setPen(QPen(needle_color, 2))
         painter.setBrush(needle_color)
         painter.drawPolygon(needle_points)
@@ -365,7 +456,7 @@ class SteeringDisplay(QWidget):
 
     def draw_needleregen(self, painter):
         needle_length = self.regen_needle_length
-        needle_center = QPoint(self.width() - 113, self.height()-100)
+        needle_center = QPoint(self.width() - 113, self.height() - 100)
 
         # Calculate the angle based on the RPM value
         regen_angle = (self.regen / self.regen_max) * 270
@@ -376,33 +467,37 @@ class SteeringDisplay(QWidget):
         painter.translate(-needle_center)
 
         # Define the needle shape as a polygon
-        needle_points = QPolygon([
-            QPoint(needle_center.x() - 3, needle_center.y() - 10),
-            QPoint(needle_center.x() + 3, needle_center.y() - 10),
-            QPoint(needle_center.x(), needle_center.y() + needle_length)
-        ])
+        needle_points = QPolygon(
+            [
+                QPoint(needle_center.x() - 3, needle_center.y() - 10),
+                QPoint(needle_center.x() + 3, needle_center.y() - 10),
+                QPoint(needle_center.x(), needle_center.y() + needle_length),
+            ]
+        )
 
         # Set the needle color and draw it
-        needle_color = QColor(255, 255, 255)  
+        needle_color = QColor(255, 255, 255)
         painter.setPen(QPen(needle_color, 2))
         painter.setBrush(needle_color)
         painter.drawPolygon(needle_points)
 
         # Reset the painter transform
         painter.resetTransform()
-    
+
     def time(self, painter):
         painter.begin(self)
 
-        image  = QImage('/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/Rectangle.png')
-        painter.drawImage(QPoint(325,390), image)
+        image = QImage(
+            "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/Rectangle.png"
+        )
+        painter.drawImage(QPoint(325, 390), image)
 
         pen = QPen(Qt.white)
         pen.setWidth(5)
-        painter.setPen(pen)        
+        painter.setPen(pen)
 
         font = QFont()
-        font.setFamily('Good Times')
+        font.setFamily("Good Times")
         font.setBold(True)
         font.setPointSize(29)
         painter.setFont(font)
@@ -416,7 +511,8 @@ class SteeringDisplay(QWidget):
 
         painter.end()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     app = QApplication(sys.argv)
     steering_display = SteeringDisplay()
     steering_display.show()

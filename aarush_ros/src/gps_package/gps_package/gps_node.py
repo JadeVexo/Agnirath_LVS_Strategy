@@ -40,8 +40,7 @@ class gps_publisher(Node):
         try:
             self.serial_port = serial.Serial(self.port, self.baud_rate, timeout=1.0)
             return True
-        except serial.SerialException as e:
-            print("Error opening serial port:", str(e))
+        except serial.SerialException:
             return False
 
     def close(self):

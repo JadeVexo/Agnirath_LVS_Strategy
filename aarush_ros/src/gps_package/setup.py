@@ -15,7 +15,7 @@ setup(
     zip_safe=True,
     maintainer='jaay',
     maintainer_email='jaayanth.jr@gmail.com',
-    description='TODO: Package description',
+    description='GPS Package',
     license='Apache-2.0',
     tests_require=['pytest'],
     entry_points={

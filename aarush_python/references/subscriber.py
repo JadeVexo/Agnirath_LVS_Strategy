@@ -16,7 +16,7 @@ def subscriber_main():
                 print(f"Received message for topic 'topic2': {topic2_message}")
 
     except KeyboardInterrupt:
-        print("Program Exiting.....")
+        print("Subscriber interrupted.")
 
 if __name__ == '__main__':
     subscriber_main()

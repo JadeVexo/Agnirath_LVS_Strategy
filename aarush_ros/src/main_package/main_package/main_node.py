@@ -3,7 +3,7 @@ from rclpy.node import Node
 from std_msgs.msg import Float32MultiArray as rosarray
 import random
 
-'''
+"""
 KEY FOR DATA LISTS:
 
 Final Data list:[
@@ -342,225 +342,169 @@ Final Data list:[
     ---------
     ]
           
-'''
+"""
 
-class control_subscriber(Node):
+class MAIN_NODE(Node):
+    def __init__(self, node):
+        super().__init__(node)
 
-    def __init__(self):
-        super().__init__('control_s_node')
-        self.subscription = self.create_subscription(rosarray,'control_data',self.recieve_data,10)
-        self.subscription  # prevent unused variable warning
-        self.latest_data = None
+    # # Reference
+    # def init_pub(self,topic,timer_period):
+    #     self.publisher = self.create_publisher(rosarray, topic, 10)
+    #     self.timer = self.create_timer(timer_period, self.publish_data)
+    #     self.pub_data = None
 
-    def recieve_data(self, msg):
-        self.latest_data = msg.data
-    
-    def get_latest_data(self):
-        return self.latest_data
-    
+    # def publish_data(self):
+    #     self.pub_msg = rosarray()
+    #     self.pub_msg.data = self.data
+    #     self.publisher.publish(self.pub_msg)
+    #     self.pub_data = self.pub_msg.data
+    #     print("PUB:", self.pub_data)
 
-class can_subscriber(Node):
+    # def init_sub(self,topic):
+    #     self.subscription = self.create_subscription(rosarray, topic, self.receive_data, 10)
+    #     self.subscription  # prevent unused variable warning
+    #     self.latest_sub_data = None
 
-    def __init__(self):
-        super().__init__('can_s_node')
-        self.subscription = self.create_subscription(rosarray,'can_data',self.recieve_data,10)
-        self.subscription  # prevent unused variable warning
-        self.latest_data = None
+    # def receive_data(self, sub_msg):
+    #     self.latest_sub_data = sub_msg.data
 
-    def recieve_data(self, msg):
-        self.latest_data = msg.data
-    
-    def get_latest_data(self):
-        return self.latest_data
-    
-class gps_subscriber(Node):
+    # Control Subscriber
+    def init_control_subscriber(self, topic):
+        self.control_subscription = self.create_subscription(
+            rosarray, topic, self.receive_control_data, 10
+        )
+        self.control_subscription  # prevent unused variable warning
+        self.control_sub_data = []
 
-    def __init__(self):
-        super().__init__('gps_s_node')
-        self.subscription = self.create_subscription(rosarray,'gps_data',self.recieve_data,10)
-        self.subscription  # prevent unused variable warning
-        self.latest_data = None
+    def receive_control_data(self, msg):
+        self.control_sub_data = msg.data
 
-    def recieve_data(self, msg):
-        self.latest_data = msg.data
-    
-    def get_latest_data(self):
-        return self.latest_data
-    
-class imu_subscriber(Node):
+    # CAN Subscriber
+    def init_can_subscriber(self, topic):
+        self.can_subscription = self.create_subscription(
+            rosarray, topic, self.receive_can_data, 10
+        )
+        self.can_subscription  # prevent unused variable warning
+        self.can_sub_data = []
 
-    def __init__(self):
-        super().__init__('imu_s_node')
-        self.subscription = self.create_subscription(rosarray,'imu_data',self.recieve_data,10)
-        self.subscription  # prevent unused variable warning
-        self.latest_data = None
+    def receive_can_data(self, msg):
+        self.can_sub_data = msg.data
 
-    def recieve_data(self, msg):
-        self.latest_data = msg.data
-    
-    def get_latest_data(self):
-        return self.latest_data
-    
-class can_publisher(Node):
+    # GPS Subscriber
+    def init_gps_subscriber(self, topic):
+        self.gps_subscription = self.create_subscription(
+            rosarray, topic, self.receive_gps_data, 10
+        )
+        self.gps_subscription  # prevent unused variable warning
+        self.gps_sub_data = []
 
-    def __init__(self):
-        super().__init__('can_p_node')
-        self.publisher_ = self.create_publisher(rosarray, 'control_data', 10)
-        timer_period = 1  # seconds
-        self.timer = self.create_timer(timer_period, self.recieve_data)
-        self.data = [0,0,0,0,0]
-        self.latest_data = None
+    def receive_gps_data(self, msg):
+        self.gps_sub_data = msg.data
 
-    def recieve_data(self):
-        msg = rosarray()
-        msg.data = self.data
-        self.publisher_.publish(msg)
-        self.data = [random.randint(0, 1),
-                     random.randint(0, 1),
-                     random.randint(0, 1),
-                     random.randint(0, 1),
-                     random.randint(0, 1)]
-        self.latest_data = msg.data
-        
-    def get_latest_data(self):
-        return self.latest_data
-    
-class parsed_data_publisher(Node):
+        # IMU Subscriber
 
-    def __init__(self):
-        super().__init__('parsed_data_p_node')
-        self.publisher_ = self.create_publisher(rosarray, 'parsed_data', 10)
-        timer_period = 1  # seconds
-        self.timer = self.create_timer(timer_period, self.recieve_data)
-        self.data = [0,0,0,0,0]
-        self.latest_data = None
+    def init_imu_subscriber(self, topic):
+        self.imu_subscription = self.create_subscription(
+            rosarray, topic, self.receive_imu_data, 10
+        )
+        self.imu_subscription  # prevent unused variable warning
+        self.imu_sub_data = []
 
-    def recieve_data(self):
-        msg = rosarray()
-        msg.data = self.data
-        self.publisher_.publish(msg)
-        self.data = [random.randint(0, 1),
-                     random.randint(0, 1),
-                     random.randint(0, 1),
-                     random.randint(0, 1),
-                     random.randint(0, 1)]
-        self.latest_data = msg.data
-        
-    def get_latest_data(self):
-        return self.latest_data
-    
-class final_data_publisher(Node):
+    def receive_imu_data(self, msg):
+        self.imu_sub_data = msg.data
 
-    def __init__(self):
-        super().__init__('final_data_p_node')
-        self.publisher_ = self.create_publisher(rosarray, 'final_data', 10)
-        timer_period = 1  # seconds
-        self.timer = self.create_timer(timer_period, self.recieve_data)
-        self.data = [0,0,0,0,0]
-        self.latest_data = None
+    # CAN publisher
+    def init_can_publisher(self, topic, timer_period):
+        self.can_pub = self.create_publisher(rosarray, topic, 10)
+        self.can_timer = self.create_timer(timer_period, self.publish_can_data)
+        self.can_pub_data = []
 
-    def recieve_data(self):
-        msg = rosarray()
-        msg.data = self.data
-        self.publisher_.publish(msg)
-        self.data = [random.randint(0, 1),
-                     random.randint(0, 1),
-                     random.randint(0, 1),
-                     random.randint(0, 1),
-                     random.randint(0, 1)]
-        self.latest_data = msg.data
-        
-    def get_latest_data(self):
-        return self.latest_data
-    
+    def publish_can_data(self):
+        self.can_pub_msg = rosarray()
+        self.can_pub_msg.data = self.can_pub_data
+        self.can_pub.publish(self.can_pub_msg)
+        self.can_pub_data = self.can_pub_msg.data
+        print("PUB:", self.can_pub_data)
+
+    # Final Data publisher
+    def init_final_data_publisher(self, topic, timer_period):
+        self.final_data_pub = self.create_publisher(rosarray, topic, 10)
+        self.final_data_timer = self.create_timer(timer_period, self.publish_final_data)
+        self.final_data_pub_data = []
+
+    def publish_final_data(self):
+        self.final_data_pub_msg = rosarray()
+        self.final_data_pub_msg.data = self.final_data_pub_data
+        self.final_data_pub.publish(self.final_data_pub_msg)
+        self.final_data_pub_data = self.final_data_pub_msg.data
+        print("PUB:", self.final_data_pub_data)
+
+    # Parsed publisher
+    def init_parsed_data_publisher(self, topic, timer_period):
+        self.parsed_data_pub = self.create_publisher(rosarray, topic, 10)
+        self.parsed_data_timer = self.create_timer(
+            timer_period, self.publish_parsed_data
+        )
+        self.parsed_data_pub_data = []
+
+    def publish_parsed_data(self):
+        self.parsed_data_pub_msg = rosarray()
+        self.parsed_data_pub_msg.data = self.parsed_data_pub_data
+        self.parsed_data_pub.publish(self.parsed_data_pub_msg)
+        self.parsed_data_pub_data = self.parsed_data_pub_msg.data
+        print("PUB:", self.parsed_data_pub_data)
+
 
 def main(args=None):
     rclpy.init(args=args)
 
-    gps_s_node = gps_subscriber()
-    imu_s_node = can_subscriber()
-    control_s_node = control_subscriber()
-    can_s_node = can_subscriber()
+    main_node = MAIN_NODE("main_node")
+    main_node.init_control_subscriber("control_data")
+    main_node.init_can_subscriber("can_data")
+    main_node.init_gps_subscriber("gps_data")
+    main_node.init_imu_subscriber("imu_data")
 
-
-    can_p_node = can_publisher()
-    parsed_data_p_node = parsed_data_publisher()
-    final_data_p_node = final_data_publisher()
-
-    final_data = [0]*200
-    parsed_data = []
-    CAN_data = []
-
+    main_node.init_can_publisher("can_rx_data", 1)
+    #main_node.init_final_data_publisher("final_data", 1)
+    #main_node.init_parsed_data_publisher("parsed_data", 1)
+    
     while rclpy.ok():
-        rclpy.spin_once(control_s_node)
-        rclpy.spin_once(can_s_node)
-
-        latest_gps_data = gps_s_node.get_latest_data()
-        latest_imu_data = imu_s_node.get_latest_data()
-        latest_control_data = control_s_node.get_latest_data()
-        latest_can_data = can_s_node.get_latest_data()
-
-        if None not in latest_gps_data:
-            # GPS Data
-            final_data[0:14] = latest_gps_data
-        if None not in latest_imu_data:
-            # IMU Data
-            final_data[14:20] = latest_imu_data
-        if None not in latest_can_data:
-            # BMU Serial Number and ID
-            if latest_can_data[0] == 0x600:
-                final_data[28-30] = latest_can_data[1:]
-            # CMU 1
-            if latest_can_data[0] == 0x601:
-                final_data[30-33] = latest_can_data[1:]
-            if latest_can_data[0] == 0x602:
-                final_data[33-37] = latest_can_data[1:]
-            if latest_can_data[0] == 0x603:
-                final_data[37-41] = latest_can_data[1:]
-            # CMU 2
-            if latest_can_data[0] == 0x604:
-                final_data[41-44] = latest_can_data[1:]
-            if latest_can_data[0] == 0x605:
-                final_data[44-48] = latest_can_data[1:]
-            if latest_can_data[0] == 0x606:
-                final_data[48-52] = latest_can_data[1:]
-            # CMU 3
-            if latest_can_data[0] == 0x607:
-                final_data[30-33] = latest_can_data[1:]
-            if latest_can_data[0] == 0x608:
-                final_data[33-37] = latest_can_data[1:]
-            if latest_can_data[0] == 0x609:
-                final_data[37-41] = latest_can_data[1:]
-            # CMU 4
-            if latest_can_data[0] == 0x610:
-                final_data[30-33] = latest_can_data[1:]
-            if latest_can_data[0] == 0x611:
-                final_data[33-37] = latest_can_data[1:]
-            if latest_can_data[0] == 0x612:
-                final_data[37-41] = latest_can_data[1:]
-            # CMU 5
-
+        main_node.can_pub_data = [
+            0x23,
+            random.randint(0, 9),
+            random.randint(0, 9),
+            random.randint(0, 9),
+            random.randint(0, 9),
+            random.randint(0, 9),
+            random.randint(0, 9),
+            random.randint(0, 9),
+            random.randint(0, 9),
             
-            
+        ]
 
+        rclpy.spin_once(main_node)
 
+        control_sub_data = main_node.control_sub_data
+        can_sub_data = main_node.can_sub_data
+        gps_sub_data = main_node.gps_sub_data
+        imu_sub_data = main_node.imu_sub_data
 
-        if latest_control_data is not None:
-            print(latest_control_data)
-
-        print(final_data)
-
-        
+        if control_sub_data is not None:
+            print("SUB:", control_sub_data)
+        if can_sub_data is not None:
+            print("SUB:", can_sub_data)
+        if gps_sub_data is not None:
+            print("SUB:", gps_sub_data)
+        if imu_sub_data is not None:
+            print("SUB:", imu_sub_data)
 
     # Destroy the node explicitly
     # (optional - otherwise it will be done automatically
     # when the garbage collector destroys the node object)
-    control_s_node.destroy_node()
-    can_s_node.destroy_node()
-    gps_s_node.destroy_node()
-    imu_s_node.destroy_node()
+    main_node.destroy_node()
     rclpy.shutdown()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

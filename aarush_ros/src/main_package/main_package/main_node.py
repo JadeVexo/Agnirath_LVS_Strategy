@@ -283,11 +283,13 @@ Final Data list:[
     MPPT4 Output Voltage
 
     --------
-
+    
+    (The following 3 things are transmitted by the EVDC)
     Motor Current
     Motor Velocity
     Bus Current
 
+    (Everything below is transmitted through mc)
     Motor Controller Serial Number - NA
     Motor Controller Prohelion ID - NA
 
@@ -497,12 +499,13 @@ def main(args=None):
         imu_sub_data = main_node.imu_sub_data
 
 
-        # Base address of MPPTs
+        # Base address of MPPTs, Driver's Control and Motor Controller
         mppt_1_base_address = 0x6A0
         mppt_2_base_address = 0x6B0
         mppt_3_base_address = 0x6C0
         mppt_4_base_address = 0x6D0
-
+        evdc_base_address = 0x630 # Will change this later after updating the correct base address
+        mc_base_address = 0x640 # Will change this later after updating the correct base address
 
         # Base index of messages for different components in the parsed data array
         bms_index = 0
@@ -510,7 +513,8 @@ def main(args=None):
         mppt_2_index = 73
         mppt_3_index = 87
         mppt_4_index = 101
-        mc_index = 115
+        evdc_index = 115
+        mc_index = 117
 
 
         # Parsing data from CAN Messages; Used in Control Loops
@@ -685,15 +689,50 @@ def main(args=None):
 
             '''-----------------------------------------------------------'''
 
+            # EVDC
+            # Motor Current and Motor Velocity
+            if can_sub_data[0] == evdc_base_address + 0x001:
+                parsed_data[evdc_index+0:evdc_index+1] = can_sub_data[1]
+
+            # Bus Current
+            if can_sub_data[0] == evdc_base_address + 0x002:
+                parsed_data[evdc_index+1:evdc_index+2] = can_sub_data[1]
+
+            '''--------------------------------------------------'''
+
             # Motor Controller
-             #anjnkf
+            # Status Information
+            if can_sub_data[0] == mc_base_address + 0x01:
+                parsed_data[mc_index+0: mc_index+2] = can_sub_data[1:3]
 
-             
-                
+            # Bus Current, Voltage
+            if can_sub_data[0] == mc_base_address + 0x02:
+                parsed_data[mc_index+2] = can_sub_data[1]
 
+            # Phase B,C Current
+            if can_sub_data[0] == mc_base_address + 0x04:
+                parsed_data[mc_index+3] = can_sub_data[1]
 
+            # Back EMF Measurement
+            if can_sub_data[0] == mc_base_address + 0x07:
+                parsed_data[mc_index+4] = can_sub_data[1]
 
-            
+            # 15V Voltage Rail
+            if can_sub_data[0] == mc_base_address + 0x08:
+                parsed_data[mc_index+5] = can_sub_data[1]
+
+            # 3.3V, 1.9V Voltage Rails
+            if can_sub_data[0] == mc_base_address + 0x09:
+                parsed_data[mc_index+6] = can_sub_data[1]
+
+            # Heat Sink and Motor Temperature
+            if can_sub_data[0] == mc_base_address + 0x0B:
+                parsed_data[mc_index+7] = can_sub_data[1]
+
+            # DSP Board Temperature
+            if can_sub_data[0] == mc_base_address + 0x0C:
+                parsed_data[mc_index+8] = can_sub_data[1]
+
             
 
             

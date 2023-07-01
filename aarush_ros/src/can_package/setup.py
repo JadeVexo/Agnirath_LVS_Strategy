@@ -20,7 +20,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'can_node = can_package.can_node:main'
+            'can_node = can_package.can_node:main',
+            'can_node_sim = can_package.can_node_sim:main'
+
         ],
     },
 )

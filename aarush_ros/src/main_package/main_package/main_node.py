@@ -380,7 +380,7 @@ class MAIN_NODE(Node):
             rosarray, topic, self.receive_control_data, 10
         )
         self.control_subscriber  # prevent unused variable warning
-        self.control_sub_data = []
+        self.control_sub_data = None
 
     def receive_control_data(self, msg):
         self.control_sub_data = msg.data
@@ -391,7 +391,7 @@ class MAIN_NODE(Node):
             rosarray, topic, self.receive_can_data, 10
         )
         self.can_subscriber  # prevent unused variable warning
-        self.can_sub_data = []
+        self.can_sub_data = None
 
     def receive_can_data(self, msg):
         self.can_sub_data = msg.data
@@ -402,7 +402,7 @@ class MAIN_NODE(Node):
             rosarray, topic, self.receive_gps_data, 10
         )
         self.gps_subscriber  # prevent unused variable warning
-        self.gps_sub_data = []
+        self.gps_sub_data = None
 
     def receive_gps_data(self, msg):
         self.gps_sub_data = msg.data
@@ -414,7 +414,7 @@ class MAIN_NODE(Node):
             rosarray, topic, self.receive_imu_data, 10
         )
         self.imu_subscriber  # prevent unused variable warning
-        self.imu_sub_data = []
+        self.imu_sub_data = None
 
     def receive_imu_data(self, msg):
         self.imu_sub_data = msg.data
@@ -423,27 +423,29 @@ class MAIN_NODE(Node):
     def init_can_publisher(self, topic, timer_period):
         self.can_publisher = self.create_publisher(rosarray, topic, 10)
         self.can_timer = self.create_timer(timer_period, self.publish_can_data)
-        self.can_pub_data = []
+        self.can_pub_data = None
 
     def publish_can_data(self):
-        self.can_pub_msg = rosarray()
-        self.can_pub_msg.data = self.can_pub_data
-        self.can_publisher.publish(self.can_pub_msg)
-        self.can_pub_data = self.can_pub_msg.data
-        print("PUB:", self.can_pub_data)
+        if self.can_pub_data is not None:
+            self.can_pub_msg = rosarray()
+            self.can_pub_msg.data = self.can_pub_data
+            self.can_publisher.publish(self.can_pub_msg)
+            self.can_pub_data = self.can_pub_msg.data
+            #print("PUB:", self.can_pub_data)
 
     # Final Data publisher
     def init_final_data_publisher(self, topic, timer_period):
         self.final_data_publisher = self.create_publisher(rosarray, topic, 10)
         self.final_data_timer = self.create_timer(timer_period, self.publish_final_data)
-        self.final_data_pub_data = []
+        self.final_pub_data = None
 
     def publish_final_data(self):
-        self.final_data_pub_msg = rosarray()
-        self.final_data_pub_msg.data = self.final_data_pub_data
-        self.final_data_publisher.publish(self.final_data_pub_msg)
-        self.final_data_pub_data = self.final_data_pub_msg.data
-        print("PUB:", self.final_data_pub_data)
+        if self.final_pub_data is not None:
+            self.final_data_pub_msg = rosarray()
+            self.final_data_pub_msg.data = self.final_pub_data        
+            self.final_data_publisher.publish(self.final_data_pub_msg)
+            self.final_pub_data = self.final_data_pub_msg.data
+            print("PUB:", self.final_pub_data)
 
     # Parsed publisher
     def init_parsed_data_publisher(self, topic, timer_period):
@@ -451,14 +453,15 @@ class MAIN_NODE(Node):
         self.parsed_data_timer = self.create_timer(
             timer_period, self.publish_parsed_data
         )
-        self.parsed_data_pub_data = []
+        self.parsed_pub_data = None
 
     def publish_parsed_data(self):
-        self.parsed_data_pub_msg = rosarray()
-        self.parsed_data_pub_msg.data = self.parsed_data_pub_data
-        self.parsed_data_publisher.publish(self.parsed_data_pub_msg)
-        self.parsed_data_pub_data = self.parsed_data_pub_msg.data
-        print("PUB:", self.parsed_data_pub_data)
+        if self.parsed_pub_data is not None:
+            self.parsed_data_pub_msg = rosarray()
+            self.parsed_data_pub_msg.data = self.parsed_pub_data
+            self.parsed_data_publisher.publish(self.parsed_data_pub_msg)
+            self.parsed_pub_data = self.parsed_data_pub_msg.data
+            print("PUB:", self.parsed_pub_data)
 
 
 def main(args=None):
@@ -472,26 +475,26 @@ def main(args=None):
 
     main_node.init_can_publisher("can_tx_data", 1)
     #main_node.init_final_data_publisher("final_data", 1)
-    #main_node.init_parsed_data_publisher("parsed_data", 1)
+    main_node.init_parsed_data_publisher("parsed_data", 1)
 
     final_data = [0]*200
-    parsed_data = []
-    # can_data = []
-    
+    parsed_data = [0]*150
+    # can_data = None
+    print("Starting Main Node")
     while rclpy.ok():
-        #rclpy.spin_once(main_node)
-        main_node.can_pub_data = [
-            0x23,
-            random.randint(0, 9),
-            random.randint(0, 9),
-            random.randint(0, 9),
-            random.randint(0, 9),
-            random.randint(0, 9),
-            random.randint(0, 9),
-            random.randint(0, 9),
-            random.randint(0, 9),
+        rclpy.spin_once(main_node)
+        # main_node.can_pub_data = [
+        #     0x23,
+        #     random.randint(0, 9),
+        #     random.randint(0, 9),
+        #     random.randint(0, 9),
+        #     random.randint(0, 9),
+        #     random.randint(0, 9),
+        #     random.randint(0, 9),
+        #     random.randint(0, 9),
+        #     random.randint(0, 9),
             
-        ]
+        # ]
 
         control_sub_data = main_node.control_sub_data
         can_sub_data = main_node.can_sub_data  # Recieves CAN Data
@@ -518,7 +521,7 @@ def main(args=None):
 
 
         # Parsing data from CAN Messages; Used in Control Loops
-        if None not in can_sub_data:
+        if can_sub_data is not None:
             # CMU 1
             if can_sub_data[0] == 0x601:
                 parsed_data[bms_index+0:bms_index+2] = can_sub_data[2:4]
@@ -733,20 +736,19 @@ def main(args=None):
             if can_sub_data[0] == mc_base_address + 0x0C:
                 parsed_data[mc_index+8] = can_sub_data[1]
 
-            
+            main_node.parsed_pub_data = parsed_data
 
-            
 
-        if control_sub_data is not None:
-            print("SUB:", control_sub_data)
-        if can_sub_data is not None:
-            print("SUB:", can_sub_data)
-        if gps_sub_data is not None:
-            print("SUB:", gps_sub_data)
-        if imu_sub_data is not None:
-            print("SUB:", imu_sub_data)
+        # if control_sub_data is not None:
+        #     print("SUB:", control_sub_data)
+        # if can_sub_data is not None:
+        #     print("SUB:", can_sub_data)
+        # if gps_sub_data is not None:
+        #     print("SUB:", gps_sub_data)
+        # if imu_sub_data is not None:
+        #     print("SUB:", imu_sub_data)
 
-        rclpy.spin_once(main_node)
+        # rclpy.spin_once(main_node)
 
     # Destroy the node explicitly
     # (optional - otherwise it will be done automatically

@@ -26,7 +26,7 @@ Final Data list:[
     
     -------------
 
-    [14-19]
+    [14-19] 
     X Acceleration
     Y Acceleration
     Z Acceleration
@@ -40,17 +40,17 @@ Final Data list:[
     BMU device ID - Display
     BMU Serial Number - Display
 
-    [30-40]
+    [30-40] 
     CMU1 Serial Number - Display
     CMU1 PCB Temperature - Display Warning, Slow Down, Decide Later
     CMU1 Cell Temperature - Display Warning, Slow Down
-    CMU1 Cell 1 Voltage - Display 
-    CMU1 Cell 2 Voltage - Display 
-    CMU1 Cell 3 Voltage - Display 
-    CMU1 Cell 4 Voltage - Display 
-    CMU1 Cell 5 Voltage - Display 
-    CMU1 Cell 6 Voltage - Display 
-    CMU1 Cell 7 Voltage - Display 
+    CMU1 Cell 1 Voltage - Contactor Open
+    CMU1 Cell 2 Voltage - Contactor Open
+    CMU1 Cell 3 Voltage - Contactor Open
+    CMU1 Cell 4 Voltage - Contactor Open
+    CMU1 Cell 5 Voltage - Contactor Open
+    CMU1 Cell 6 Voltage - Contactor Open
+    CMU1 Cell 7 Voltage - Contactor Open
 
     [41-51]
     CMU2 Serial Number
@@ -105,27 +105,27 @@ Final Data list:[
     CMU5 Cell 7 Voltage
 
     [85-86]
-    SOC(Ah) Used - Display
-    SOC percentage - Display
+    SOC(Ah) Used - Display - <0 Open Contactor
+    SOC percentage - Display - <0 Open Contactor
 
-    [87-88]
-    Balance SOC(Ah) Used - Display
+    [87-88] - (Not useful for Controls)
+    Balance SOC(Ah) Used   - Display 
     Balance SOC percentage - Display 
 
-    [89-92]
-    Charging Cell Voltage Error -
-    Cell Temperature Margin
-    Dischaging Cell Voltage Error
-    Total Pack Capacity
+    [89-92] - (Not useful for Controls)
+    Charging Cell Voltage Error   -
+    Cell Temperature Margin       -
+    Dischaging Cell Voltage Error -
+    Total Pack Capacity           - 
 
-    [93-97]
-    Precharge contactor driver status
-    Precharge state
-    12v Contactor supply voltage
-    Precharge timer activity
-    Precharge Timer Counter
+    [93-97] - (Not useful for Controls)
+    Precharge contactor driver status -
+    Precharge state                   -
+    12v Contactor supply voltage      -
+    Precharge timer activity          -
+    Precharge Timer Counter           -
 
-    [98-103]
+    [98-103] - 
     Minimum cell voltage - 3<, Open Contactor
     Maximum cell voltage - 4>, Open Contactor
     CMU number that has the minimum cell voltage - Display
@@ -133,19 +133,19 @@ Final Data list:[
     CMU number that has the maximum cell voltage - Display
     Cell number in CMU that is the maximum cell voltage - Display
 
-    [104-107]
+    [104-107] - 
     Minimum cell temperature - Display, Slow Down, Oopen Contactor Stop
     Maximum cell temperature - Display, Slow Down, Open Contactor Stop
     CMU number that has the minimum cell temperature
     CMU number that has the maximum cell temperature
 
-    [108-109]
+    [108-109] 
     Battery Voltage - Display, 160 > or <120 Open Contactor
     Battery Current - Display, 30 > Open Contactor
 
-    [110-114]
+    [110-114] 
     Balance voltage threshold - Display
-    Balance voltage threshold -Display
+    Balance voltage threshold - Display
     Status Flags - 
         1. 4>, Open Contactor
         2. 3<, Open Contactor
@@ -166,7 +166,7 @@ Final Data list:[
     12V current consumption of CMUs - Display
 
     [119-121]
-    Status Flags-
+    Extended Status Flags - Haven't implemented this, using Normal Status Flags
         1. 4>, Open Contactor
         2. 3<, Open Contactor
         4. Display, Slow Down, Open Contactor Stop
@@ -188,7 +188,7 @@ Final Data list:[
 
     -------------------
     
-    [123-141]
+    [123-141] (Manually Assigned BaseID of MPPT1 to 0x6A0)
     MPPT1 Input Voltage - below 20 show message
     MPPT1 Input Current - >7A module contactor open MMPT
     MPPT1 Output Voltage - >175 Motor Current 0
@@ -219,6 +219,7 @@ Final Data list:[
     MPPT1 Test Counter
     MPPT1 Output Voltage
 
+    (Manually Assigned BaseID of MPPT2 to 0x6B0)
     MPPT2 Input Voltage
     MPPT2 Input Current
     MPPT2 Output Voltage
@@ -239,6 +240,7 @@ Final Data list:[
     MPPT2 Test Counter
     MPPT2 Output Voltage
 
+    (Manually Assigned BaseID of MPPT3 to 0x6C0)
     MPPT3 Input Voltage
     MPPT3 Input Current
     MPPT3 Output Voltage
@@ -259,6 +261,7 @@ Final Data list:[
     MPPT3 Test Counter
     MPPT3 Output Voltage
 
+    (Manually Assigned BaseID of MPPT4 to 0x6D0)
     MPPT4 Input Voltage
     MPPT4 Input Current
     MPPT4 Output Voltage
@@ -371,10 +374,10 @@ class MAIN_NODE(Node):
 
     # Control Subscriber
     def init_control_subscriber(self, topic):
-        self.control_subscription = self.create_subscription(
+        self.control_subscriber = self.create_subscription(
             rosarray, topic, self.receive_control_data, 10
         )
-        self.control_subscription  # prevent unused variable warning
+        self.control_subscriber  # prevent unused variable warning
         self.control_sub_data = []
 
     def receive_control_data(self, msg):
@@ -382,10 +385,10 @@ class MAIN_NODE(Node):
 
     # CAN Subscriber
     def init_can_subscriber(self, topic):
-        self.can_subscription = self.create_subscription(
+        self.can_subscriber = self.create_subscription(
             rosarray, topic, self.receive_can_data, 10
         )
-        self.can_subscription  # prevent unused variable warning
+        self.can_subscriber  # prevent unused variable warning
         self.can_sub_data = []
 
     def receive_can_data(self, msg):
@@ -393,10 +396,10 @@ class MAIN_NODE(Node):
 
     # GPS Subscriber
     def init_gps_subscriber(self, topic):
-        self.gps_subscription = self.create_subscription(
+        self.gps_subscriber = self.create_subscription(
             rosarray, topic, self.receive_gps_data, 10
         )
-        self.gps_subscription  # prevent unused variable warning
+        self.gps_subscriber  # prevent unused variable warning
         self.gps_sub_data = []
 
     def receive_gps_data(self, msg):
@@ -405,10 +408,10 @@ class MAIN_NODE(Node):
         # IMU Subscriber
 
     def init_imu_subscriber(self, topic):
-        self.imu_subscription = self.create_subscription(
+        self.imu_subscriber = self.create_subscription(
             rosarray, topic, self.receive_imu_data, 10
         )
-        self.imu_subscription  # prevent unused variable warning
+        self.imu_subscriber  # prevent unused variable warning
         self.imu_sub_data = []
 
     def receive_imu_data(self, msg):
@@ -416,33 +419,33 @@ class MAIN_NODE(Node):
 
     # CAN publisher
     def init_can_publisher(self, topic, timer_period):
-        self.can_pub = self.create_publisher(rosarray, topic, 10)
+        self.can_publisher = self.create_publisher(rosarray, topic, 10)
         self.can_timer = self.create_timer(timer_period, self.publish_can_data)
         self.can_pub_data = []
 
     def publish_can_data(self):
         self.can_pub_msg = rosarray()
         self.can_pub_msg.data = self.can_pub_data
-        self.can_pub.publish(self.can_pub_msg)
+        self.can_publisher.publish(self.can_pub_msg)
         self.can_pub_data = self.can_pub_msg.data
         print("PUB:", self.can_pub_data)
 
     # Final Data publisher
     def init_final_data_publisher(self, topic, timer_period):
-        self.final_data_pub = self.create_publisher(rosarray, topic, 10)
+        self.final_data_publisher = self.create_publisher(rosarray, topic, 10)
         self.final_data_timer = self.create_timer(timer_period, self.publish_final_data)
         self.final_data_pub_data = []
 
     def publish_final_data(self):
         self.final_data_pub_msg = rosarray()
         self.final_data_pub_msg.data = self.final_data_pub_data
-        self.final_data_pub.publish(self.final_data_pub_msg)
+        self.final_data_publisher.publish(self.final_data_pub_msg)
         self.final_data_pub_data = self.final_data_pub_msg.data
         print("PUB:", self.final_data_pub_data)
 
     # Parsed publisher
     def init_parsed_data_publisher(self, topic, timer_period):
-        self.parsed_data_pub = self.create_publisher(rosarray, topic, 10)
+        self.parsed_data_publisher = self.create_publisher(rosarray, topic, 10)
         self.parsed_data_timer = self.create_timer(
             timer_period, self.publish_parsed_data
         )
@@ -451,7 +454,7 @@ class MAIN_NODE(Node):
     def publish_parsed_data(self):
         self.parsed_data_pub_msg = rosarray()
         self.parsed_data_pub_msg.data = self.parsed_data_pub_data
-        self.parsed_data_pub.publish(self.parsed_data_pub_msg)
+        self.parsed_data_publisher.publish(self.parsed_data_pub_msg)
         self.parsed_data_pub_data = self.parsed_data_pub_msg.data
         print("PUB:", self.parsed_data_pub_data)
 
@@ -461,17 +464,17 @@ def main(args=None):
 
     main_node = MAIN_NODE("main_node")
     main_node.init_control_subscriber("control_data")
-    main_node.init_can_subscriber("can_data")
+    main_node.init_can_subscriber("can_rx_data")
     main_node.init_gps_subscriber("gps_data")
     main_node.init_imu_subscriber("imu_data")
 
-    main_node.init_can_publisher("can_rx_data", 1)
+    main_node.init_can_publisher("can_tx_data", 1)
     #main_node.init_final_data_publisher("final_data", 1)
     #main_node.init_parsed_data_publisher("parsed_data", 1)
 
     final_data = [0]*200
     parsed_data = []
-    can_data = []
+    # can_data = []
     
     while rclpy.ok():
         #rclpy.spin_once(main_node)
@@ -488,12 +491,212 @@ def main(args=None):
             
         ]
 
-        
-
         control_sub_data = main_node.control_sub_data
-        can_sub_data = main_node.can_sub_data
+        can_sub_data = main_node.can_sub_data  # Recieves CAN Data
         gps_sub_data = main_node.gps_sub_data
         imu_sub_data = main_node.imu_sub_data
+
+
+        # Base address of MPPTs
+        mppt_1_base_address = 0x6A0
+        mppt_2_base_address = 0x6B0
+        mppt_3_base_address = 0x6C0
+        mppt_4_base_address = 0x6D0
+
+
+        # Base index of messages for different components in the parsed data array
+        bms_index = 0
+        mppt_1_index = 59
+        mppt_2_index = 73
+        mppt_3_index = 87
+        mppt_4_index = 101
+        mc_index = 115
+
+
+        # Parsing data from CAN Messages; Used in Control Loops
+        if None not in can_sub_data:
+            # CMU 1
+            if can_sub_data[0] == 0x601:
+                parsed_data[bms_index+0:bms_index+2] = can_sub_data[2:4]
+            if can_sub_data[0] == 0x602:
+                parsed_data[bms_index+2:bms_index+6] = can_sub_data[1:5]
+            if can_sub_data[0] == 0x603:
+                parsed_data[bms_index+6:bms_index+10] = can_sub_data[1:5]
+
+            # CMU 2
+            if can_sub_data[0] == 0x604:
+                parsed_data[bms_index+10:bms_index+12] = can_sub_data[2:4]
+            if can_sub_data[0] == 0x605:
+                parsed_data[bms_index+12:bms_index+16] = can_sub_data[1:5]
+            if can_sub_data[0] == 0x606:
+                parsed_data[bms_index+16:bms_index+20] = can_sub_data[1:5]
+            
+            # CMU 3
+            if can_sub_data[0] == 0x607:
+                parsed_data[bms_index+20:bms_index+22] = can_sub_data[2:4]
+            if can_sub_data[0] == 0x608:
+                parsed_data[bms_index+22:bms_index+26] = can_sub_data[1:5]
+            if can_sub_data[0] == 0x609:
+                parsed_data[bms_index+26:bms_index+30] = can_sub_data[1:5]
+
+            # CMU 4
+            if can_sub_data[0] == 0x610:
+                parsed_data[bms_index+30:bms_index+32] = can_sub_data[2:4]
+            if can_sub_data[0] == 0x611:
+                parsed_data[bms_index+32:bms_index+36] = can_sub_data[1:5]
+            if can_sub_data[0] == 0x612:
+                parsed_data[bms_index+36:bms_index+40] = can_sub_data[1:5]
+
+            # CMU 5
+            if can_sub_data[0] == 0x613:
+                parsed_data[bms_index+40:bms_index+42] = can_sub_data[2:4]
+            if can_sub_data[0] == 0x614:
+                parsed_data[bms_index+42:bms_index+46] = can_sub_data[1:5]
+            if can_sub_data[0] == 0x615:
+                parsed_data[bms_index+46:bms_index+50] = can_sub_data[1:5]
+
+            # SOC Information
+            if can_sub_data[0] == 0x6F4:
+                parsed_data[bms_index+50:bms_index+52] = can_sub_data[1:3]
+
+            # Minimum/ Maximum Cell Voltage 
+            if can_sub_data[0] == 0x6F8:
+                parsed_data[bms_index+52:bms_index+54] = can_sub_data[1:3]
+
+            # Minimum/ Maximum Cell Temperature
+            if can_sub_data[0] == 0x6F9:
+                parsed_data[bms_index+54:bms_index+56] = can_sub_data[1:3]
+
+            # Battery Voltage/ Current
+            if can_sub_data[0] == 0x6FA:
+                parsed_data[bms_index+56:bms_index+58] = can_sub_data[1:3]
+
+            # Battery Pack Status
+            if can_sub_data[0] == 0x6FB:
+                parsed_data[bms_index+58] = can_sub_data[5]
+            
+            '''------------------------------------------------------'''
+
+            # MPPT 1
+            # Input Measurements
+            if can_sub_data[0] == mppt_1_base_address + 0x000: 
+                parsed_data[mppt_1_index+0:mppt_1_index+2] = can_sub_data[1:3]
+
+            # Output Measurements
+            if can_sub_data[0] == mppt_1_base_address + 0x001:
+                parsed_data[mppt_1_index+2:mppt_1_index+4] = can_sub_data[1:3]
+
+            # Temperature
+            if can_sub_data[0] == mppt_1_base_address + 0x002:
+                parsed_data[mppt_1_index+4:mppt_1_index+6] = can_sub_data[1:3]
+
+            # Auxillary Power Supply 
+            if can_sub_data[0] == mppt_1_base_address + 0x003:
+                parsed_data[mppt_1_index+6:mppt_1_index+8] = can_sub_data[1:3]
+
+            #  Status - 3 strings for controls are "error flags", "limit flags" and "mode"
+            if can_sub_data[0] == mppt_1_base_address + 0x005:
+                parsed_data[mppt_1_index+8:mppt_1_index+11] = can_sub_data[4:7]
+            
+            # Power Connector
+            if can_sub_data[0] == mppt_1_base_address + 0x006:
+                parsed_data[mppt_1_index+11:mppt_1_index+13] = can_sub_data[1:3]
+
+            '''------------------------------------------------------------------'''
+
+            # MPPT 2
+            # Input Measurements
+            if can_sub_data[0] == mppt_2_base_address + 0x000: 
+                parsed_data[mppt_2_index+0:mppt_2_index+2] = can_sub_data[1:3]
+
+            # Output Measurements
+            if can_sub_data[0] == mppt_2_base_address + 0x001:
+                parsed_data[mppt_2_index+2:mppt_2_index+4] = can_sub_data[1:3]
+
+            # Temperature
+            if can_sub_data[0] == mppt_2_base_address + 0x002:
+                parsed_data[mppt_2_index+4:mppt_2_index+6] = can_sub_data[1:3]
+
+            # Auxillary Power Supply 
+            if can_sub_data[0] == mppt_2_base_address + 0x003:
+                parsed_data[mppt_2_index+6:mppt_2_index+8] = can_sub_data[1:3]
+
+            #  Status - 3 strings for controls are "error flags", "limit flags" and "mode"
+            if can_sub_data[0] == mppt_2_base_address + 0x005:
+                parsed_data[mppt_2_index+8:mppt_2_index+11] = can_sub_data[4:7]
+            
+            # Power Connector
+            if can_sub_data[0] == mppt_2_base_address + 0x006:
+                parsed_data[mppt_2_index+11:mppt_2_index+13] = can_sub_data[1:3]
+
+            '''-----------------------------------------------------------'''
+
+            # MPPT 3
+            # Input Measurements
+            if can_sub_data[0] == mppt_3_base_address + 0x000: 
+                parsed_data[mppt_3_index+0:mppt_3_index+2] = can_sub_data[1:3]
+
+            # Output Measurements
+            if can_sub_data[0] == mppt_3_base_address + 0x001:
+                parsed_data[mppt_3_index+2:mppt_3_index+4] = can_sub_data[1:3]
+
+            # Temperature
+            if can_sub_data[0] == mppt_3_base_address + 0x002:
+                parsed_data[mppt_3_index+4:mppt_3_index+6] = can_sub_data[1:3]
+
+            # Auxillary Power Supply 
+            if can_sub_data[0] == mppt_3_base_address + 0x003:
+                parsed_data[mppt_3_index+6:mppt_3_index+8] = can_sub_data[1:3]
+
+            #  Status - 3 strings for controls are "error flags", "limit flags" and "mode"
+            if can_sub_data[0] == mppt_3_base_address + 0x005:
+                parsed_data[mppt_3_index+8:mppt_3_index+11] = can_sub_data[4:7]
+            
+            # Power Connector
+            if can_sub_data[0] == mppt_3_base_address + 0x006:
+                parsed_data[mppt_3_index+11:mppt_3_index+13] = can_sub_data[1:3]
+
+            '''--------------------------------------------------------------'''
+
+            # MPPT 4
+            # Input Measurements
+            if can_sub_data[0] == mppt_4_base_address + 0x000: 
+                parsed_data[mppt_4_index+0:mppt_4_index+2] = can_sub_data[1:3]
+
+            # Output Measurements
+            if can_sub_data[0] == mppt_4_base_address + 0x001:
+                parsed_data[mppt_4_index+2:mppt_4_index+4] = can_sub_data[1:3]
+
+            # Temperature
+            if can_sub_data[0] == mppt_4_base_address + 0x002:
+                parsed_data[mppt_4_index+4:mppt_4_index+6] = can_sub_data[1:3]
+
+            # Auxillary Power Supply 
+            if can_sub_data[0] == mppt_4_base_address + 0x003:
+                parsed_data[mppt_4_index+6:mppt_4_index+8] = can_sub_data[1:3]
+
+            #  Status - 3 strings for controls are "error flags", "limit flags" and "mode"
+            if can_sub_data[0] == mppt_4_base_address + 0x005:
+                parsed_data[mppt_4_index+8:mppt_4_index+11] = can_sub_data[4:7]
+            
+            # Power Connector
+            if can_sub_data[0] == mppt_4_base_address + 0x006:
+                parsed_data[mppt_4_index+11:mppt_4_index+13] = can_sub_data[1:3]
+
+            '''-----------------------------------------------------------'''
+
+            # Motor Controller
+            
+
+             
+                
+
+
+
+            
+            
+
+            
 
         if control_sub_data is not None:
             print("SUB:", control_sub_data)

@@ -91,7 +91,7 @@ class GPS_NODE(Node):
 def main(args=None):
     rclpy.init(args=args)
 
-    gps_node = GPS_NODE("gps_data")
+    gps_node = GPS_NODE("gps_node")
     gps_node.init_gps_publisher("gps_data", 1, "/dev/ttyS1", 9600)
 
     while rclpy.ok():

@@ -25,12 +25,11 @@ class can_publisher(Node):
     def publish_data(self):
         
         msg = rosarray()
-        Message = self.bus.recv(0.0)
-
+        Message = self.bus.recv(0.0) # 2 parts - Arbitration ID and Data Array
+    
         if Message:
             now = datetime.datetime.now()
-            timeString = now.strftime("%d.%m.%Y %H:%M:%S ")
-            msg.data = [timeString,Message.arbitration_id,Message.data[0]]
+            msg.data = [Message.arbitration_id,Message.data[0]]
 
         self.publisher_.publish(msg)
         self.latest_data = msg.data

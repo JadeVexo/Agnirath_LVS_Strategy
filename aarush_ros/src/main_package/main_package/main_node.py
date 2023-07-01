@@ -9,7 +9,6 @@ KEY FOR DATA LISTS:
 Final Data list:[
     
     [0-13]
-
     time_utc
     latitude
     lat_direction
@@ -25,7 +24,6 @@ Final Data list:[
     age_of_dgps
     dgps_reference_id
     
-    
     -------------
 
     [14-19]
@@ -37,42 +35,22 @@ Final Data list:[
     Z Angular Acceleration
 
     -----------------
-    [20-22]
-    Cabin Temperature
-    Cabin Altitude
-    Cabin Pressure
 
-    ----------------
-    [23]
-    Cabin 02 Level
-
-    -----------------
-    [24-25]
-    Cabin C02 Level
-    Cabin TVOC
-
-    ------------------
-    [26-27]
-    Cabin Temperature
-    Cabin Humidity
-
-    -----------------
     [28-29]
-    BMU device ID
-    BMU Serial Number
+    BMU device ID - Display
+    BMU Serial Number - Display
 
     [30-40]
-    CMU1 Serial Number
-    CMU1 PCB Temperature
-    CMU1 Cell Temperature
-    CMU1 Cell 0 Voltage
-    CMU1 Cell 1 Voltage
-    CMU1 Cell 2 Voltage
-    CMU1 Cell 3 Voltage
-    CMU1 Cell 4 Voltage
-    CMU1 Cell 5 Voltage
-    CMU1 Cell 6 Voltage
-    CMU1 Cell 7 Voltage
+    CMU1 Serial Number - Display
+    CMU1 PCB Temperature - Display Warning, Slow Down, Decide Later
+    CMU1 Cell Temperature - Display Warning, Slow Down
+    CMU1 Cell 1 Voltage - Display 
+    CMU1 Cell 2 Voltage - Display 
+    CMU1 Cell 3 Voltage - Display 
+    CMU1 Cell 4 Voltage - Display 
+    CMU1 Cell 5 Voltage - Display 
+    CMU1 Cell 6 Voltage - Display 
+    CMU1 Cell 7 Voltage - Display 
 
     [41-51]
     CMU2 Serial Number
@@ -127,15 +105,15 @@ Final Data list:[
     CMU5 Cell 7 Voltage
 
     [85-86]
-    SOC(Ah) Used
-    SOC percentage
+    SOC(Ah) Used - Display
+    SOC percentage - Display
 
     [87-88]
-    Balance SOC(Ah) Used
-    Balance SOC percentage
+    Balance SOC(Ah) Used - Display
+    Balance SOC percentage - Display 
 
     [89-92]
-    Charging Cell Voltage Error
+    Charging Cell Voltage Error -
     Cell Temperature Margin
     Dischaging Cell Voltage Error
     Total Pack Capacity
@@ -148,43 +126,65 @@ Final Data list:[
     Precharge Timer Counter
 
     [98-103]
-    Minimum cell voltage
-    Maximum cell voltage
-    CMU number that has the minimum cell voltage
-    Cell number in CMU that is the minimum cell voltage
-    CMU number that has the maximum cell voltage
-    Cell number in CMU that is the maximum cell voltage
+    Minimum cell voltage - 3<, Open Contactor
+    Maximum cell voltage - 4>, Open Contactor
+    CMU number that has the minimum cell voltage - Display
+    Cell number in CMU that is the minimum cell voltage -Display
+    CMU number that has the maximum cell voltage - Display
+    Cell number in CMU that is the maximum cell voltage - Display
 
     [104-107]
-    Minimum cell temperature
-    Maximum cell temperature
+    Minimum cell temperature - Display, Slow Down, Oopen Contactor Stop
+    Maximum cell temperature - Display, Slow Down, Open Contactor Stop
     CMU number that has the minimum cell temperature
     CMU number that has the maximum cell temperature
 
     [108-109]
-    Battery Voltage
-    Battery Current
+    Battery Voltage - Display, 160 > or <120 Open Contactor
+    Battery Current - Display, 30 > Open Contactor
 
     [110-114]
-    Balance voltage threshold
-    Balance voltage threshold
-    Status Flags
-    BMS CMU count
-    BMS BMU Firmware Build Number
+    Balance voltage threshold - Display
+    Balance voltage threshold -Display
+    Status Flags - 
+        1. 4>, Open Contactor
+        2. 3<, Open Contactor
+        4. Display, Slow Down, Open Contactor Stop
+        8. Display, Cell Measurement Untrusted
+        10. Display - Shutdown
+        20. Display - Shutdown 
+        40. Display
+        80. Display
+
+    BMS CMU count - Display
+    BMS BMU Firmware Build Number -  Display
 
     [115-118]
-    Fan speed 0
-    Fan speed 1
-    12V current consumption of fans + contactors
-    12V current consumption of CMUs
+    Fan speed 0 - Display
+    Fan speed 1 - Display
+    12V current consumption of fans + contactors - Display
+    12V current consumption of CMUs - Display
 
     [119-121]
-    Status Flags
+    Status Flags-
+        1. 4>, Open Contactor
+        2. 3<, Open Contactor
+        4. Display, Slow Down, Open Contactor Stop
+        8. Display, Cell Measurement Untrusted
+        10. Display - Shutdown
+        20. Display - Shutdown 
+        40. Display
+        80. Display
+        100. 
+        200. Display, Shutdown
+        400. Display, Shutdown
+        800. Display, Shutdown
+        1000. Display, Shutdown
     BMU Hardware version
     BMU Model ID
 
     [122]
-    EVDC Switch Position
+    EVDC Switch Position - Display
 
     -------------------
     
@@ -468,8 +468,13 @@ def main(args=None):
     main_node.init_can_publisher("can_rx_data", 1)
     #main_node.init_final_data_publisher("final_data", 1)
     #main_node.init_parsed_data_publisher("parsed_data", 1)
+
+    final_data = [0]*200
+    parsed_data = []
+    can_data = []
     
     while rclpy.ok():
+        #rclpy.spin_once(main_node)
         main_node.can_pub_data = [
             0x23,
             random.randint(0, 9),
@@ -483,7 +488,7 @@ def main(args=None):
             
         ]
 
-        rclpy.spin_once(main_node)
+        
 
         control_sub_data = main_node.control_sub_data
         can_sub_data = main_node.can_sub_data
@@ -498,6 +503,8 @@ def main(args=None):
             print("SUB:", gps_sub_data)
         if imu_sub_data is not None:
             print("SUB:", imu_sub_data)
+
+        rclpy.spin_once(main_node)
 
     # Destroy the node explicitly
     # (optional - otherwise it will be done automatically

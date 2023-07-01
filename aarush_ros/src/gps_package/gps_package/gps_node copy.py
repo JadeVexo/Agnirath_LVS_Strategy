@@ -20,24 +20,28 @@ import serial
 # self.dgps_reference_id = tokens[14]
 
 
-class GPS_NODE(Node):
-    def __init__(self, node):
-        super().__init__(node)
-        self.gps_node = node
+class gps_publisher(Node):
+    def __init__(self, port, baud_rate):
+        super().__init__("gps_node")
+        self.publisher_ = self.create_publisher(rosarray, "gps_data", 10)
+        timer_period = 1  # seconds
+        self.timer = self.create_timer(timer_period, self.read_serial_data)
+        self.latest_data = None
 
-    def init_gps_publisher(self, topic, timer_period, port, baud_rate):
-        self.gps_pub = self.create_publisher(rosarray, topic, 10)
-        self.gps_timer = self.create_timer(timer_period, self.publish_gps_data)
-        self.gps_pub_data = []
         self.port = port
         self.baud_rate = baud_rate
         self.serial_port = None
+        self.received_data = None
 
+        # Output data variables
+        self.geo_list = None
+
+    def initialize(self):
         try:
             self.serial_port = serial.Serial(self.port, self.baud_rate, timeout=1.0)
-            print("GPS is connected and working")
+            return True
         except serial.SerialException:
-            print("GPS is not working")
+            return False
 
     def close(self):
         if self.serial_port and self.serial_port.is_open:
@@ -53,16 +57,17 @@ class GPS_NODE(Node):
                 while sentence_end != -1:
                     sentence = self.received_data[:sentence_end]
                     self.received_data = self.received_data[sentence_end + 2 :]
-                    sentence_end = self.received_data.find("\r\n")
+
                     self.parse_gga(sentence)
 
+                    sentence_end = self.received_data.find("\r\n")
         except serial.SerialException as e:
             print("Error reading serial data:", str(e))
 
     def parse_gga(self, sentence):
         tokens = sentence.split(",")
         if len(tokens) >= 15 and tokens[0] == "$GPGGA":
-            self.gps_pub_data = [
+            self.geo_list = [
                 tokens[0],
                 tokens[1],
                 tokens[2],
@@ -79,24 +84,34 @@ class GPS_NODE(Node):
                 tokens[13],
                 tokens[14],
             ]
+            msg = rosarray()
+            msg.data = self.geo_list
+            self.publisher_.publish(msg)
+            self.latest_data = msg.data
 
-    def publish_gps_data(self):
-        self.gps_pub_msg = rosarray()
-        self.gps_pub_msg.data = self.gps_pub_data
-        self.gps_pub.publish(self.gps_pub_msg)
-        self.gps_pub_data = self.gps_pub_msg.data
-        print("PUB to", self.gps_node, ":", self.gps_pub_data)
+    def get_latest_data(self):
+        return self.latest_data
 
 
 def main(args=None):
     rclpy.init(args=args)
 
-    gps_node = GPS_NODE("gps_data")
-    gps_node.init_gps_publisher("gps_data", 1, "/dev/ttyS1", 9600)
+    gps_node = gps_publisher("/dev/ttyS1", 9600)
+
+    if gps_node.initalize():
+        print("GPS Active")
+    else:
+        print("GPS not working")
 
     while rclpy.ok():
         rclpy.spin_once(gps_node)
+        latest_data = gps_node.get_latest_data()
+        if latest_data is not None:
+            print(latest_data)
 
+    # Destroy the node explicitly
+    # (optional - otherwise it will be done automatically
+    # when the garbage collector destroys the node object)
     gps_node.close()
     gps_node.destroy_node()
     rclpy.shutdown()

@@ -11,7 +11,6 @@ setup.py
 ../../build/main_package/main_package.egg-info/zip-safe
 main_package/__init__.py
 main_package/main_node.py
-main_package/main_node_backup.py
 resource/main_package
 test/test_copyright.py
 test/test_flake8.py

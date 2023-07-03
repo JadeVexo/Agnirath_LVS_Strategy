@@ -353,28 +353,7 @@ class MAIN_NODE(Node):
     def __init__(self, node):
         super().__init__(node)
 
-    # # Reference
-    # def init_pub(self,topic,timer_period):
-    #     self.publisher = self.create_publisher(rosarray, topic, 10)
-    #     self.timer = self.create_timer(timer_period, self.publish_data)
-    #     self.pub_data = None
-
-    # def publish_data(self):
-    #     self.pub_msg = rosarray()
-    #     self.pub_msg.data = self.data
-    #     self.publisher.publish(self.pub_msg)
-    #     self.pub_data = self.pub_msg.data
-    #     print("PUB:", self.pub_data)
-
-    # def init_sub(self,topic):
-    #     self.subscription = self.create_subscription(rosarray, topic, self.receive_data, 10)
-    #     self.subscription  # prevent unused variable warning
-    #     self.latest_sub_data = None
-
-    # def receive_data(self, sub_msg):
-    #     self.latest_sub_data = sub_msg.data
-
-    # Control Subscriber
+   # Control Subscriber
     def init_control_subscriber(self, topic):
         self.control_subscriber = self.create_subscription(
             rosarray, topic, self.receive_control_data, 10
@@ -483,18 +462,6 @@ def main(args=None):
     print("Starting Main Node")
     while rclpy.ok():
         rclpy.spin_once(main_node)
-        # main_node.can_pub_data = [
-        #     0x23,
-        #     random.randint(0, 9),
-        #     random.randint(0, 9),
-        #     random.randint(0, 9),
-        #     random.randint(0, 9),
-        #     random.randint(0, 9),
-        #     random.randint(0, 9),
-        #     random.randint(0, 9),
-        #     random.randint(0, 9),
-            
-        # ]
 
         control_sub_data = main_node.control_sub_data
         can_sub_data = main_node.can_sub_data  # Recieves CAN Data

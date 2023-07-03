@@ -33,7 +33,6 @@ class CAN_NODE(Node):
             [0x6F4,random.randint(0,100),random.randint(0,100)],
             [0x6F5,random.randint(0,10),random.randint(0,10)],
 
-
         ]
         
         self.can_pub_data = data[random.randint(0,len(data)-1)]

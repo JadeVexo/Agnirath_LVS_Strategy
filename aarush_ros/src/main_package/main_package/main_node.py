@@ -190,7 +190,7 @@ Final Data list:[
     
     [123-141] (Manually Assigned BaseID of MPPT1 to 0x6A0)
     MPPT1 Input Voltage - below 20 show message
-    MPPT1 Input Current - >7A module contactor open MMPT
+    MPPT1 Input Current - >7A module contactor open post MMPT
     MPPT1 Output Voltage - >175 Motor Current 0
     MPPT1 Output Current - >
     MPPT1 Mosfet Temperature - Open Contactor pre mmpt 

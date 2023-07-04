@@ -19,7 +19,7 @@ class BATTERY_NODE(Node):
         self.battery_sub_data = msg.data
 
     # Peripheral Subscriber
-    def init_battery_subscriber(self, topic):
+    def init_peripheral_subscriber(self, topic):
         self.peripheral_subscriber = self.create_subscription(
             rosarray, topic, self.receive_peripheral_data, 10
         )
@@ -420,31 +420,34 @@ def main(args=None):
         if max_cell_temp*10 > 40 and max_cell_temp*10 < 50:
             battery_node.control_pub_data = 104
 
-        if battery_voltage*1000 > 160:
-            battery_node.control_pub_data = 105
+        if max_cell_temp*10 > 50:
+            battery_node.control_pub_data = 105 
 
-        if battery_voltage*1000 < 120:
+        if battery_voltage*1000 > 160:
             battery_node.control_pub_data = 106
 
-        if battery_current*1000 > 30:
+        if battery_voltage*1000 < 120:
             battery_node.control_pub_data = 107
 
-        if battery_status == 0x01:
+        if battery_current*1000 > 30:
             battery_node.control_pub_data = 108
-        if battery_status == 0x02:
+
+        if battery_status == 0x01:
             battery_node.control_pub_data = 109
-        if battery_status == 0x04:
+        if battery_status == 0x02:
             battery_node.control_pub_data = 110
-        if  battery_status == 0x08:
+        if battery_status == 0x04:
             battery_node.control_pub_data = 111
-        if  battery_status == 0x10:
+        if  battery_status == 0x08:
             battery_node.control_pub_data = 112
-        if  battery_status == 0x20:
+        if  battery_status == 0x10:
             battery_node.control_pub_data = 113
-        if  battery_status == 0x40:
+        if  battery_status == 0x20:
             battery_node.control_pub_data = 114
-        if  battery_status == 0x80:
+        if  battery_status == 0x40:
             battery_node.control_pub_data = 115
+        if  battery_status == 0x80:
+            battery_node.control_pub_data = 116
 
 
     battery_node.destroy_node()

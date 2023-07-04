@@ -659,14 +659,14 @@ def main(args=None):
 
             '''-----------------------------------------------------------'''
 
-            # EVDC
+            # EVDC ### FIX INDEXING
             # Motor Current and Motor Velocity
             if can_sub_data[0] == evdc_base_address + 0x001:
-                parsed_data[evdc_index+0:evdc_index+1] = can_sub_data[1]
+                parsed_data[evdc_index+0:evdc_index+2] = can_sub_data[1:3]
 
             # Bus Current
             if can_sub_data[0] == evdc_base_address + 0x002:
-                parsed_data[evdc_index+1:evdc_index+2] = can_sub_data[1]
+                parsed_data[evdc_index+3:evdc_index+3] = can_sub_data[1]
 
             '''--------------------------------------------------'''
 

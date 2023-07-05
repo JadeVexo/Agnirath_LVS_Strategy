@@ -296,7 +296,7 @@ Final Data list:[
     Recieve Error Count - NA
     Transmit Error Count - NA
     Active Motor - NA
-    Error Flags
+    Error Flags(0)
         8. Motor Over Speed -> Set motor v to 0 -> set current
         7.
         6. Open Contactor for MC and Motor
@@ -315,31 +315,31 @@ Final Data list:[
         2.
         1.
 
-    Bus Current - 
+    Bus Current(1) - 
         Limit A - Drop motor current, Drop velocity
         Limit B - Open Contactor for MC and Motor
-    Bus Voltage - Open Contactor for MC and Motor
+    Bus Voltage(2) - Open Contactor for MC and Motor
     Vehicle Velocity - NA
     Motor Velocity - NA
-    Phase C Current
+    Phase C Current(3)
         Limit A - Limit motor current
         Limit B - Open Contactor for Motor
-    Phase B Current
+    Phase B Current(4)
         Limit A - Limit motor current
         Limit B - Open Contactor for Motor
     Vd - NA
     Vq - NA
     Id - NA
     Iq - NA
-    BEMFd - Open Contactor for Motor
-    BEMFq - Open Contactor for Motor
-    15V Supply - If low Open Contactor for MC and Motor
-    3.3V Supply - Open Contactor for MC and Motor
-    1.9V Supply - Open Contactor for MC and Motor
-    Heat Sink Temp - Slow Down
+    BEMFd(5) - Open Contactor for Motor
+    BEMFq(6) - Open Contactor for Motor
+    15V Supply(7) - If low Open Contactor for MC and Motor
+    3.3V Supply(8) - Open Contactor for MC and Motor
+    1.9V Supply(9) - Open Contactor for MC and Motor
+    Heat Sink Temp(10) - Slow Down
         
-    Motor Temp - Drop Motor Current, slow down
-    DSP Board Temp -  Slow down
+    Motor Temp(11) - Drop Motor Current, slow down
+    DSP Board Temp(12) -  Slow down
     DC Bus Ah - NA
     Odometer - NA
     Slip Speed - Dont Care

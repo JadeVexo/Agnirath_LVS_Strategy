@@ -229,6 +229,7 @@ Lindicator = 0
 old_L = 0
 Rindicator = 0
 old_R = 0
+var  = " "
 
 while True:
     # print(imu1.get_data())
@@ -300,10 +301,16 @@ while True:
         Lindicator,
         Rindicator,
     ]
-
     variable_data = f"{speed} {rpm} {mode} {regen} {battery} {disrem} {brake} {horn_1} {radio} {cruise} {Lindicator} {Rindicator}\n"
+    try:
+        client_socket.sendall(variable_data.encode())
+        var = variable_data  
+    except IndexError:
+        
+        client_socket.sendall(var.encode())
+    
     print(variable_data)
-    client_socket.sendall(variable_data.encode())
+    # client_socket.sendall(variable_data.encode())
     time.sleep(0.1)
 
 client_socket.close()

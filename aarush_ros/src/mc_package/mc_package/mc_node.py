@@ -83,9 +83,9 @@ def main(args=None):
         mc_motor_temp = mc_node.mc_sub_data[11]
         mc_dsp_board_temp = mc_node.mc_sub_data[12]
 
+
+        base_val = 107 #first error code in the csv file for the motor controller
         #Fill in limiting values
-        base_val = 100 #first error code in the csv file for the motor controller
-        err = 0 #number to be added to the base value.
         bus_current_limA = 1
         bus_current_limB = 2
         bus_voltage_lim = 150

@@ -579,7 +579,7 @@ def main(args=None):
             '''------------------------------------------------------------------'''
 
             # MPPT 2
-            # Input Measurements
+            # Input Measurements print(f"Temperature threshold crossed for {threshold_crossing_time} seconds: {temperature}°C")
             if can_sub_data[0] == mppt_2_base_address + 0x000: 
                 parsed_data[mppt_2_index+0:mppt_2_index+2] = can_sub_data[1:3]
 

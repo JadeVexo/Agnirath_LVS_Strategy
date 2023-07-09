@@ -1,6 +1,21 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float32MultiArray as rosarray
+import time
+
+class Timer:
+    def __init__(self, threshold_crossing_time):
+        self.threshold_crossing_time = threshold_crossing_time
+        self.start_time = None
+
+    def start(self):
+        self.start_time = time.time()
+
+    def elapsed(self):
+        return time.time() - self.start_time
+
+    def reset(self):
+        self.start_time = None
 
 
 class BATTERY_NODE(Node):

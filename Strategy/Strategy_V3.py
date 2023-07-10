@@ -13,7 +13,7 @@ class Motor:
         self.zero_speed_crr = zero_speed_crr  # 0.003
         self.no_of_wheels = wheels
 
-    def calculate_power(self, speed):
+    def calculate_power(self, speed, acceleration, slope):
         # Calculate power required to overcome rolling resistance and aerodynamic drag
         self.dynamic_speed_crr = (self.no_of_wheels / 3) * 4.1 * 10 ** (-5) * speed
         rolling_resistance = (
@@ -22,7 +22,7 @@ class Motor:
         drag_force = (
             self.frontal_area * 0.5 * self.aerodynamic_coef * 1.225 * speed**2
         )  # Air density = 1.225 kg/m^3
-        power = (rolling_resistance + drag_force) * speed
+        power = (rolling_resistance + drag_force + self.mass*acceleration + self.mass*9.8*np.sin(slope)) * speed
         return power
 
 
@@ -30,6 +30,7 @@ class ElectricCar:
     def __init__(self, motor, distance, battery_capacity, route):
         self.motor = motor
         self.dt = 1  # seconds
+        self.start_speed = 0  # m/s
 
         self.route = route  # [distance, elevation]
         self.distance = distance  # meters
@@ -56,7 +57,7 @@ class ElectricCar:
             elif self.speed >= 30:
                 self.speed = 30
             # print("hi")
-            self.power = self.motor.calculate_power(self.speed)
+            self.power = self.motor.calculate_power(self.speed,self.acceleration,self.slope)
             self.time_elapsed += self.dt
             self.energy = self.power * self.dt / 3600
             self.instantaneous_distance = self.speed * self.dt
@@ -76,20 +77,23 @@ class ElectricCar:
             self.remaining_energy,
         ]
 
-    def drive_eval(self, sub_path):
+    def drive_eval(self, sub_path,start_speed):
         distance = sub_path[0]  # meters
         slope = sub_path[1]  # degrees
         time = sub_path[2]  # seconds
-        acceleration = 0.1
+        start_speed = start_speed
+        acceleration = 0.00001  # m/s^2
         drive_results = []
 
         while acceleration <= 2:
             # print(acceleration)
             drive_details = self.drive_sim(
-                0, acceleration, self.remaining_energy, distance, slope
+                start_speed, acceleration, self.remaining_energy, distance, slope
             )
+            start_speed = drive_details[2]
+            # print(start_speed)
             drive_results.append(drive_details)
-            acceleration += 0.1
+            acceleration += 0.00001
 
         # for i in drive_results:
         #     print(i)
@@ -113,6 +117,7 @@ class ElectricCar:
         self.remaining_energy -= best_drive[4]
 
         best_drive[5] = self.remaining_energy
+        self.start_speed = best_drive[2]
         return best_drive
 
         # for drive_details in drive_results:
@@ -123,13 +128,13 @@ class ElectricCar:
     def best_drive_path(self):
         self.drive_instructions = []
         for self.sub_path in self.route:
-            self.best_drive = self.drive_eval(self.sub_path)
+            self.best_drive = self.drive_eval(self.sub_path,self.start_speed)
             self.drive_instructions.append(self.best_drive)
-            # print("best drive",self.best_drive)
+            print("best drive",self.best_drive)
 
         for self.drive_paths in self.drive_instructions:
             print(
-                f"Time: {self.drive_paths[0]} s, Distance: {self.drive_paths[1]:.2f} m, Speed:{self.drive_paths[2]:.3f} m/s, Acceleration: {self.drive_paths[3]:.1f} m/s^2,, Energy Used: {self.drive_paths[4]:.3f} Wh, Energy Remaining: {self.drive_paths[5]:.3f} Wh"
+                f"Time: {self.drive_paths[0]} s, Distance: {self.drive_paths[1]:.2f} m, Speed:{self.drive_paths[2]:.3f} m/s, Acceleration: {self.drive_paths[3]:.4f} m/s^2, Energy Used: {self.drive_paths[4]:.3f} Wh, Energy Remaining: {self.drive_paths[5]:.3f} Wh"
             )
 
 
@@ -138,7 +143,7 @@ class ElectricCar:
 
 def main():
     distance = 3000000  # meters
-    battery_capacity = 358
+    battery_capacity = 5000  # Wh
     wheel_radius = 19 / 39.37  # Convert inches to meters
     mass = 314  # kg
     wheels = 3
@@ -146,7 +151,7 @@ def main():
     frontal_area = 1
     zero_speed_crr = 0.003
     avg_m_per_s = 20
-    route = [[10000, 0], [2000, 0], [5000, 0], [3000, 0]]
+    route = [[10000, 1*0.015708], [2000, 4*0.015708], [5000, 2*0.015708], [3000, 1*0.015708],[7000, 2*0.015708],[10000, 3*0.015708]]
 
     for i in range(len(route)):
         route[i].append(route[i][0] / avg_m_per_s)

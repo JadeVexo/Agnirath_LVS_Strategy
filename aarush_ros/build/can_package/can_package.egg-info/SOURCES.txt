@@ -12,6 +12,7 @@ setup.py
 can_package/__init__.py
 can_package/can_node.py
 can_package/can_node_sim.py
+can_package/can_tx_node.py
 resource/can_package
 test/test_copyright.py
 test/test_flake8.py

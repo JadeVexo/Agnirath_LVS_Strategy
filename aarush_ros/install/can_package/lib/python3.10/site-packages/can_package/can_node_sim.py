@@ -15,23 +15,23 @@ class CAN_NODE(Node):
 
     def publish_can_data(self):
         data = [
-            [0x601,23942,random.randint(1,40),random.randint(1,40)],
-            [0x602,random.randint(3,5),random.randint(3,5),random.randint(3,5),random.randint(3,5)],
-            [0x603,random.randint(3,5),random.randint(3,5),random.randint(3,5),random.randint(3,5)],
-            [0x604,78322,random.randint(1,40),random.randint(1,40)],
-            [0x605,random.randint(3,5),random.randint(3,5),random.randint(3,5),random.randint(3,5)],
-            [0x606,random.randint(3,5),random.randint(3,5),random.randint(3,5),random.randint(3,5)],
-            [0x607,81923,random.randint(1,40),random.randint(1,40)],
-            [0x608,random.randint(3,5),random.randint(3,5),random.randint(3,5),random.randint(3,5)],
-            [0x609,random.randint(3,5),random.randint(3,5),random.randint(3,5),random.randint(3,5)],
-            [0x610,27492,random.randint(1,40),random.randint(1,40)],
-            [0x611,random.randint(3,5),random.randint(3,5),random.randint(3,5),random.randint(3,5)],
-            [0x612,random.randint(3,5),random.randint(3,5),random.randint(3,5),random.randint(3,5)],
-            [0x613,45621,random.randint(1,40),random.randint(1,40)],
-            [0x614,random.randint(3,5),random.randint(3,5),random.randint(3,5),random.randint(3,5)],
-            [0x615,random.randint(3,5),random.randint(3,5),random.randint(3,5),random.randint(3,5)],
-            [0x6F4,random.randint(0,100),random.randint(0,100)],
-            [0x6F5,random.randint(0,10),random.randint(0,10)],
+            [0x601,23942,4.5,random.randint(1,40)]
+            # [0x602,random.randint(3,5),random.randint(3,5),random.randint(3,5),random.randint(3,5)],
+            # [0x603,random.randint(3,5),random.randint(3,5),random.randint(3,5),random.randint(3,5)],
+            # [0x604,78322,random.randint(1,40),random.randint(1,40)],
+            # [0x605,random.randint(3,5),random.randint(3,5),random.randint(3,5),random.randint(3,5)],
+            # [0x606,random.randint(3,5),random.randint(3,5),random.randint(3,5),random.randint(3,5)],
+            # [0x607,81923,random.randint(1,40),random.randint(1,40)],
+            # [0x608,random.randint(3,5),random.randint(3,5),random.randint(3,5),random.randint(3,5)],
+            # [0x609,random.randint(3,5),random.randint(3,5),random.randint(3,5),random.randint(3,5)],
+            # [0x610,27492,random.randint(1,40),random.randint(1,40)],
+            # [0x611,random.randint(3,5),random.randint(3,5),random.randint(3,5),random.randint(3,5)],
+            # [0x612,random.randint(3,5),random.randint(3,5),random.randint(3,5),random.randint(3,5)],
+            # [0x613,45621,random.randint(1,40),random.randint(1,40)],
+            # [0x614,random.randint(3,5),random.randint(3,5),random.randint(3,5),random.randint(3,5)],
+            # [0x615,random.randint(3,5),random.randint(3,5),random.randint(3,5),random.randint(3,5)],
+            # [0x6F4,random.randint(0,100),random.randint(0,100)],
+            # [0x6F5,random.randint(0,10),random.randint(0,10)],
 
         ]
         

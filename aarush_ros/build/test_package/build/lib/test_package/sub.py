@@ -7,7 +7,7 @@ class sample_subscriber(Node):
     def __init__(self,node):
         super().__init__(node)
         self.subscription = self.create_subscription(
-            rosarray, "sample_data", self.receive_data, 10
+            rosarray, "battery_data", self.receive_data, 10
         )
         self.subscription  # prevent unused variable warning
         self.latest_data = None

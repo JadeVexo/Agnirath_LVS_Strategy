@@ -21,7 +21,8 @@ setup(
     entry_points={
         'console_scripts': [
             'can_node = can_package.can_node:main',
-            'can_node_sim = can_package.can_node_sim:main'
+            'can_node_sim = can_package.can_node_sim:main',
+            'can_tx_node = can_package.can_tx_node:main'
 
         ],
     },

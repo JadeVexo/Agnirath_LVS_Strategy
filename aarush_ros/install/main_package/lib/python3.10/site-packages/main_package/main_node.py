@@ -1,6 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float32MultiArray as rosarray
+from std_msgs.msg import Int32
 import random
 
 """
@@ -190,7 +191,7 @@ Final Data list:[
     
     [123-141] (Manually Assigned BaseID of MPPT1 to 0x6A0)
     MPPT1 Input Voltage - below 20 show message
-    MPPT1 Input Current - >7A module contactor open MMPT
+    MPPT1 Input Current - >7A module contactor open post MMPT
     MPPT1 Output Voltage - >175 Motor Current 0
     MPPT1 Output Current - >
     MPPT1 Mosfet Temperature - Open Contactor pre mmpt 
@@ -296,7 +297,7 @@ Final Data list:[
     Recieve Error Count - NA
     Transmit Error Count - NA
     Active Motor - NA
-    Error Flags
+    Error Flags(0)
         8. Motor Over Speed -> Set motor v to 0 -> set current
         7.
         6. Open Contactor for MC and Motor
@@ -315,31 +316,31 @@ Final Data list:[
         2.
         1.
 
-    Bus Current - 
+    Bus Current(1) - 
         Limit A - Drop motor current, Drop velocity
         Limit B - Open Contactor for MC and Motor
-    Bus Voltage - Open Contactor for MC and Motor
+    Bus Voltage(2) - Open Contactor for MC and Motor
     Vehicle Velocity - NA
     Motor Velocity - NA
-    Phase C Current
+    Phase C Current(3)
         Limit A - Limit motor current
         Limit B - Open Contactor for Motor
-    Phase B Current
+    Phase B Current(4)
         Limit A - Limit motor current
         Limit B - Open Contactor for Motor
     Vd - NA
     Vq - NA
     Id - NA
     Iq - NA
-    BEMFd - Open Contactor for Motor
-    BEMFq - Open Contactor for Motor
-    15V Supply - If low Open Contactor for MC and Motor
-    3.3V Supply - Open Contactor for MC and Motor
-    1.9V Supply - Open Contactor for MC and Motor
-    Heat Sink Temp - Slow Down
+    BEMFd(5) - Open Contactor for Motor
+    BEMFq(6) - Open Contactor for Motor
+    15V Supply(7) - If low Open Contactor for MC and Motor
+    3.3V Supply(8) - Open Contactor for MC and Motor
+    1.9V Supply(9) - Open Contactor for MC and Motor
+    Heat Sink Temp(10) - Slow Down
         
-    Motor Temp - Drop Motor Current, slow down
-    DSP Board Temp -  Slow down
+    Motor Temp(11) - Drop Motor Current, slow down
+    DSP Board Temp(12) -  Slow down
     DC Bus Ah - NA
     Odometer - NA
     Slip Speed - Dont Care
@@ -356,7 +357,7 @@ class MAIN_NODE(Node):
    # Control Subscriber
     def init_control_subscriber(self, topic):
         self.control_subscriber = self.create_subscription(
-            rosarray, topic, self.receive_control_data, 10
+            Int32, topic, self.receive_control_data, 10
         )
         self.control_subscriber  # prevent unused variable warning
         self.control_sub_data = None
@@ -486,6 +487,12 @@ def main(args=None):
         evdc_index = 115
         mc_index = 117
 
+        CAN_codes = [[0x12,1]]
+
+        print(control_sub_data)
+        if control_sub_data == 1:
+            main_node.can_pub_data = CAN_codes[0]
+
 
         # Parsing data from CAN Messages; Used in Control Loops
         if can_sub_data is not None:
@@ -579,7 +586,7 @@ def main(args=None):
             '''------------------------------------------------------------------'''
 
             # MPPT 2
-            # Input Measurements
+            # Input Measurements print(f"Temperature threshold crossed for {threshold_crossing_time} seconds: {temperature}°C")
             if can_sub_data[0] == mppt_2_base_address + 0x000: 
                 parsed_data[mppt_2_index+0:mppt_2_index+2] = can_sub_data[1:3]
 
@@ -659,14 +666,14 @@ def main(args=None):
 
             '''-----------------------------------------------------------'''
 
-            # EVDC
+            # EVDC ### FIX INDEXING
             # Motor Current and Motor Velocity
             if can_sub_data[0] == evdc_base_address + 0x001:
-                parsed_data[evdc_index+0:evdc_index+1] = can_sub_data[1]
+                parsed_data[evdc_index+0:evdc_index+2] = can_sub_data[1:3]
 
             # Bus Current
             if can_sub_data[0] == evdc_base_address + 0x002:
-                parsed_data[evdc_index+1:evdc_index+2] = can_sub_data[1]
+                parsed_data[evdc_index+3:evdc_index+3] = can_sub_data[1]
 
             '''--------------------------------------------------'''
 

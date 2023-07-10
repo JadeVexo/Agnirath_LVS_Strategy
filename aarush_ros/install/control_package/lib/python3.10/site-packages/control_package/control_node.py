@@ -19,21 +19,7 @@ class CONTROL_NODE(Node):
 
     def receive_parsed_data(self, msg):
         self.parsed_sub_data = msg.data
-        print("SUB:",self.parsed_sub_data)
-
-    # Control Data publisher
-    def init_control_data_publisher(self, topic, timer_period):
-        self.control_data_publisher = self.create_publisher(rosarray, topic, 10)
-        self.control_data_timer = self.create_timer(timer_period, self.publish_control_data)
-        self.control_pub_data = None
-
-    def publish_control_data(self):
-        if self.control_pub_data is not None:
-            self.control_data_pub_msg = rosarray()
-            self.control_data_pub_msg.data = self.control_pub_data
-            self.control_data_publisher.publish(self.control_data_pub_msg)
-            self.control_pub_data = self.control_data_pub_msg.data
-            print("PUB:", self.control_pub_data)
+        #print("SUB:",self.parsed_sub_data)
 
     def init_battery_data_publisher(self, topic, timer_period):
         self.battery_data_publisher = self.create_publisher(rosarray, topic, 10)
@@ -82,7 +68,6 @@ def main(args=None):
 
     control_node = CONTROL_NODE("control_node")
     control_node.init_parsed_data_subscriber("parsed_data")
-    control_node.init_control_data_publisher("control_data",1)
     control_node.init_battery_data_publisher("battery_data",1)
     control_node.init_mppt_data_publisher("mppt_data",1)
     control_node.init_mc_data_publisher("mc_data",1)

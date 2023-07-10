@@ -1,6 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float32MultiArray as rosarray
+from std_msgs.msg import Int32
 import random
 
 """
@@ -356,7 +357,7 @@ class MAIN_NODE(Node):
    # Control Subscriber
     def init_control_subscriber(self, topic):
         self.control_subscriber = self.create_subscription(
-            rosarray, topic, self.receive_control_data, 10
+            Int32, topic, self.receive_control_data, 10
         )
         self.control_subscriber  # prevent unused variable warning
         self.control_sub_data = None
@@ -485,6 +486,12 @@ def main(args=None):
         mppt_4_index = 101
         evdc_index = 115
         mc_index = 117
+
+        CAN_codes = [[0x12,1]]
+
+        print(control_sub_data)
+        if control_sub_data == 1:
+            main_node.can_pub_data = CAN_codes[0]
 
 
         # Parsing data from CAN Messages; Used in Control Loops

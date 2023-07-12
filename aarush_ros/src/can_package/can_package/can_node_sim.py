@@ -15,7 +15,8 @@ class CAN_NODE(Node):
 
     def publish_can_data(self):
         data = [
-            [0x601,23942,4.5,random.randint(1,40)]
+            [0x601,23942,4.5,random.randint(1,40)],
+            [0x604,52341,4.5,random.randint(1,40)]
             # [0x602,random.randint(3,5),random.randint(3,5),random.randint(3,5),random.randint(3,5)],
             # [0x603,random.randint(3,5),random.randint(3,5),random.randint(3,5),random.randint(3,5)],
             # [0x604,78322,random.randint(1,40),random.randint(1,40)],
@@ -48,7 +49,7 @@ def main(args=None):
     rclpy.init(args=args)
 
     can_node = CAN_NODE("can_node")
-    can_node.init_can_publisher("can_rx_data", 0.01)
+    can_node.init_can_publisher("can_rx_data", 0.0001)
 
     while rclpy.ok():
         rclpy.spin_once(can_node)

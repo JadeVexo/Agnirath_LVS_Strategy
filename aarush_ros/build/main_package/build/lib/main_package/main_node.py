@@ -1,7 +1,6 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float32MultiArray as rosarray
-from std_msgs.msg import Int32
 import random
 
 """
@@ -357,13 +356,14 @@ class MAIN_NODE(Node):
    # Control Subscriber
     def init_control_subscriber(self, topic):
         self.control_subscriber = self.create_subscription(
-            Int32, topic, self.receive_control_data, 10
+            rosarray, topic, self.receive_control_data, 10
         )
         self.control_subscriber  # prevent unused variable warning
         self.control_sub_data = None
 
     def receive_control_data(self, msg):
         self.control_sub_data = msg.data
+        # print("SUB:", self.control_sub_data)
 
     # CAN Subscriber
     def init_can_subscriber(self, topic):
@@ -411,7 +411,7 @@ class MAIN_NODE(Node):
             self.can_pub_msg.data = self.can_pub_data
             self.can_publisher.publish(self.can_pub_msg)
             self.can_pub_data = self.can_pub_msg.data
-            #print("PUB:", self.can_pub_data)
+            # print("PUB:", self.can_pub_data)
 
     # Final Data publisher
     def init_final_data_publisher(self, topic, timer_period):
@@ -441,7 +441,7 @@ class MAIN_NODE(Node):
             self.parsed_data_pub_msg.data = self.parsed_pub_data
             self.parsed_data_publisher.publish(self.parsed_data_pub_msg)
             self.parsed_pub_data = self.parsed_data_pub_msg.data
-            print("PUB:", self.parsed_pub_data)
+            # print("PUB:", self.parsed_pub_data)
 
 
 def main(args=None):
@@ -487,11 +487,20 @@ def main(args=None):
         evdc_index = 115
         mc_index = 117
 
-        CAN_codes = [[0x12,1]]
+        CAN_codes = [[0x12,163],[0x25,293]]
+        can_tx_list = []
 
-        print(control_sub_data)
-        if control_sub_data == 1:
-            main_node.can_pub_data = CAN_codes[0]
+        #print(control_sub_data)
+        if control_sub_data is not None:
+            # print(control_sub_data)
+            for sub_data in control_sub_data:
+                if sub_data == 1:
+                    can_tx_list += CAN_codes[0]
+                if sub_data == 2:
+                    can_tx_list += CAN_codes[1]
+
+            
+            main_node.can_pub_data = can_tx_list
 
 
         # Parsing data from CAN Messages; Used in Control Loops

@@ -1,7 +1,6 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float32MultiArray as rosarray
-from std_msgs.msg import Int32
 import time
 
 class Timer:
@@ -47,7 +46,7 @@ class BATTERY_NODE(Node):
 
     # Control Publisher
     def init_control_data_publisher(self, topic, timer_period):
-        self.control_data_publisher = self.create_publisher(Int32, topic, 10)
+        self.control_data_publisher = self.create_publisher(rosarray, topic, 10)
         self.control_data_timer = self.create_timer(
             timer_period, self.publish_control_data
         )
@@ -55,7 +54,7 @@ class BATTERY_NODE(Node):
 
     def publish_control_data(self):
         if self.control_pub_data is not None:
-            self.control_data_pub_msg = Int32()
+            self.control_data_pub_msg = rosarray()
             self.control_data_pub_msg.data = self.control_pub_data
             self.control_data_publisher.publish(self.control_data_pub_msg)
             self.control_pub_data = self.control_data_pub_msg.data
@@ -164,6 +163,7 @@ def main(args=None):
                        ]
 
         # Parsing the Data
+        control_data_list = []
 
         # CMU 1 Data
         cmu_1_pcb_temp = battery_node.battery_sub_data[0]*10
@@ -251,18 +251,18 @@ def main(args=None):
                 cmu_1_pcb_temp_timer.start()
 
             if cmu_1_pcb_temp_timer.elapsed()>=threshold_crossing_time:
-                battery_node.control_pub_data = 1
+                control_data_list.append(1)
         else: 
             cmu_1_pcb_temp_timer.reset()
 
-        # if cmu_2_pcb_temp*10 > 40 and cmu_2_pcb_temp*10 < 50:
-        #     if cmu_2_pcb_temp_timer.start_time is None:
-        #         cmu_2_pcb_temp_timer.start()
+        if cmu_2_pcb_temp*10 > 40 and cmu_2_pcb_temp*10 < 50:
+            if cmu_2_pcb_temp_timer.start_time is None:
+                cmu_2_pcb_temp_timer.start()
 
-        #     if cmu_2_pcb_temp_timer.elapsed()>=threshold_crossing_time:
-        #         battery_node.control_pub_data = 2
-        # else:
-        #     cmu_2_pcb_temp_timer.reset()
+            if cmu_2_pcb_temp_timer.elapsed()>=threshold_crossing_time:
+                control_data_list.append(2)
+        else:
+            cmu_2_pcb_temp_timer.reset()
 
         # if cmu_3_pcb_temp*10 > 40 and cmu_3_pcb_temp*10 < 50:
         #     if cmu_3_pcb_temp_timer.start_time is None:
@@ -1408,6 +1408,8 @@ def main(args=None):
 
         # else:
         #     battery_status_8_timer.reset()
+
+        battery_node.control_pub_data = control_data_list
 
 
     battery_node.destroy_node()

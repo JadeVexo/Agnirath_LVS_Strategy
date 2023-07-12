@@ -11,56 +11,16 @@ from PyQt5.QtGui import (
     QPolygon,
     QFontMetrics,
 )
-from PyQt5.QtCore import Qt, QRectF, QTimer, QThread, pyqtSignal, QPoint, QTime
-import socket
+from PyQt5.QtCore import Qt, QRectF, QTimer, QPoint, QTime
+from sim_data1 import DataSender
 
 
-class VariableThread(QThread):
-    variables_received = pyqtSignal(list)
-
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.variables = [
-            "speed",
-            "rpm",
-            "mode",
-            "regen",
-            "battery",
-            "disrem",
-            "brake",
-            "horn",
-            "radio",
-            "cruise",
-            "Lindicator",
-            "Rindicator",
-        ]
-        self.socket = None
-
-    def run(self):
-        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.socket.connect(("localhost", 8888))
-
-        while True:
-            variable_data = self.socket.recv(1024)
-            if not variable_data:
-                break
-            variable_values = variable_data.decode().strip().split()
-
-            values = []
-            for i, value in enumerate(variable_values):
-                variable_name = self.variables[i]
-                variable_value = int(value)
-                values.append((variable_name, variable_value))
-
-            self.variables_received.emit(values)
-            print(values)
-
-        self.socket.close()
 
 
 class SteeringDisplay(QWidget):
     def __init__(self):
         super().__init__()
+        self.sender = DataSender()
         self.setWindowFlag(Qt.FramelessWindowHint)
         self.setWindowTitle("Steering Display")
         # self.setGeometry(500, 100, 800, 480)
@@ -89,10 +49,6 @@ class SteeringDisplay(QWidget):
         self.l_indicator_value = 0
         self.r_indicator_value = 0
         self.brake_value = 0
-
-        self.variable_thread = VariableThread()
-        self.variable_thread.variables_received.connect(self.update_values)
-        self.variable_thread.start()
 
         self.speed_label = QLabel(self)
         self.speed_label.setGeometry(350, 200, 100, 50)
@@ -224,41 +180,6 @@ class SteeringDisplay(QWidget):
         self.current_time = current.toString("hh:mm")
         self.update()
 
-    def update_values(self, values):
-        for variable_name, variable_value in values:
-            if variable_name == "speed":
-                self.speed_value = variable_value
-                self.update_speed()
-            elif variable_name == "rpm":
-                self.rpm_value = variable_value
-                self.update_rpm()
-            elif variable_name == "mode":
-                self.mode_value = variable_value
-                self.update_mode()
-            elif variable_name == "regen":
-                self.regen_value = variable_value
-                self.update_regen()
-            elif variable_name == "battery":
-                self.battery_value = variable_value
-                self.update_battery()
-            elif variable_name == "disrem":
-                self.disrem_value = variable_value
-                self.update_disrem()
-            elif variable_name == "brake":
-                self.brake_value = variable_value
-            elif variable_name == "horn":
-                self.horn_value = variable_value
-            elif variable_name == "radio":
-                self.radio_value = variable_value
-            elif variable_name == "cruise":
-                self.cruise_value = variable_value
-            elif variable_name == "Lindicator":
-                self.l_indicator_value = variable_value
-            elif variable_name == "Rindicator":
-                self.r_indicator_value = variable_value
-
-        self.update()
-
     def paintEvent(self, event):
         painter = QPainter(self)
         painter.setRenderHint(QPainter.Antialiasing)
@@ -311,12 +232,12 @@ class SteeringDisplay(QWidget):
         painter.drawArc(arc_rect, start_angle, span_angle * 16)
 
     def update_speed(self):
-        self.speed = self.speed_value
+        self.speed = self.sender.speed
         self.speed_label.setText(str(self.speed))
-        # self.update()
+        self.update()
 
     def update_mode(self):
-        self.mode = self.mode_value
+        self.mode = self.sender.mode
         if self.mode == 0:
             self.dmode_label.setText("N")
         elif self.mode == 1:
@@ -325,51 +246,51 @@ class SteeringDisplay(QWidget):
             self.dmode_label.setText("D2")
         else:
             self.dmode_label.setText("R")
-        # self.update()
+        self.update()
 
     def update_disrem(self):
-        self.dist_label.setText("DST.RMN\n" + str(self.disrem_value))
-        # self.update()
+        self.dist_label.setText("DST.RMN\n" + str(self.sender.disrem))
+        self.update()
 
     def draw_indicators(self, painter):
         # Draw left turn signal
         left_signal_rect = QRectF(205, 20, 40, 40)
-        if self.l_indicator_value:
+        if self.sender.Lindicator:
             painter.drawImage(left_signal_rect, self.left_signal_active)
         else:
             painter.drawImage(left_signal_rect, self.left_signal_inactive)
 
         # Draw right turn signal
         right_signal_rect = QRectF(555, 20, 40, 40)
-        if self.r_indicator_value:
+        if self.sender.Rindicator:
             painter.drawImage(right_signal_rect, self.right_signal_active)
         else:
             painter.drawImage(right_signal_rect, self.right_signal_inactive)
 
         # Draw horn status
         horn_rect = QRectF(310, 325, 35, 35)
-        if self.horn_value:
+        if self.sender.horn:
             painter.drawImage(horn_rect, self.horn_active)
         else:
             painter.drawImage(horn_rect, self.horn_inactive)
 
         # Draw radio communication status
         radio_rect = QRectF(450, 325, 35, 35)
-        if self.radio_value:
+        if self.sender.radio:
             painter.drawImage(radio_rect, self.radio_active)
         else:
             painter.drawImage(radio_rect, self.radio_inactive)
 
         # Draw cruise control status
         cruise_rect = QRectF(375, 125, 40, 40)
-        if self.cruise_value:
+        if self.sender.cruise:
             painter.drawImage(cruise_rect, self.cruise_active)
         else:
             painter.drawImage(cruise_rect, self.cruise_inactive)
 
     def update_battery(self):
-        self.battery = self.battery_value
-        # self.update()
+        self.battery = self.sender.battery
+        self.update()
 
     def batterystatus(self, painter):
         if self.battery == 0:
@@ -416,9 +337,9 @@ class SteeringDisplay(QWidget):
         painter.end()
 
     def update_rpm(self):
-        self.rpm = self.rpm_value
+        self.rpm = self.sender.rpm
         self.rpm_label.setText(str(self.rpm))
-        # self.update()
+        self.update()
 
     def draw_needlerpm(self, painter):
         needle_length = self.rpm_needle_length
@@ -451,9 +372,9 @@ class SteeringDisplay(QWidget):
         painter.resetTransform()
 
     def update_regen(self):
-        self.regen = self.regen_value
+        self.regen = self.sender.regen
         self.regen_label.setText(str(self.regen))
-        # self.update()
+        self.update()
 
     def draw_needleregen(self, painter):
         needle_length = self.regen_needle_length

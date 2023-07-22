@@ -7,7 +7,7 @@ import random
 class sample_publisher(Node):
     def __init__(self,node):
         super().__init__(node)
-        self.publisher_ = self.create_publisher(rosarray,"sample_data", 10)
+        self.publisher_ = self.create_publisher(rosarray,"final_data", 10)
         self.timer_period = 1 # seconds
         self.timer = self.create_timer(self.timer_period, self.publish_data)
 

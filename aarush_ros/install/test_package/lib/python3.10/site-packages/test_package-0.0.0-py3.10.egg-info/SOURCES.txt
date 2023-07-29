@@ -16,4 +16,5 @@ test/test_pep257.py
 test_package/__init__.py
 test_package/pub.py
 test_package/pub_sub.py
+test_package/pub_sub_simu.py
 test_package/sub.py

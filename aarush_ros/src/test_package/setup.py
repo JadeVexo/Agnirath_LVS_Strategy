@@ -23,7 +23,7 @@ setup(
             'sub_node = test_package.sub:main',
             'pub_node = test_package.pub:main',
             'pub_sub_node = test_package.pub_sub:main',
-
+            'pub_sub_simu_node = test_package.pub_sub_simu:main',
         ],
     },
 )

@@ -12,7 +12,10 @@ setup.py
 can_package/__init__.py
 can_package/can_node_sim.py
 can_package/can_rx_node.py
+can_package/can_rx_node_v3.py
 can_package/can_tx_node.py
+can_package/py-can-rx.py
+can_package/py-can-tx.py
 can_package/sample_CAN.py
 resource/can_package
 test/test_copyright.py

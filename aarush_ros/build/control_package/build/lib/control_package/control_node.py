@@ -32,7 +32,7 @@ class CONTROL_NODE(Node):
             self.battery_data_pub_msg.data = self.battery_pub_data
             self.battery_data_publisher.publish(self.battery_data_pub_msg)
             self.battery_pub_data = self.battery_data_pub_msg.data
-            print("PUB:", self.battery_pub_data)
+            print("BAT_PUB:", self.battery_pub_data)
 
     def init_mppt_data_publisher(self, topic, timer_period):
         self.mppt_data_publisher = self.create_publisher(rosarray, topic, 10)
@@ -45,7 +45,7 @@ class CONTROL_NODE(Node):
             self.mppt_data_pub_msg.data = self.mppt_pub_data
             self.mppt_data_publisher.publish(self.mppt_data_pub_msg)
             self.mppt_pub_data = self.mppt_data_pub_msg.data
-            print("PUB:", self.mppt_pub_data)
+            print("MPPT_PUB:", self.mppt_pub_data)
 
     def init_mc_data_publisher(self, topic, timer_period):
         self.mc_data_publisher = self.create_publisher(rosarray, topic, 10)
@@ -58,7 +58,8 @@ class CONTROL_NODE(Node):
             self.mc_data_pub_msg.data = self.mc_pub_data
             self.mc_data_publisher.publish(self.mc_data_pub_msg)
             self.mc_pub_data = self.mc_data_pub_msg.data
-            print("PUB:", self.mc_pub_data)
+            print("JAIVAL OP")
+            print("MC_PUB:", self.mc_pub_data)
 
 
 
@@ -67,7 +68,7 @@ def main(args=None):
     rclpy.init(args=args)
 
     control_node = CONTROL_NODE("control_node")
-    control_node.init_parsed_data_subscriber("parsed_data")
+    control_node.init_parsed_data_subscriber("/parsed_data")
     control_node.init_battery_data_publisher("battery_data",1)
     control_node.init_mppt_data_publisher("mppt_data",1)
     control_node.init_mc_data_publisher("mc_data",1)
@@ -75,9 +76,10 @@ def main(args=None):
     while rclpy.ok():
         rclpy.spin_once(control_node)
 
-        control_node.battery_pub_data = control_node.parsed_sub_data[0:59]
-        #control_node.mppt_pub_data = control_node.parsed_sub_data[59:115]
-        #control_node.mc_pub_data = control_node.parsed_sub_data[115:123]
+        if control_node.parsed_sub_data is not None:
+            control_node.battery_pub_data = control_node.parsed_sub_data[0:59]
+            control_node.mppt_pub_data = control_node.parsed_sub_data[59:163]
+            control_node.mc_pub_data = control_node.parsed_sub_data[163:184]
         
     # Destroy the node explicitly
     # (optional - otherwise it will be done automatically

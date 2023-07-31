@@ -1,0 +1,75 @@
+[2.115s] Invoking command in '/home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package': PYTHONPATH=/home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/prefix_override:/home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base build/can_package build --build-base /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build install --record /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/install.log --single-version-externally-managed
+[2.971s] running egg_info
+[2.973s] creating build/can_package/can_package.egg-info
+[2.974s] writing build/can_package/can_package.egg-info/PKG-INFO
+[2.975s] writing dependency_links to build/can_package/can_package.egg-info/dependency_links.txt
+[2.976s] writing entry points to build/can_package/can_package.egg-info/entry_points.txt
+[2.977s] writing requirements to build/can_package/can_package.egg-info/requires.txt
+[2.977s] writing top-level names to build/can_package/can_package.egg-info/top_level.txt
+[2.978s] writing manifest file 'build/can_package/can_package.egg-info/SOURCES.txt'
+[2.985s] reading manifest file 'build/can_package/can_package.egg-info/SOURCES.txt'
+[2.986s] adding license file 'LICENSE'
+[2.989s] writing manifest file 'build/can_package/can_package.egg-info/SOURCES.txt'
+[2.989s] running build
+[2.990s] running build_py
+[2.991s] creating /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build
+[2.991s] creating /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib
+[2.992s] creating /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package
+[2.992s] copying can_package/py_tools_decode_test_dup2.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package
+[2.992s] copying can_package/sample_CAN.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package
+[2.994s] copying can_package/__init__.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package
+[2.994s] copying can_package/mc_can_data_pkt.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package
+[2.995s] copying can_package/py_tools_decode_test_dup.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package
+[2.996s] copying can_package/py_tools_test.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package
+[2.996s] copying can_package/py-can-rx.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package
+[2.997s] copying can_package/py_tools_decode_test.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package
+[2.997s] copying can_package/can_rx_node.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package
+[2.998s] copying can_package/py-can-tx.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package
+[2.998s] copying can_package/can_node_sim.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package
+[2.999s] copying can_package/can_rx_node_dup.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package
+[3.000s] copying can_package/can_tx_node.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package
+[3.001s] running install
+[3.002s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[3.002s]   warnings.warn(
+[3.003s] running install_lib
+[3.006s] creating /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package
+[3.007s] copying /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package/py_tools_decode_test_dup2.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package
+[3.007s] copying /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package/sample_CAN.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package
+[3.008s] copying /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package/__init__.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package
+[3.009s] copying /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package/mc_can_data_pkt.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package
+[3.010s] copying /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package/py_tools_decode_test_dup.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package
+[3.010s] copying /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package/py_tools_test.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package
+[3.011s] copying /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package/py-can-rx.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package
+[3.012s] copying /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package/py_tools_decode_test.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package
+[3.012s] copying /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package/can_rx_node.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package
+[3.012s] copying /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package/py-can-tx.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package
+[3.013s] copying /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package/can_node_sim.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package
+[3.013s] copying /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package/can_rx_node_dup.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package
+[3.014s] copying /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build/lib/can_package/can_tx_node.py -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package
+[3.014s] byte-compiling /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package/py_tools_decode_test_dup2.py to py_tools_decode_test_dup2.cpython-310.pyc
+[3.015s] byte-compiling /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package/sample_CAN.py to sample_CAN.cpython-310.pyc
+[3.017s] byte-compiling /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package/__init__.py to __init__.cpython-310.pyc
+[3.017s] byte-compiling /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package/mc_can_data_pkt.py to mc_can_data_pkt.cpython-310.pyc
+[3.018s] byte-compiling /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package/py_tools_decode_test_dup.py to py_tools_decode_test_dup.cpython-310.pyc
+[3.019s] byte-compiling /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package/py_tools_test.py to py_tools_test.cpython-310.pyc
+[3.020s] byte-compiling /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package/py-can-rx.py to py-can-rx.cpython-310.pyc
+[3.021s] byte-compiling /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package/py_tools_decode_test.py to py_tools_decode_test.cpython-310.pyc
+[3.023s] byte-compiling /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package/can_rx_node.py to can_rx_node.cpython-310.pyc
+[3.024s] byte-compiling /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package/py-can-tx.py to py-can-tx.cpython-310.pyc
+[3.026s] byte-compiling /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package/can_node_sim.py to can_node_sim.cpython-310.pyc
+[3.027s] byte-compiling /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package/can_rx_node_dup.py to can_rx_node_dup.cpython-310.pyc
+[3.030s] byte-compiling /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package/can_tx_node.py to can_tx_node.cpython-310.pyc
+[3.031s] running install_data
+[3.034s] creating /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/share/ament_index
+[3.034s] creating /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/share/ament_index/resource_index
+[3.035s] creating /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/share/ament_index/resource_index/packages
+[3.035s] copying resource/can_package -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/share/ament_index/resource_index/packages
+[3.035s] copying package.xml -> /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/share/can_package
+[3.036s] running install_egg_info
+[3.041s] Copying build/can_package/can_package.egg-info to /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages/can_package-0.0.0-py3.10.egg-info
+[3.044s] running install_scripts
+[3.123s] Installing can_node_sim script to /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/can_package
+[3.124s] Installing can_rx_node script to /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/can_package
+[3.125s] Installing can_tx_node script to /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/can_package
+[3.127s] writing list of installed files to '/home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/install.log'
+[3.247s] Invoked command in '/home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package' returned '0': PYTHONPATH=/home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/prefix_override:/home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/install/can_package/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base build/can_package build --build-base /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/build install --record /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/build/can_package/install.log --single-version-externally-managed

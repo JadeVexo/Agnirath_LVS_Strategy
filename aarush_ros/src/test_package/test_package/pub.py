@@ -1,47 +1,36 @@
 import rclpy
+# from OpenCVnodetest import cameraModule
 from rclpy.node import Node
-from std_msgs.msg import Float32MultiArray as rosarray
-import random
 
+from std_msgs.msg import Float64MultiArray
 
-class sample_publisher(Node):
-    def __init__(self,node):
-        super().__init__(node)
-        self.publisher_ = self.create_publisher(rosarray,"final_data", 10)
-        self.timer_period = 1 # seconds
-        self.timer = self.create_timer(self.timer_period, self.publish_data)
+class Anglepublisher(Node):
+    # _camera_module = cameraModule()
+    def __init__(self):
+        super().__init__("maximumLikelihood")
+        self.publisher_ = self.create_publisher(Float64MultiArray,'Angles',10)
+        timer_period = 0.5
+        self.timer = self.create_timer(timer_period,self.timer_callback)
+        self.i = 0
 
-        self.pub_data = None
-
-    def publish_data(self):
-        msg = rosarray()
-        msg.data = self.pub_data
+    def timer_callback(self):
+        msg = Float32MultiArray()
+        msg.data = [20.0,20.0,320.0.i,20.0]
         self.publisher_.publish(msg)
-        self.pub_data = msg.data
-        print("PUB:",self.pub_data)
-
+        self.get_logger().info('Publishing: ',msg.data)
+        self.i +=1
 
 def main(args=None):
     rclpy.init(args=args)
+    anglepublisher = Anglepublisher()
 
-    sample_pub_node = sample_publisher("sample_pub")
+    rclpy.spin(anglepublisher)
 
-    while rclpy.ok():
-        sample_pub_node.pub_data = [
-            random.randint(0, 9)
-        ]
+    anglepublisher.destroy_node()
 
-        rclpy.spin_once(sample_pub_node)
-        # latest_data = sample_pub_node.latest_data
-        # if latest_data is not None:
-        #     print(latest_data)
-
-    # Destroy the node explicitly
-    # (optional - otherwise it will be done automatically
-    # when the garbage collector destroys the node object)
-    sample_pub_node.destroy_node()
     rclpy.shutdown()
 
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     main()

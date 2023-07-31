@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'main_node = main_package.main_node:main'
+            'main_node = main_package.main_node_1:main'
         ],
     },
 )

@@ -3,6 +3,23 @@ from rclpy.node import Node
 from std_msgs.msg import Float32MultiArray as rosarray
 
 
+class Timer:
+    def __init__(self, threshold_crossing_time):
+        self.threshold_crossing_time = threshold_crossing_time
+        self.start_time = None
+
+    def start(self):
+        self.start_time = time.time()
+
+    def elapsed(self):
+        return time.time() - self.start_time
+
+    def reset(self):
+        self.start_time = None
+
+
+
+
 class MC_NODE(Node):
     def __init__(self, node):
         super().__init__(node)
@@ -43,16 +60,39 @@ class MC_NODE(Node):
             self.control_data_pub_msg.data = self.control_pub_data
             self.control_data_publisher.publish(self.control_data_pub_msg)
             self.control_pub_data = self.control_data_pub_msg.data
-            print("PUB:", self.control_pub_data)
+            print("Control_PUB:", self.control_pub_data)
+            self.control_pub_data = [] #destroys error code list, resets
 
 
 def main(args=None):
+    threshold_crossing_time = 3
     rclpy.init(args=args)
+
+    mppt_1_input_volt_timer = Timer(threshold_crossing_time)
 
     mc_node = MC_NODE("mc_node")
     mc_node.init_mc_subscriber("mc_data")
     mc_node.init_peripheral_subscriber("peripheral_data")
     mc_node.init_control_data_publisher("control_data", 1)
+
+    mc_bus_current_timer1 = Timer(threshold_crossing_time)
+    mc_bus_current_timer2 = Timer(threshold_crossing_time)
+    mc_bus_voltage_timer = Timer(threshold_crossing_time)
+    mc_phase_c_current_timer1 = Timer(threshold_crossing_time)
+    mc_phase_c_current_timer2 = Timer(threshold_crossing_time)
+    mc_phase_b_current_timer1 = Timer(threshold_crossing_time)
+    mc_phase_b_current_timer2 = Timer(threshold_crossing_time)
+    mc_BEMFd_timer = Timer(threshold_crossing_time)
+    mc_BEMFq_timer = Timer(threshold_crossing_time)
+    mc_15_supply_timer = Timer(threshold_crossing_time)
+    mc_3v3_supply_timer = Timer(threshold_crossing_time)
+    mc_1v9_supply_timer = Timer(threshold_crossing_time)
+    mc_heat_sink_temp_timer = Timer(threshold_crossing_time)
+    mc_motor_temp_timer = Timer(threshold_crossing_time)
+    mc_dsp_board_temp = Timer(threshold_crossing_time)
+
+
+
 
     while rclpy.ok():
         rclpy.spin_once(mc_node)
@@ -69,19 +109,23 @@ def main(args=None):
 
         # Parsing the Data
 
-        mc_error_flag = mc_node.mc_sub_data[0]
-        mc_bus_current = mc_node.mc_sub_data[1]
-        mc_bus_voltage = mc_node.mc_sub_data[2]
-        mc_phase_c_current = mc_node.mc_sub_data[3]
-        mc_phase_b_current = mc_node.mc_sub_data[4]
-        mc_BEMFd = mc_node.mc_sub_data[5]
-        mc_BEMFq = mc_node.mc_sub_data[6]
-        mc_15_supply = mc_node.mc_sub_data[7]
-        mc_3v3_supply = mc_node.mc_sub_data[8]
-        mc_1v9_supply = mc_node.mc_sub_data[9]
-        mc_heat_sink_temp = mc_node.mc_sub_data[10]
-        mc_motor_temp = mc_node.mc_sub_data[11]
-        mc_dsp_board_temp = mc_node.mc_sub_data[12]
+        mc_error_flag_list = [0.0]*9
+
+        mc_error_flag_list = mc_node.mc_sub_data[0:9]
+        mc_bus_current = mc_node.mc_sub_data[10]
+        mc_bus_voltage = mc_node.mc_sub_data[9]
+        mc_phase_c_current = mc_node.mc_sub_data[12]
+        mc_phase_b_current = mc_node.mc_sub_data[11]
+        mc_BEMFd = mc_node.mc_sub_data[14]
+        mc_BEMFq = mc_node.mc_sub_data[13]
+        mc_15_supply = mc_node.mc_sub_data[15]
+        mc_3v3_supply = mc_node.mc_sub_data[17]
+        mc_1v9_supply = mc_node.mc_sub_data[16]
+        mc_heat_sink_temp = mc_node.mc_sub_data[19]
+        mc_motor_temp = mc_node.mc_sub_data[18]
+        mc_dsp_board_temp = mc_node.mc_sub_data[20]
+
+        error_codes = []
 
 
         base_val = 107 #first error code in the csv file for the motor controller
@@ -104,54 +148,110 @@ def main(args=None):
 
 
         err_flg = {0:0,1:1,2:2,6:3,8:4}
+        rel_flags = err_flg.keys()
 
         #Error flags - refer datasheet
-        if mc_error_flag in err_flg.keys():
-            mc_node.control_pub_data = base_val + err_flg[mc_error_flag]
+
+        for i in rel_flags:
+
+            if(mc_error_flag_list[i] == 1.0):
+                error_codes.append(base_val + err_flg[i])
+
         
         #Bus current limits
         if bus_current_limB > mc_bus_current > bus_current_limA:
-            mc_node.control_pub_data = base_val + 5
+            if mc_bus_current_timer1.start_time is None:
+                mc_bus_current_timer1.start()
+            if mc_bus_current_timer1.elapsed >= threshold_crossing_time:
+                error_codes.append(base_val + 5)
+
         elif bus_current_limB < mc_bus_current:
-            mc_node.control_pub_data = base_val + 6
+            if mc_bus_current_timer2.start_time is None:
+                mc_bus_current_timer2.start()
+            if mc_bus_current_timer2.elapsed >= threshold_crossing_time:
+                error_codes.append(base_val + 6)
 
         if mc_bus_voltage > bus_voltage_lim:
-            mc_node.control_pub_data = base_val + 7
+            if mc_bus_voltage_timer.start_time is None:
+                mc_bus_voltage_timer.start()
+            if mc_bus_voltage_timer.elapsed >= threshold_crossing_time:
+                error_codes.append(base_val + 7)
 
         if phaseC_current_limB > mc_phase_c_current > phaseC_current_limA:
-            mc_node.control_pub_data = base_val + 8
+            if mc_phase_c_current_timer1.start_time is None:
+                mc_phase_c_current_timer1.start()
+            if mc_phase_c_current_timer1.elapsed >= threshold_crossing_time:
+                error_codes.append(base_val + 8)
+
         elif phaseC_current_limB < mc_phase_c_current:
-            mc_node.control_pub_data = base_val + 9
+            if mc_phase_c_current_timer2.start_time is None:
+                mc_phase_c_current_timer2.start()
+            if mc_phase_c_current_timer2.elapsed >= threshold_crossing_time:
+                error_codes.append(base_val + 9)
         
         if phaseB_current_limB > mc_phase_b_current > phaseB_current_limA:
-            mc_node.control_pub_data = base_val + 10
+            if mc_phase_b_current_timer1.start_time is None:
+                mc_phase_b_current_timer1.start()
+            if mc_phase_b_current_timer1.elapsed >= threshold_crossing_time:
+                error_codes.append(base_val + 10)
+
         elif phaseB_current_limB < mc_phase_b_current:
-            mc_node.control_pub_data = base_val + 11
+            if mc_phase_b_current_timer2.start_time is None:
+                mc_phase_b_current_timer2.start()
+            if mc_phase_b_current_timer2.elapsed >= threshold_crossing_time:
+                error_codes.append(base_val + 11)
         
         #Confirm if BEMF value has to be less than or greater than limit in normal condition
         if mc_BEMFd > BEMFd_lim:
-            mc_node.control_pub_data = base_val + 12
+            if mc_BEMFd_timer.start_time is None:
+                mc_BEMFd_timer.start()
+            if mc_BEMFd_timer.elapsed >= threshold_crossing_time:
+                error_codes.append(base_val + 12)
         
         if mc_BEMFq > BEMFq_lim:
-            mc_node.control_pub_data = base_val + 13
+            if mc_BEMFq_timer.start_time is None:
+                mc_BEMFq_timer.start()
+            if mc_BEMFq_timer.elapsed >= threshold_crossing_time:
+                error_codes.append(base_val + 13)
 
         if 15 - supply_15_tol > mc_15_supply:
-            mc_node.control_pub_data = base_val + 14
+            if mc_15_supply_timer.start_time is None:
+                mc_15_supply_timer.start()
+            if mc_15_supply_timer.elapsed >= threshold_crossing_time:
+                error_codes.append(base_val + 14)
+                
 
         if 3.3 - supply_3v3_tol > mc_3v3_supply:
-            mc_node.control_pub_data = base_val + 15
+            if mc_3v3_supply_timer.start_time is None:
+                mc_3v3_supply_timer.start()
+            if mc_3v3_supply_timer.elapsed >= threshold_crossing_time:
+                error_codes.append(base_val + 15)
         
         if 1.9 - supply_1v9_tol > mc_1v9_supply:
-            mc_node.control_pub_data = base_val + 16
+            if mc_1v9_supply_timer.start_time is None:
+                mc_1v9_supply_timer.start()
+            if mc_1v9_supply_timer.elapsed >= threshold_crossing_time:
+                error_codes.append(base_val + 16)
         
         if mc_heat_sink_temp > heat_sink_temp_lim:
-            mc_node.control_pub_data = base_val + 17
+            if mc_heat_sink_temp_timer.start_time is None:
+                mc_heat_sink_temp_timer.start()
+            if mc_heat_sink_temp_timer.elapsed >= threshold_crossing_time:
+                error_codes.append(base_val + 17)
         
         if mc_motor_temp > motor_temp_lim:
-            mc_node.control_pub_data = base_val + 18
+            if mc_motor_temp_timer.start_time is None:
+                mc_motor_temp_temp_timer.start()
+            if mc_motor_temp_temp_timer.elapsed >= threshold_crossing_time:
+                error_codes.append(base_val + 18)
         
         if mc_dsp_board_temp > dsp_board_temp_lim:
-            mc_node.control_pub_data = base_val + 19
+            if mc_dsp_board_temp_timer.start_time is None:
+                mc_dsp_board_temp_timer.start()
+            if mc_dsp_board_temp_timer.elapsed >= threshold_crossing_time:
+                error_codes.append(base_val + 19)
+
+        mc_node.control_pub_data = error_codes
 
     mc_node.destroy_node()
     rclpy.shutdown()

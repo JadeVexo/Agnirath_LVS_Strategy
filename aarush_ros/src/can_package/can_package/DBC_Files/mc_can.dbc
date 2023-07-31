@@ -1,4 +1,4 @@
-VERSION "1.0"
+VERSION "0.0"
 
 
 NS_ : 
@@ -39,8 +39,9 @@ BU_:
 
 
 BO_ 1024 Identification: 8 Vector__XXX
-	SG_ Serial_Number : 0|32@1+ (1,0) [0|0] "" Vector__XXX
-	SG_ Prohelion_ID : 32|32@1+ (1,0) [0|0] "" Vector__XXX
+	SG_ Prohelion_ID : 0|32@1+ (1,0) [0|0] "" Vector__XXX
+	SG_ Serial_Number : 32|32@1+ (1,0) [0|0] "" Vector__XXX
+
 
 BO_ 1025 Status: 8 Vector__XXX
 	SG_ Output_Voltage_PWM_Limit : 0|1@1+ (1,0) [0|0] "" Vector__XXX

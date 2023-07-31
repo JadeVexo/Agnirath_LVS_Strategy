@@ -92,7 +92,7 @@ Final Data list:[
     CMU4 Cell 7 Voltage
     
     [74-84]
-    CMU5 Serial Number
+    CMU5 Serial Numberaarush_ros
     CMU5 PCB Temperature
     CMU5 Cell Temperature
     CMU5 Cell 0 Voltage
@@ -425,7 +425,7 @@ class MAIN_NODE(Node):
             self.final_data_pub_msg.data = self.final_pub_data        
             self.final_data_publisher.publish(self.final_data_pub_msg)
             self.final_pub_data = self.final_data_pub_msg.data
-            print("PUB:", self.final_pub_data)
+            print("Final_PUB:", self.final_pub_data)
 
     # Parsed publisher
     def init_parsed_data_publisher(self, topic, timer_period):
@@ -441,7 +441,7 @@ class MAIN_NODE(Node):
             self.parsed_data_pub_msg.data = self.parsed_pub_data
             self.parsed_data_publisher.publish(self.parsed_data_pub_msg)
             self.parsed_pub_data = self.parsed_data_pub_msg.data
-            # print("PUB:", self.parsed_pub_data)
+            print("Parse_PUB:", self.parsed_pub_data)
 
 
 def main(args=None):
@@ -454,11 +454,11 @@ def main(args=None):
     main_node.init_imu_subscriber("imu_data")
 
     main_node.init_can_publisher("can_tx_data", 1)
-    #main_node.init_final_data_publisher("final_data", 1)
+    main_node.init_final_data_publisher("final_data", 1)
     main_node.init_parsed_data_publisher("parsed_data", 1)
 
-    final_data = [0]*200
-    parsed_data = [0]*150
+    final_data = [0]*266
+    parsed_data = [0]*191
     # can_data = None
     print("Starting Main Node")
     while rclpy.ok():
@@ -471,21 +471,31 @@ def main(args=None):
 
 
         # Base address of MPPTs, Driver's Control and Motor Controller
-        mppt_1_base_address = 0x6A0
-        mppt_2_base_address = 0x6B0
-        mppt_3_base_address = 0x6C0
-        mppt_4_base_address = 0x6D0
-        evdc_base_address = 0x630 # Will change this later after updating the correct base address
-        mc_base_address = 0x640 # Will change this later after updating the correct base address
+        mppt_1_base_address = 1696.0
+        mppt_2_base_address = 1712.0
+        mppt_3_base_address = 1728.0
+        mppt_4_base_address = 1744.0
+        evdc_base_address = 1584.0 # Will change this later after updating the correct base address
+        mc_base_address = 1024.0
 
         # Base index of messages for different components in the parsed data array
         bms_index = 0
         mppt_1_index = 59
-        mppt_2_index = 73
-        mppt_3_index = 87
-        mppt_4_index = 101
-        evdc_index = 115
-        mc_index = 117
+        mppt_2_index = 86
+        mppt_3_index = 113
+        mppt_4_index = 140
+        evdc_index = 188 
+        mc_index = 167
+
+        #Base indices for final data array
+
+        mppt_1_fd_index = 93
+        mppt_2__fd_index = 125
+        mppt_3_fd_index = 157
+        mppt_4_fd_index = 189
+        evdc_fd_index = 263
+        mc_fd_index = 221
+
 
         CAN_codes = [[0x12,163],[0x25,293]]
         can_tx_list = []
@@ -506,221 +516,355 @@ def main(args=None):
         # Parsing data from CAN Messages; Used in Control Loops
         if can_sub_data is not None:
             # CMU 1
-            if can_sub_data[0] == 0x601:
+
+            if can_sub_data[0] == 1536.0:
+                final_data[bms_index+0:bms_index+2] = can_sub_data[1:3]
+
+            if can_sub_data[0] == 1537.0:
                 parsed_data[bms_index+0:bms_index+2] = can_sub_data[2:4]
-            if can_sub_data[0] == 0x602:
+                final_data[bms_index+2:bms_index+5] = can_sub_data[1:4]
+
+            if can_sub_data[0] == 1538.0:
                 parsed_data[bms_index+2:bms_index+6] = can_sub_data[1:5]
-            if can_sub_data[0] == 0x603:
+                final_data[bms_index+5:bms_index+9] = can_sub_data[1:5]
+
+            if can_sub_data[0] == 1539.0:
                 parsed_data[bms_index+6:bms_index+10] = can_sub_data[1:5]
+                final_data[bms_index+9:bms_index+13] = can_sub_data[1:5]
+
+            
 
             # CMU 2
-            if can_sub_data[0] == 0x604:
-                parsed_data[bms_index+10:bms_index+12] = can_sub_data[2:4]
-            if can_sub_data[0] == 0x605:
-                parsed_data[bms_index+12:bms_index+16] = can_sub_data[1:5]
-            if can_sub_data[0] == 0x606:
-                parsed_data[bms_index+16:bms_index+20] = can_sub_data[1:5]
             
+            if can_sub_data[0] == 1540.0:
+                parsed_data[bms_index+10:bms_index+12] = can_sub_data[2:4]
+                final_data[bms_index+13:bms_index+16] = can_sub_data[1:4]
+
+
+            if can_sub_data[0] == 1541.0:
+                parsed_data[bms_index+12:bms_index+16] = can_sub_data[1:5]
+                final_data[bms_index+16:bms_index+20] = can_sub_data[1:5]
+
+
+            if can_sub_data[0] == 1542.0:
+                parsed_data[bms_index+16:bms_index+20] = can_sub_data[1:5]
+                final_data[bms_index+20:bms_index+24] = can_sub_data[1:5]
+
+
             # CMU 3
-            if can_sub_data[0] == 0x607:
+            if can_sub_data[0] == 1543.0:
                 parsed_data[bms_index+20:bms_index+22] = can_sub_data[2:4]
-            if can_sub_data[0] == 0x608:
+                final_data[bms_index+24:bms_index+27] = can_sub_data[1:4]
+
+            if can_sub_data[0] == 1544.0:
                 parsed_data[bms_index+22:bms_index+26] = can_sub_data[1:5]
-            if can_sub_data[0] == 0x609:
+                final_data[bms_index+27:bms_index+31] = can_sub_data[1:5]
+
+
+            if can_sub_data[0] == 1545.0:
                 parsed_data[bms_index+26:bms_index+30] = can_sub_data[1:5]
+                final_data[bms_index+31:bms_index+35] = can_sub_data[1:5]
+
 
             # CMU 4
-            if can_sub_data[0] == 0x610:
+            if can_sub_data[0] == 1546.0:
                 parsed_data[bms_index+30:bms_index+32] = can_sub_data[2:4]
-            if can_sub_data[0] == 0x611:
+                final_data[bms_index+35:bms_index+38] = can_sub_data[1:4]
+
+            if can_sub_data[0] == 1547.0:
                 parsed_data[bms_index+32:bms_index+36] = can_sub_data[1:5]
-            if can_sub_data[0] == 0x612:
+                final_data[bms_index+38:bms_index+42] = can_sub_data[1:5]
+
+            if can_sub_data[0] == 1548.0:
                 parsed_data[bms_index+36:bms_index+40] = can_sub_data[1:5]
+                final_data[bms_index+42:bms_index+46] = can_sub_data[1:5]
 
             # CMU 5
-            if can_sub_data[0] == 0x613:
+            if can_sub_data[0] == 1549.0:
                 parsed_data[bms_index+40:bms_index+42] = can_sub_data[2:4]
-            if can_sub_data[0] == 0x614:
+                final_data[bms_index+46:bms_index+49] = can_sub_data[1:4]
+
+            if can_sub_data[0] == 1550.0:
                 parsed_data[bms_index+42:bms_index+46] = can_sub_data[1:5]
-            if can_sub_data[0] == 0x615:
+                final_data[bms_index+49:bms_index+53] = can_sub_data[1:5]
+
+            if can_sub_data[0] == 1551.0:
                 parsed_data[bms_index+46:bms_index+50] = can_sub_data[1:5]
+                final_data[bms_index+53:bms_index+57] = can_sub_data[1:5]
 
             # SOC Information
-            if can_sub_data[0] == 0x6F4:
+            if can_sub_data[0] == 1780.0:
                 parsed_data[bms_index+50:bms_index+52] = can_sub_data[1:3]
+                final_data[bms_index+57:bms_index+59]  = can_sub_data[8:17]
+               
+            if can_sub_data[0] == 1781.0:
+                final_data[bms_index+59:bms_index+61] = can_sub_data[1:3]
+
+            if can_sub_data[0] == 1782.0:
+                final_data[bms_index+61:bms_index+65] = can_sub_data[1:5]
+            
+            if can_sub_data[0] == 1783.0:
+                final_data[bms_index+65:bms_index+69] = can_sub_data[1:5]
 
             # Minimum/ Maximum Cell Voltage 
-            if can_sub_data[0] == 0x6F8:
+            if can_sub_data[0] == 1784.0:
                 parsed_data[bms_index+52:bms_index+54] = can_sub_data[1:3]
+                final_data[bms_index+69:bms_index+75] = can_sub_data[1:7]
+
 
             # Minimum/ Maximum Cell Temperature
-            if can_sub_data[0] == 0x6F9:
+            if can_sub_data[0] == 1785.0:
                 parsed_data[bms_index+54:bms_index+56] = can_sub_data[1:3]
+                final_data[bms_index+75:bms_index+79] = can_sub_data[1:5]
+
 
             # Battery Voltage/ Current
-            if can_sub_data[0] == 0x6FA:
+            if can_sub_data[0] == 1786.0:
                 parsed_data[bms_index+56:bms_index+58] = can_sub_data[1:3]
+                final_data[bms_index+79:bms_index+81] = can_sub_data[1:3]
+
 
             # Battery Pack Status
-            if can_sub_data[0] == 0x6FB:
+            if can_sub_data[0] == 1787.0:
                 parsed_data[bms_index+58] = can_sub_data[5]
+                final_data[bms_index+81:bms_index+86] = can_sub_data[1:6]
+
+            if can_sub_data[0] == 1788.0:
+                final_data[bms_index+86:bms_index+90] = can_sub_data[1:5]
+
+            if can_sub_data[0] == 1789.0:
+                final_data[bms_index+90:bms_index+93] = can_sub_data[1:4]
+
+
+
             
             '''------------------------------------------------------'''
 
             # MPPT 1
             # Input Measurements
-            if can_sub_data[0] == mppt_1_base_address + 0x000: 
+            if can_sub_data[0] == mppt_1_base_address + 0: 
                 parsed_data[mppt_1_index+0:mppt_1_index+2] = can_sub_data[1:3]
+                final_data[mppt_1_fd_index+0:mppt_1_fd_index+2] = can_sub_data[1:3]
 
             # Output Measurements
-            if can_sub_data[0] == mppt_1_base_address + 0x001:
+            if can_sub_data[0] == mppt_1_base_address + 1:
                 parsed_data[mppt_1_index+2:mppt_1_index+4] = can_sub_data[1:3]
+                final_data[mppt_1_fd_index+2:mppt_1_fd_index+4] = can_sub_data[1:3]
 
             # Temperature
-            if can_sub_data[0] == mppt_1_base_address + 0x002:
+            if can_sub_data[0] == mppt_1_base_address + 2:
                 parsed_data[mppt_1_index+4:mppt_1_index+6] = can_sub_data[1:3]
+                final_data[mppt_1_fd_index+4:mppt_1_fd_index+6] = can_sub_data[1:3]
 
             # Auxillary Power Supply 
-            if can_sub_data[0] == mppt_1_base_address + 0x003:
+            if can_sub_data[0] == mppt_1_base_address + 3:
                 parsed_data[mppt_1_index+6:mppt_1_index+8] = can_sub_data[1:3]
+                final_data[mppt_1_fd_index+6:mppt_1_fd_index+8] = can_sub_data[1:3]
 
-            #  Status - 3 strings for controls are "error flags", "limit flags" and "mode"
-            if can_sub_data[0] == mppt_1_base_address + 0x005:
-                parsed_data[mppt_1_index+8:mppt_1_index+11] = can_sub_data[4:7]
+            if can_sub_data[0] == mppt_1_base_address + 4:
+                final_data[mppt_1_fd_index + 8:mppt_1_fd_index + 10] = can_sub_data[1:3]
+
+
+            #  Status - 17 strings for controls are 8 X "error flags", 8 X "limit flags" and 1 X "mode"
+            if can_sub_data[0] == mppt_1_base_address + 5:
+                parsed_data[mppt_1_index+8:mppt_1_index+25] = can_sub_data[4:21]
+                final_data[mppt_1_fd_index + 10:mppt_1_fd_index + 31] = can_sub_data[1:22]
             
             # Power Connector
-            if can_sub_data[0] == mppt_1_base_address + 0x006:
-                parsed_data[mppt_1_index+11:mppt_1_index+13] = can_sub_data[1:3]
+            if can_sub_data[0] == mppt_1_base_address + 6:
+                parsed_data[mppt_1_index+25:mppt_1_index+27] = can_sub_data[1:3]
+                final_data[mppt_1_fd_index + 31:mppt_1_fd_index + 33] = can_sub_data[1:3]
+
+
 
             '''------------------------------------------------------------------'''
 
             # MPPT 2
             # Input Measurements print(f"Temperature threshold crossed for {threshold_crossing_time} seconds: {temperature}°C")
-            if can_sub_data[0] == mppt_2_base_address + 0x000: 
+            if can_sub_data[0] == mppt_2_base_address + 0: 
                 parsed_data[mppt_2_index+0:mppt_2_index+2] = can_sub_data[1:3]
+                final_data[mppt_2_fd_index+0:mppt_2_fd_index+2] = can_sub_data[1:3]
 
             # Output Measurements
-            if can_sub_data[0] == mppt_2_base_address + 0x001:
+            if can_sub_data[0] == mppt_2_base_address + 1:
                 parsed_data[mppt_2_index+2:mppt_2_index+4] = can_sub_data[1:3]
+                final_data[mppt_2_fd_index+2:mppt_2_fd_index+4] = can_sub_data[1:3]
 
             # Temperature
-            if can_sub_data[0] == mppt_2_base_address + 0x002:
+            if can_sub_data[0] == mppt_2_base_address + 2:
                 parsed_data[mppt_2_index+4:mppt_2_index+6] = can_sub_data[1:3]
+                final_data[mppt_2_fd_index+4:mppt_2_fd_index+6] = can_sub_data[1:3]
 
             # Auxillary Power Supply 
-            if can_sub_data[0] == mppt_2_base_address + 0x003:
+            if can_sub_data[0] == mppt_2_base_address + 3:
                 parsed_data[mppt_2_index+6:mppt_2_index+8] = can_sub_data[1:3]
+                final_data[mppt_2_fd_index+6:mppt_2_fd_index+8] = can_sub_data[1:3]
 
-            #  Status - 3 strings for controls are "error flags", "limit flags" and "mode"
-            if can_sub_data[0] == mppt_2_base_address + 0x005:
-                parsed_data[mppt_2_index+8:mppt_2_index+11] = can_sub_data[4:7]
+            if can_sub_data[0] == mppt_2_base_address + 4:
+                final_data[mppt_2_fd_index + 8:mppt_2_fd_index + 10] = can_sub_data[1:3]
+
+
+            #  Status - 17 strings for controls are 8 X "error flags", 8 X "limit flags" and 1 X "mode"
+            if can_sub_data[0] == mppt_2_base_address + 5:
+                parsed_data[mppt_2_index+8:mppt_2_index+25] = can_sub_data[4:21]
+                final_data[mppt_2_fd_index + 10:mppt_2_fd_index + 31] = can_sub_data[1:22]
             
             # Power Connector
-            if can_sub_data[0] == mppt_2_base_address + 0x006:
-                parsed_data[mppt_2_index+11:mppt_2_index+13] = can_sub_data[1:3]
+            if can_sub_data[0] == mppt_2_base_address + 6:
+                parsed_data[mppt_2_index+25:mppt_2_index+27] = can_sub_data[1:3]
+                final_data[mppt_2_fd_index + 31:mppt_2_fd_index + 33] = can_sub_data[1:3]
 
             '''-----------------------------------------------------------'''
 
             # MPPT 3
             # Input Measurements
-            if can_sub_data[0] == mppt_3_base_address + 0x000: 
+            if can_sub_data[0] == mppt_3_base_address + 0: 
                 parsed_data[mppt_3_index+0:mppt_3_index+2] = can_sub_data[1:3]
+                final_data[mppt_3_fd_index+0:mppt_3_fd_index+2] = can_sub_data[1:3]
 
             # Output Measurements
-            if can_sub_data[0] == mppt_3_base_address + 0x001:
+            if can_sub_data[0] == mppt_3_base_address + 1:
                 parsed_data[mppt_3_index+2:mppt_3_index+4] = can_sub_data[1:3]
+                final_data[mppt_3_fd_index+2:mppt_3_fd_index+4] = can_sub_data[1:3]
 
             # Temperature
-            if can_sub_data[0] == mppt_3_base_address + 0x002:
+            if can_sub_data[0] == mppt_3_base_address + 2:
                 parsed_data[mppt_3_index+4:mppt_3_index+6] = can_sub_data[1:3]
+                final_data[mppt_3_fd_index+4:mppt_3_fd_index+6] = can_sub_data[1:3]
 
             # Auxillary Power Supply 
-            if can_sub_data[0] == mppt_3_base_address + 0x003:
+            if can_sub_data[0] == mppt_3_base_address + 3:
                 parsed_data[mppt_3_index+6:mppt_3_index+8] = can_sub_data[1:3]
+                final_data[mppt_3_fd_index+6:mppt_3_fd_index+8] = can_sub_data[1:3]
 
-            #  Status - 3 strings for controls are "error flags", "limit flags" and "mode"
-            if can_sub_data[0] == mppt_3_base_address + 0x005:
-                parsed_data[mppt_3_index+8:mppt_3_index+11] = can_sub_data[4:7]
+            if can_sub_data[0] == mppt_3_base_address + 4:
+                final_data[mppt_3_fd_index + 8:mppt_3_fd_index + 10] = can_sub_data[1:3]
+
+
+            #  Status - 17 strings for controls are 8 X "error flags", 8 X "limit flags" and 1 X "mode"
+            if can_sub_data[0] == mppt_3_base_address + 5:
+                parsed_data[mppt_3_index+8:mppt_3_index+25] = can_sub_data[4:21]
+                final_data[mppt_3_fd_index + 10:mppt_3_fd_index + 31] = can_sub_data[1:22]
             
             # Power Connector
-            if can_sub_data[0] == mppt_3_base_address + 0x006:
-                parsed_data[mppt_3_index+11:mppt_3_index+13] = can_sub_data[1:3]
+            if can_sub_data[0] == mppt_3_base_address + 6:
+                parsed_data[mppt_3_index+25:mppt_3_index+27] = can_sub_data[1:3]
+                final_data[mppt_3_fd_index + 31:mppt_3_fd_index + 33] = can_sub_data[1:3]
 
             '''--------------------------------------------------------------'''
 
             # MPPT 4
-            # Input Measurements
-            if can_sub_data[0] == mppt_4_base_address + 0x000: 
+            if can_sub_data[0] == mppt_4_base_address + 0: 
                 parsed_data[mppt_4_index+0:mppt_4_index+2] = can_sub_data[1:3]
+                final_data[mppt_4_fd_index+0:mppt_4_fd_index+2] = can_sub_data[1:3]
 
             # Output Measurements
-            if can_sub_data[0] == mppt_4_base_address + 0x001:
+            if can_sub_data[0] == mppt_4_base_address + 1:
                 parsed_data[mppt_4_index+2:mppt_4_index+4] = can_sub_data[1:3]
+                final_data[mppt_4_fd_index+2:mppt_4_fd_index+4] = can_sub_data[1:3]
 
             # Temperature
-            if can_sub_data[0] == mppt_4_base_address + 0x002:
+            if can_sub_data[0] == mppt_4_base_address + 2:
                 parsed_data[mppt_4_index+4:mppt_4_index+6] = can_sub_data[1:3]
+                final_data[mppt_4_fd_index+4:mppt_4_fd_index+6] = can_sub_data[1:3]
 
             # Auxillary Power Supply 
-            if can_sub_data[0] == mppt_4_base_address + 0x003:
+            if can_sub_data[0] == mppt_4_base_address + 3:
                 parsed_data[mppt_4_index+6:mppt_4_index+8] = can_sub_data[1:3]
+                final_data[mppt_4_fd_index+6:mppt_4_fd_index+8] = can_sub_data[1:3]
 
-            #  Status - 3 strings for controls are "error flags", "limit flags" and "mode"
-            if can_sub_data[0] == mppt_4_base_address + 0x005:
-                parsed_data[mppt_4_index+8:mppt_4_index+11] = can_sub_data[4:7]
+            if can_sub_data[0] == mppt_4_base_address + 4:
+                final_data[mppt_4_fd_index + 8:mppt_4_fd_index + 10] = can_sub_data[1:3]
+
+
+            #  Status - 17 strings for controls are 8 X "error flags", 8 X "limit flags" and 1 X "mode"
+            if can_sub_data[0] == mppt_4_base_address + 5:
+                parsed_data[mppt_4_index+8:mppt_4_index+25] = can_sub_data[4:21]
+                final_data[mppt_4_fd_index + 10:mppt_4_fd_index + 31] = can_sub_data[1:22]
             
             # Power Connector
-            if can_sub_data[0] == mppt_4_base_address + 0x006:
-                parsed_data[mppt_4_index+11:mppt_4_index+13] = can_sub_data[1:3]
+            if can_sub_data[0] == mppt_4_base_address + 6:
+                parsed_data[mppt_4_index+25:mppt_4_index+27] = can_sub_data[1:3]
+                final_data[mppt_4_fd_index + 31:mppt_4_fd_index + 33] = can_sub_data[1:3]
 
             '''-----------------------------------------------------------'''
 
             # EVDC ### FIX INDEXING
             # Motor Current and Motor Velocity
-            if can_sub_data[0] == evdc_base_address + 0x001:
+            if can_sub_data[0] == evdc_base_address + 1:
                 parsed_data[evdc_index+0:evdc_index+2] = can_sub_data[1:3]
 
             # Bus Current
-            if can_sub_data[0] == evdc_base_address + 0x002:
+            if can_sub_data[0] == evdc_base_address + 2:
                 parsed_data[evdc_index+3:evdc_index+3] = can_sub_data[1]
 
             '''--------------------------------------------------'''
 
             # Motor Controller
+            #Serial No and ID
+            if can_sub_data[0] == mc_base_address + 0:
+                final_data[mc_fd_index+0:mc_fd_index+2] = can_sub_data[1:3]
+
+
             # Status Information
-            if can_sub_data[0] == mc_base_address + 0x01:
-                parsed_data[mc_index+0: mc_index+2] = can_sub_data[1:3]
+            if can_sub_data[0] == mc_base_address + 1:
+                parsed_data[mc_index+0: mc_index+9] = can_sub_data[8:17]
+                final_data[mc_fd_index+2:mc_fd_index+21] = can_sub_data[1:20]
 
             # Bus Current, Voltage
-            if can_sub_data[0] == mc_base_address + 0x02:
-                parsed_data[mc_index+2] = can_sub_data[1]
+            if can_sub_data[0] == mc_base_address + 2:
+                parsed_data[mc_index+9:mc_index+11] = can_sub_data[1:3]
+                final_data[mc_fd_index+21:mc_fd_index+23] = can_sub_data[1:3]
+
+            #Velocity Measurement
+            if can_sub_data[0] == mc_base_address + 3:
+                final_data[mc_fd_index+23:mc_fd_index+25] = can_sub_data[1:3]
 
             # Phase B,C Current
-            if can_sub_data[0] == mc_base_address + 0x04:
-                parsed_data[mc_index+3] = can_sub_data[1]
+            if can_sub_data[0] == mc_base_address + 4:
+                parsed_data[mc_index+11:mc_index+13] = can_sub_data[1:3]
+                final_data[mc_fd_index+25:mc_fd_index+27] = can_sub_data[1:3]
+
+            # Voltage Vector Measurements
+            if can_sub_data[0] == mc_base_address + 5:
+                final_data[mc_fd_index+27:mc_fd_index+29] = can_sub_data[1:3]
+
+            # Current Vector Measurements
+            if can_sub_data[0] == mc_base_address + 6:
+                final_data[mc_fd_index+29:mc_fd_index+31] = can_sub_data[1:3]
 
             # Back EMF Measurement
-            if can_sub_data[0] == mc_base_address + 0x07:
-                parsed_data[mc_index+4] = can_sub_data[1]
+            if can_sub_data[0] == mc_base_address + 7:
+                parsed_data[mc_index+13:mc_index+15] = can_sub_data[1:3]
+                final_data[mc_fd_index+31:mc_fd_index+33] = can_sub_data[1:3]
 
             # 15V Voltage Rail
-            if can_sub_data[0] == mc_base_address + 0x08:
-                parsed_data[mc_index+5] = can_sub_data[1]
+            if can_sub_data[0] == mc_base_address + 8:
+                parsed_data[mc_index+15] = can_sub_data[1]
+                final_data[mc_fd_index+33] = can_sub_data[1]
 
             # 3.3V, 1.9V Voltage Rails
-            if can_sub_data[0] == mc_base_address + 0x09:
-                parsed_data[mc_index+6] = can_sub_data[1]
+            if can_sub_data[0] == mc_base_address + 9:
+                print("JAIVAL OP")
+                parsed_data[mc_index+16:mc_index+18] = can_sub_data[1:3]
+                final_data[mc_fd_index+34:mc_fd_index+36] = can_sub_data[1:3]
 
             # Heat Sink and Motor Temperature
-            if can_sub_data[0] == mc_base_address + 0x0B:
-                parsed_data[mc_index+7] = can_sub_data[1]
+            if can_sub_data[0] == mc_base_address + 11:
+                parsed_data[mc_index+18:mc_index+20] = can_sub_data[1:3]
+                final_data[mc_fd_index+36:mc_fd_index+38] = can_sub_data[1:3]
 
             # DSP Board Temperature
-            if can_sub_data[0] == mc_base_address + 0x0C:
-                parsed_data[mc_index+8] = can_sub_data[1]
+            if can_sub_data[0] == mc_base_address + 12:
+                parsed_data[mc_index+20] = can_sub_data[1]
+                final_data[mc_fd_index+38] = can_sub_data[1]
+
+            #Odometer and Bus Amp-hrs
+            if can_sub_data[0] == mc_base_address + 14:
+                final_data[mc_fd_index+39:mc_fd_index+41] = can_sub_data[1:3]
 
             main_node.parsed_pub_data = parsed_data
-
+            main_node.final_pub_data = final_data
 
         # if control_sub_data is not None:
         #     print("SUB:", control_sub_data)

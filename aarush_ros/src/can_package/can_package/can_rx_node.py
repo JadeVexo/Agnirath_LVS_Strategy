@@ -1,6 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float32MultiArray as rosarray
+import random
 import can
 import struct
 
@@ -34,7 +35,7 @@ class CAN_RX_NODE(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-
+    print("HII")
     can_node = CAN_RX_NODE("can_rx_node")
     can_node.init_can_publisher("can_rx_data", 0.01)
 

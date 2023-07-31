@@ -11,6 +11,7 @@ setup.py
 ../../build/mc_package/mc_package.egg-info/zip-safe
 mc_package/__init__.py
 mc_package/mc_node.py
+mc_package/mc_node_bkup.py
 resource/mc_package
 test/test_copyright.py
 test/test_flake8.py

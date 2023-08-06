@@ -1,3 +1,19 @@
+<<<<<<< HEAD
+/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/install/battery_package/lib/python3.10/site-packages/battery_package/battery_node.py
+/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/install/battery_package/lib/python3.10/site-packages/battery_package/__init__.py
+/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/install/battery_package/lib/python3.10/site-packages/battery_package/__pycache__/battery_node.cpython-310.pyc
+/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/install/battery_package/lib/python3.10/site-packages/battery_package/__pycache__/__init__.cpython-310.pyc
+/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/install/battery_package/share/ament_index/resource_index/packages/battery_package
+/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/install/battery_package/share/battery_package/package.xml
+/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/install/battery_package/lib/python3.10/site-packages/battery_package-0.0.0-py3.10.egg-info/SOURCES.txt
+/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/install/battery_package/lib/python3.10/site-packages/battery_package-0.0.0-py3.10.egg-info/PKG-INFO
+/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/install/battery_package/lib/python3.10/site-packages/battery_package-0.0.0-py3.10.egg-info/requires.txt
+/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/install/battery_package/lib/python3.10/site-packages/battery_package-0.0.0-py3.10.egg-info/entry_points.txt
+/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/install/battery_package/lib/python3.10/site-packages/battery_package-0.0.0-py3.10.egg-info/top_level.txt
+/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/install/battery_package/lib/python3.10/site-packages/battery_package-0.0.0-py3.10.egg-info/zip-safe
+/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/install/battery_package/lib/python3.10/site-packages/battery_package-0.0.0-py3.10.egg-info/dependency_links.txt
+/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/install/battery_package/lib/battery_package/battery_node
+=======
 /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/install/battery_package/lib/python3.10/site-packages/battery_package/__init__.py
 /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/install/battery_package/lib/python3.10/site-packages/battery_package/battery_node.py
 /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/install/battery_package/lib/python3.10/site-packages/battery_package/__pycache__/__init__.cpython-310.pyc
@@ -12,3 +28,4 @@
 /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/install/battery_package/lib/python3.10/site-packages/battery_package-0.0.0-py3.10.egg-info/zip-safe
 /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/install/battery_package/lib/python3.10/site-packages/battery_package-0.0.0-py3.10.egg-info/SOURCES.txt
 /home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/install/battery_package/lib/battery_package/battery_node
+>>>>>>> origin/Aarush_ros

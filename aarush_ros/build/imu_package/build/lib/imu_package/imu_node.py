@@ -74,7 +74,7 @@ class IMU_NODE(Node):
 def main(args=None):
     rclpy.init(args=args)
 
-    imu_node = IMU_NODE("imu_data")
+    imu_node = IMU_NODE("imu")
     imu_node.init_imu_publisher("imu_data",1,2)
     
     while rclpy.ok():

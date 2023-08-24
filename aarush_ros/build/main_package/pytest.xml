@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="1" skipped="1" tests="3" time="0.270" timestamp="2023-08-06T14:46:08.320123" hostname="zephyrus-g15"><testcase classname="main_package.test.test_copyright" name="test_copyright" time="0.000"><skipped type="pytest.skip" message="No copyright header has been placed in the generated source file.">/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/main_package/test/test_copyright.py:20: No copyright header has been placed in the generated source file.</skipped></testcase><testcase classname="main_package.test.test_flake8" name="test_flake8" time="0.142"><failure message="AssertionError: Found 64 code style errors / warnings:&#10;  ./main_package/main_node.py:4:1: F401 'random' imported but unused&#10;  ./main_package/main_node.py:10:1: W293 blank line contains whitespace&#10;  ./main_package/main_node.py:26:1: W293 blank line contains whitespace&#10;  ./main_package/main_node.py:29:12: W291 trailing whitespace&#10;  ./main_package/main_node.py:43:12: W291 trailing whitespace&#10;  ./main_package/main_node.py:93:1: W293 blank line contains whitespace&#10;  ./main_package/main_node.py:112:37: W291 trailing whitespace&#10;  ./main_package/main_node.py:113:37: W291 trailing whitespace&#10;  ./main_package/main_node.py:119:36: W291 trailing whitespace&#10;  ./main_package/main_node.py:128:15: W291 trailing whitespace&#10;  ./main_package/main_node.py:136:16: W291 trailing whitespace&#10;  ./main_package/main_node.py:142:14: W291 trailing whitespace&#10;  ./main_package/main_node.py:146:14: W291 trailing whitespace&#10;  ./main_package/main_node.py:149:19: W291 trailing whitespace&#10;  ./main_package/main_node.py:155:31: W291 trailing whitespace&#10;  ./main_package/main_node.py:175:31: W291 trailing whitespace&#10;  ./main_package/main_node.py:178:13: W291 trailing whitespace&#10;  ./main_package/main_node.py:190:1: W293 blank line contains whitespace&#10;  ./main_package/main_node.py:196:55: W291 trailing whitespace&#10;  ./main_package/main_node.py:197:59: W291 trailing whitespace&#10;  ./main_package/main_node.py:206:22: W291 trailing whitespace&#10;  ./main_package/main_node.py:233:31: W291 trailing whitespace&#10;  ./main_package/main_node.py:254:31: W291 trailing whitespace&#10;  ./main_package/main_node.py:275:31: W291 trailing whitespace&#10;  ./main_package/main_node.py:286:1: W293 blank line contains whitespace&#10;  ./main_package/main_node.py:303:11: W291 trailing whitespace&#10;  ./main_package/main_node.py:309:1: W293 blank line contains whitespace&#10;  ./main_package/main_node.py:318:21: W291 trailing whitespace&#10;  ./main_package/main_node.py:340:1: W293 blank line contains whitespace&#10;  ./main_package/main_node.py:349:1: W293 blank line contains whitespace&#10;  ./main_package/main_node.py:352:1: E302 expected 2 blank lines, found 1&#10;  ./main_package/main_node.py:356:4: E114 indentation is not a multiple of 4 (comment)&#10;  ./main_package/main_node.py:425:63: W291 trailing whitespace&#10;  ./main_package/main_node.py:457:5: E265 block comment should start with '# '&#10;  ./main_package/main_node.py:460:5: F841 local variable 'final_data' is assigned to but never used&#10;  ./main_package/main_node.py:469:9: F841 local variable 'gps_sub_data' is assigned to but never used&#10;  ./main_package/main_node.py:470:9: F841 local variable 'imu_sub_data' is assigned to but never used&#10;  ./main_package/main_node.py:473:9: E303 too many blank lines (2)&#10;  ./main_package/main_node.py:478:34: E261 at least two spaces before inline comment&#10;  ./main_package/main_node.py:479:32: E261 at least two spaces before inline comment&#10;  ./main_package/main_node.py:490:27: E231 missing whitespace after ','&#10;  ./main_package/main_node.py:490:32: E231 missing whitespace after ','&#10;  ./main_package/main_node.py:490:38: E231 missing whitespace after ','&#10;  ./main_package/main_node.py:493:9: E265 block comment should start with '# '&#10;  ./main_package/main_node.py:502:1: W293 blank line contains whitespace&#10;  ./main_package/main_node.py:503:13: E303 too many blank lines (2)&#10;  ./main_package/main_node.py:506:9: E303 too many blank lines (2)&#10;  ./main_package/main_node.py:523:1: W293 blank line contains whitespace&#10;  ./main_package/main_node.py:552:44: W291 trailing whitespace&#10;  ./main_package/main_node.py:567:1: W293 blank line contains whitespace&#10;  ./main_package/main_node.py:572:63: W291 trailing whitespace&#10;  ./main_package/main_node.py:583:37: W291 trailing whitespace&#10;  ./main_package/main_node.py:590:1: W293 blank line contains whitespace&#10;  ./main_package/main_node.py:598:100: E501 line too long (127 &gt; 99 characters)&#10;  ./main_package/main_node.py:599:63: W291 trailing whitespace&#10;  ./main_package/main_node.py:610:37: W291 trailing whitespace&#10;  ./main_package/main_node.py:617:1: W293 blank line contains whitespace&#10;  ./main_package/main_node.py:626:63: W291 trailing whitespace&#10;  ./main_package/main_node.py:637:37: W291 trailing whitespace&#10;  ./main_package/main_node.py:644:1: W293 blank line contains whitespace&#10;  ./main_package/main_node.py:653:63: W291 trailing whitespace&#10;  ./main_package/main_node.py:664:37: W291 trailing whitespace&#10;  ./main_package/main_node.py:671:1: W293 blank line contains whitespace&#10;  ./main_package/main_node.py:725:9: E303 too many blank lines (2)&#10;assert 1 == 0">test/test_flake8.py:23: in test_flake8
+    assert rc == 0, \
+E   AssertionError: Found 64 code style errors / warnings:
+E     ./main_package/main_node.py:4:1: F401 'random' imported but unused
+E     ./main_package/main_node.py:10:1: W293 blank line contains whitespace
+E     ./main_package/main_node.py:26:1: W293 blank line contains whitespace
+E     ./main_package/main_node.py:29:12: W291 trailing whitespace
+E     ./main_package/main_node.py:43:12: W291 trailing whitespace
+E     ./main_package/main_node.py:93:1: W293 blank line contains whitespace
+E     ./main_package/main_node.py:112:37: W291 trailing whitespace
+E     ./main_package/main_node.py:113:37: W291 trailing whitespace
+E     ./main_package/main_node.py:119:36: W291 trailing whitespace
+E     ./main_package/main_node.py:128:15: W291 trailing whitespace
+E     ./main_package/main_node.py:136:16: W291 trailing whitespace
+E     ./main_package/main_node.py:142:14: W291 trailing whitespace
+E     ./main_package/main_node.py:146:14: W291 trailing whitespace
+E     ./main_package/main_node.py:149:19: W291 trailing whitespace
+E     ./main_package/main_node.py:155:31: W291 trailing whitespace
+E     ./main_package/main_node.py:175:31: W291 trailing whitespace
+E     ./main_package/main_node.py:178:13: W291 trailing whitespace
+E     ./main_package/main_node.py:190:1: W293 blank line contains whitespace
+E     ./main_package/main_node.py:196:55: W291 trailing whitespace
+E     ./main_package/main_node.py:197:59: W291 trailing whitespace
+E     ./main_package/main_node.py:206:22: W291 trailing whitespace
+E     ./main_package/main_node.py:233:31: W291 trailing whitespace
+E     ./main_package/main_node.py:254:31: W291 trailing whitespace
+E     ./main_package/main_node.py:275:31: W291 trailing whitespace
+E     ./main_package/main_node.py:286:1: W293 blank line contains whitespace
+E     ./main_package/main_node.py:303:11: W291 trailing whitespace
+E     ./main_package/main_node.py:309:1: W293 blank line contains whitespace
+E     ./main_package/main_node.py:318:21: W291 trailing whitespace
+E     ./main_package/main_node.py:340:1: W293 blank line contains whitespace
+E     ./main_package/main_node.py:349:1: W293 blank line contains whitespace
+E     ./main_package/main_node.py:352:1: E302 expected 2 blank lines, found 1
+E     ./main_package/main_node.py:356:4: E114 indentation is not a multiple of 4 (comment)
+E     ./main_package/main_node.py:425:63: W291 trailing whitespace
+E     ./main_package/main_node.py:457:5: E265 block comment should start with '# '
+E     ./main_package/main_node.py:460:5: F841 local variable 'final_data' is assigned to but never used
+E     ./main_package/main_node.py:469:9: F841 local variable 'gps_sub_data' is assigned to but never used
+E     ./main_package/main_node.py:470:9: F841 local variable 'imu_sub_data' is assigned to but never used
+E     ./main_package/main_node.py:473:9: E303 too many blank lines (2)
+E     ./main_package/main_node.py:478:34: E261 at least two spaces before inline comment
+E     ./main_package/main_node.py:479:32: E261 at least two spaces before inline comment
+E     ./main_package/main_node.py:490:27: E231 missing whitespace after ','
+E     ./main_package/main_node.py:490:32: E231 missing whitespace after ','
+E     ./main_package/main_node.py:490:38: E231 missing whitespace after ','
+E     ./main_package/main_node.py:493:9: E265 block comment should start with '# '
+E     ./main_package/main_node.py:502:1: W293 blank line contains whitespace
+E     ./main_package/main_node.py:503:13: E303 too many blank lines (2)
+E     ./main_package/main_node.py:506:9: E303 too many blank lines (2)
+E     ./main_package/main_node.py:523:1: W293 blank line contains whitespace
+E     ./main_package/main_node.py:552:44: W291 trailing whitespace
+E     ./main_package/main_node.py:567:1: W293 blank line contains whitespace
+E     ./main_package/main_node.py:572:63: W291 trailing whitespace
+E     ./main_package/main_node.py:583:37: W291 trailing whitespace
+E     ./main_package/main_node.py:590:1: W293 blank line contains whitespace
+E     ./main_package/main_node.py:598:100: E501 line too long (127 &gt; 99 characters)
+E     ./main_package/main_node.py:599:63: W291 trailing whitespace
+E     ./main_package/main_node.py:610:37: W291 trailing whitespace
+E     ./main_package/main_node.py:617:1: W293 blank line contains whitespace
+E     ./main_package/main_node.py:626:63: W291 trailing whitespace
+E     ./main_package/main_node.py:637:37: W291 trailing whitespace
+E     ./main_package/main_node.py:644:1: W293 blank line contains whitespace
+E     ./main_package/main_node.py:653:63: W291 trailing whitespace
+E     ./main_package/main_node.py:664:37: W291 trailing whitespace
+E     ./main_package/main_node.py:671:1: W293 blank line contains whitespace
+E     ./main_package/main_node.py:725:9: E303 too many blank lines (2)
+E   assert 1 == 0</failure></testcase><testcase classname="main_package.test.test_pep257" name="test_pep257" time="0.030" /></testsuite></testsuites>

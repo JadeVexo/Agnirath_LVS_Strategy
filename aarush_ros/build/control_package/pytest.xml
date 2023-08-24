@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="1" skipped="1" tests="3" time="0.172" timestamp="2023-08-06T14:46:07.266524" hostname="zephyrus-g15"><testcase classname="control_package.test.test_copyright" name="test_copyright" time="0.000"><skipped type="pytest.skip" message="No copyright header has been placed in the generated source file.">/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/control_package/test/test_copyright.py:20: No copyright header has been placed in the generated source file.</skipped></testcase><testcase classname="control_package.test.test_flake8" name="test_flake8" time="0.069"><failure message="AssertionError: Found 12 code style errors / warnings:&#10;  ./control_package/control_node.py:4:1: F401 'random' imported but unused&#10;  ./control_package/control_node.py:9:22: E231 missing whitespace after ','&#10;  ./control_package/control_node.py:11:1: W293 blank line contains whitespace&#10;  ./control_package/control_node.py:22:9: E265 block comment should start with '# '&#10;  ./control_package/control_node.py:66:1: E303 too many blank lines (4)&#10;  ./control_package/control_node.py:71:60: E231 missing whitespace after ','&#10;  ./control_package/control_node.py:72:54: E231 missing whitespace after ','&#10;  ./control_package/control_node.py:73:50: E231 missing whitespace after ','&#10;  ./control_package/control_node.py:79:9: E265 block comment should start with '# '&#10;  ./control_package/control_node.py:80:9: E265 block comment should start with '# '&#10;  ./control_package/control_node.py:81:1: W293 blank line contains whitespace&#10;  ./control_package/control_node.py:90:11: W292 no newline at end of file&#10;assert 1 == 0">test/test_flake8.py:23: in test_flake8
+    assert rc == 0, \
+E   AssertionError: Found 12 code style errors / warnings:
+E     ./control_package/control_node.py:4:1: F401 'random' imported but unused
+E     ./control_package/control_node.py:9:22: E231 missing whitespace after ','
+E     ./control_package/control_node.py:11:1: W293 blank line contains whitespace
+E     ./control_package/control_node.py:22:9: E265 block comment should start with '# '
+E     ./control_package/control_node.py:66:1: E303 too many blank lines (4)
+E     ./control_package/control_node.py:71:60: E231 missing whitespace after ','
+E     ./control_package/control_node.py:72:54: E231 missing whitespace after ','
+E     ./control_package/control_node.py:73:50: E231 missing whitespace after ','
+E     ./control_package/control_node.py:79:9: E265 block comment should start with '# '
+E     ./control_package/control_node.py:80:9: E265 block comment should start with '# '
+E     ./control_package/control_node.py:81:1: W293 blank line contains whitespace
+E     ./control_package/control_node.py:90:11: W292 no newline at end of file
+E   assert 1 == 0</failure></testcase><testcase classname="control_package.test.test_pep257" name="test_pep257" time="0.014" /></testsuite></testsuites>

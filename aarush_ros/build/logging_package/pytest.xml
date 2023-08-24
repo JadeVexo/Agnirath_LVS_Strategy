@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="1" skipped="1" tests="3" time="0.227" timestamp="2023-08-06T14:46:08.074788" hostname="zephyrus-g15"><testcase classname="logging_package.test.test_copyright" name="test_copyright" time="0.000"><skipped type="pytest.skip" message="No copyright header has been placed in the generated source file.">/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/logging_package/test/test_copyright.py:20: No copyright header has been placed in the generated source file.</skipped></testcase><testcase classname="logging_package.test.test_flake8" name="test_flake8" time="0.105"><failure message="AssertionError: Found 6 code style errors / warnings:&#10;  ./logging_package/logging_node.py:3:1: F401 'std_msgs.msg.Float32MultiArray as rosarray' imported but unused&#10;  ./logging_package/logging_node.py:5:1: E302 expected 2 blank lines, found 1&#10;  ./logging_package/logging_node.py:10:1: W293 blank line contains whitespace&#10;  ./logging_package/logging_node.py:15:43: E231 missing whitespace after ','&#10;  ./logging_package/logging_node.py:15:45: E231 missing whitespace after ','&#10;  ./logging_package/logging_node.py:16:1: W293 blank line contains whitespace&#10;assert 1 == 0">test/test_flake8.py:23: in test_flake8
+    assert rc == 0, \
+E   AssertionError: Found 6 code style errors / warnings:
+E     ./logging_package/logging_node.py:3:1: F401 'std_msgs.msg.Float32MultiArray as rosarray' imported but unused
+E     ./logging_package/logging_node.py:5:1: E302 expected 2 blank lines, found 1
+E     ./logging_package/logging_node.py:10:1: W293 blank line contains whitespace
+E     ./logging_package/logging_node.py:15:43: E231 missing whitespace after ','
+E     ./logging_package/logging_node.py:15:45: E231 missing whitespace after ','
+E     ./logging_package/logging_node.py:16:1: W293 blank line contains whitespace
+E   assert 1 == 0</failure></testcase><testcase classname="logging_package.test.test_pep257" name="test_pep257" time="0.014" /></testsuite></testsuites>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="1" skipped="1" tests="3" time="0.444" timestamp="2023-08-06T14:46:08.799020" hostname="zephyrus-g15"><testcase classname="mppt_package.test.test_copyright" name="test_copyright" time="0.000"><skipped type="pytest.skip" message="No copyright header has been placed in the generated source file.">/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/mppt_package/test/test_copyright.py:20: No copyright header has been placed in the generated source file.</skipped></testcase><testcase classname="mppt_package.test.test_flake8" name="test_flake8" time="0.244"><failure message="AssertionError: Found 220 code style errors / warnings:&#10;  ./mppt_package/mppt_node.py:6:1: E302 expected 2 blank lines, found 1&#10;  ./mppt_package/mppt_node.py:20:1: E302 expected 2 blank lines, found 1&#10;  ./mppt_package/mppt_node.py:70:1: W293 blank line contains whitespace&#10;  ./mppt_package/mppt_node.py:71:37: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:72:40: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:73:38: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:74:38: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:75:42: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:76:34: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:77:33: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:78:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:79:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:80:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:81:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:82:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:83:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:84:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:85:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:86:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:87:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:88:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:89:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:90:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:91:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:92:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:93:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:95:37: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:96:40: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:97:38: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:98:38: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:99:42: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:100:34: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:101:33: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:102:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:103:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:104:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:105:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:106:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:107:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:108:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:109:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:110:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:111:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:112:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:113:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:114:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:115:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:116:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:117:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:119:37: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:120:40: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:121:38: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:122:38: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:123:42: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:124:34: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:125:33: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:126:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:127:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:128:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:129:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:130:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:131:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:132:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:133:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:134:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:135:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:136:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:137:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:138:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:139:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:140:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:141:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:143:37: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:144:40: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:145:38: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:146:38: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:147:42: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:148:34: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:149:33: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:150:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:151:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:152:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:153:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:154:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:155:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:156:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:157:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:158:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:159:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:160:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:161:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:162:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:163:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:164:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:165:32: F821 undefined name 'threshold_crossing_time'&#10;  ./mppt_package/mppt_node.py:172:9: F841 local variable 'peripherals' is assigned to but never used&#10;  ./mppt_package/mppt_node.py:173:14: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:173:16: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:173:18: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:173:20: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:173:22: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:173:24: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:173:26: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:173:29: E261 at least two spaces before inline comment&#10;  ./mppt_package/mppt_node.py:173:30: E262 inline comment should start with '# '&#10;  ./mppt_package/mppt_node.py:174:14: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:174:16: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:174:18: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:174:21: E261 at least two spaces before inline comment&#10;  ./mppt_package/mppt_node.py:175:14: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:175:16: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:175:18: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:177:15: E261 at least two spaces before inline comment&#10;  ./mppt_package/mppt_node.py:177:16: E262 inline comment should start with '# '&#10;  ./mppt_package/mppt_node.py:181:9: E265 block comment should start with '# '&#10;  ./mppt_package/mppt_node.py:183:54: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:183:82: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:183:100: E501 line too long (138 &gt; 99 characters)&#10;  ./mppt_package/mppt_node.py:183:110: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:184:57: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:184:85: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:184:100: E501 line too long (141 &gt; 99 characters)&#10;  ./mppt_package/mppt_node.py:184:113: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:185:55: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:185:83: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:185:100: E501 line too long (139 &gt; 99 characters)&#10;  ./mppt_package/mppt_node.py:185:111: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:186:9: F841 local variable 'mppt_output_current' is assigned to but never used&#10;  ./mppt_package/mppt_node.py:186:58: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:186:86: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:186:100: E501 line too long (142 &gt; 99 characters)&#10;  ./mppt_package/mppt_node.py:186:114: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:187:55: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:187:83: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:187:100: E501 line too long (139 &gt; 99 characters)&#10;  ./mppt_package/mppt_node.py:187:111: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:188:59: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:188:87: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:188:100: E501 line too long (143 &gt; 99 characters)&#10;  ./mppt_package/mppt_node.py:188:115: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:189:58: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:189:86: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:189:100: E501 line too long (142 &gt; 99 characters)&#10;  ./mppt_package/mppt_node.py:189:114: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:190:57: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:190:85: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:190:100: E501 line too long (141 &gt; 99 characters)&#10;  ./mppt_package/mppt_node.py:190:113: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:191:9: F841 local variable 'mppt_max_out_volt' is assigned to but never used&#10;  ./mppt_package/mppt_node.py:191:56: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:191:84: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:191:100: E501 line too long (140 &gt; 99 characters)&#10;  ./mppt_package/mppt_node.py:191:112: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:192:9: F841 local variable 'mppt_max_in_current' is assigned to but never used&#10;  ./mppt_package/mppt_node.py:192:58: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:192:86: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:192:100: E501 line too long (142 &gt; 99 characters)&#10;  ./mppt_package/mppt_node.py:192:114: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:193:9: F841 local variable 'mppt_CAN_RX_err_count' is assigned to but never used&#10;  ./mppt_package/mppt_node.py:193:61: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:193:89: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:193:100: E501 line too long (145 &gt; 99 characters)&#10;  ./mppt_package/mppt_node.py:193:117: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:194:9: F841 local variable 'mppt_CAN_TX_err_count' is assigned to but never used&#10;  ./mppt_package/mppt_node.py:194:61: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:194:89: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:194:100: E501 line too long (145 &gt; 99 characters)&#10;  ./mppt_package/mppt_node.py:194:117: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:195:53: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:195:81: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:195:100: E501 line too long (137 &gt; 99 characters)&#10;  ./mppt_package/mppt_node.py:195:109: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:196:53: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:196:81: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:196:100: E501 line too long (137 &gt; 99 characters)&#10;  ./mppt_package/mppt_node.py:196:109: E231 missing whitespace after ','&#10;  ./mppt_package/mppt_node.py:199:9: E265 block comment should start with '# '&#10;  ./mppt_package/mppt_node.py:204:30: E225 missing whitespace around operator&#10;  ./mppt_package/mppt_node.py:206:9: F841 local variable 'supply_3V_tol' is assigned to but never used&#10;  ./mppt_package/mppt_node.py:208:1: W293 blank line contains whitespace&#10;  ./mppt_package/mppt_node.py:209:9: E265 block comment should start with '# '&#10;  ./mppt_package/mppt_node.py:225:1: W293 blank line contains whitespace&#10;  ./mppt_package/mppt_node.py:227:9: E303 too many blank lines (2)&#10;  ./mppt_package/mppt_node.py:250:1: W293 blank line contains whitespace&#10;  ./mppt_package/mppt_node.py:268:9: E303 too many blank lines (2)&#10;  ./mppt_package/mppt_node.py:331:1: W293 blank line contains whitespace&#10;  ./mppt_package/mppt_node.py:332:1: W293 blank line contains whitespace&#10;  ./mppt_package/mppt_node.py:333:9: E303 too many blank lines (2)&#10;  ./mppt_package/mppt_node.py:398:9: E303 too many blank lines (2)&#10;  ./mppt_package/mppt_node.py:398:9: E265 block comment should start with '# '&#10;  ./mppt_package/mppt_node.py:403:56: E225 missing whitespace around operator&#10;  ./mppt_package/mppt_node.py:414:1: W293 blank line contains whitespace&#10;  ./mppt_package/mppt_node.py:416:9: E303 too many blank lines (2)&#10;  ./mppt_package/mppt_node.py:439:1: W293 blank line contains whitespace&#10;  ./mppt_package/mppt_node.py:457:9: E303 too many blank lines (2)&#10;  ./mppt_package/mppt_node.py:520:1: W293 blank line contains whitespace&#10;  ./mppt_package/mppt_node.py:521:1: W293 blank line contains whitespace&#10;  ./mppt_package/mppt_node.py:522:9: E303 too many blank lines (2)&#10;  ./mppt_package/mppt_node.py:586:9: E265 block comment should start with '# '&#10;  ./mppt_package/mppt_node.py:591:56: E225 missing whitespace around operator&#10;  ./mppt_package/mppt_node.py:602:1: W293 blank line contains whitespace&#10;  ./mppt_package/mppt_node.py:604:9: E303 too many blank lines (2)&#10;  ./mppt_package/mppt_node.py:627:1: W293 blank line contains whitespace&#10;  ./mppt_package/mppt_node.py:645:9: E303 too many blank lines (2)&#10;  ./mppt_package/mppt_node.py:708:1: W293 blank line contains whitespace&#10;  ./mppt_package/mppt_node.py:709:1: W293 blank line contains whitespace&#10;  ./mppt_package/mppt_node.py:710:9: E303 too many blank lines (2)&#10;  ./mppt_package/mppt_node.py:773:1: W293 blank line contains whitespace&#10;  ./mppt_package/mppt_node.py:774:9: E265 block comment should start with '# '&#10;  ./mppt_package/mppt_node.py:790:1: W293 blank line contains whitespace&#10;  ./mppt_package/mppt_node.py:792:9: E303 too many blank lines (2)&#10;  ./mppt_package/mppt_node.py:815:1: W293 blank line contains whitespace&#10;  ./mppt_package/mppt_node.py:833:9: E303 too many blank lines (2)&#10;  ./mppt_package/mppt_node.py:896:1: W293 blank line contains whitespace&#10;  ./mppt_package/mppt_node.py:897:1: W293 blank line contains whitespace&#10;  ./mppt_package/mppt_node.py:898:9: E303 too many blank lines (2)&#10;  ./mppt_package/mppt_node.py:961:1: W293 blank line contains whitespace&#10;  ./mppt_package/mppt_node.py:962:1: E305 expected 2 blank lines after class or function definition, found 1&#10;  ./mppt_package/mppt_node.py:962:12: E225 missing whitespace around operator&#10;  ./mppt_package/mppt_node.py:963:11: W292 no newline at end of file&#10;assert 1 == 0">test/test_flake8.py:23: in test_flake8
+    assert rc == 0, \
+E   AssertionError: Found 220 code style errors / warnings:
+E     ./mppt_package/mppt_node.py:6:1: E302 expected 2 blank lines, found 1
+E     ./mppt_package/mppt_node.py:20:1: E302 expected 2 blank lines, found 1
+E     ./mppt_package/mppt_node.py:70:1: W293 blank line contains whitespace
+E     ./mppt_package/mppt_node.py:71:37: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:72:40: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:73:38: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:74:38: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:75:42: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:76:34: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:77:33: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:78:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:79:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:80:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:81:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:82:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:83:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:84:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:85:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:86:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:87:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:88:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:89:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:90:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:91:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:92:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:93:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:95:37: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:96:40: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:97:38: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:98:38: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:99:42: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:100:34: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:101:33: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:102:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:103:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:104:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:105:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:106:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:107:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:108:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:109:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:110:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:111:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:112:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:113:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:114:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:115:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:116:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:117:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:119:37: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:120:40: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:121:38: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:122:38: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:123:42: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:124:34: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:125:33: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:126:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:127:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:128:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:129:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:130:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:131:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:132:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:133:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:134:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:135:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:136:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:137:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:138:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:139:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:140:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:141:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:143:37: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:144:40: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:145:38: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:146:38: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:147:42: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:148:34: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:149:33: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:150:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:151:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:152:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:153:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:154:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:155:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:156:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:157:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:158:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:159:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:160:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:161:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:162:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:163:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:164:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:165:32: F821 undefined name 'threshold_crossing_time'
+E     ./mppt_package/mppt_node.py:172:9: F841 local variable 'peripherals' is assigned to but never used
+E     ./mppt_package/mppt_node.py:173:14: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:173:16: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:173:18: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:173:20: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:173:22: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:173:24: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:173:26: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:173:29: E261 at least two spaces before inline comment
+E     ./mppt_package/mppt_node.py:173:30: E262 inline comment should start with '# '
+E     ./mppt_package/mppt_node.py:174:14: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:174:16: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:174:18: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:174:21: E261 at least two spaces before inline comment
+E     ./mppt_package/mppt_node.py:175:14: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:175:16: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:175:18: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:177:15: E261 at least two spaces before inline comment
+E     ./mppt_package/mppt_node.py:177:16: E262 inline comment should start with '# '
+E     ./mppt_package/mppt_node.py:181:9: E265 block comment should start with '# '
+E     ./mppt_package/mppt_node.py:183:54: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:183:82: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:183:100: E501 line too long (138 &gt; 99 characters)
+E     ./mppt_package/mppt_node.py:183:110: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:184:57: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:184:85: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:184:100: E501 line too long (141 &gt; 99 characters)
+E     ./mppt_package/mppt_node.py:184:113: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:185:55: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:185:83: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:185:100: E501 line too long (139 &gt; 99 characters)
+E     ./mppt_package/mppt_node.py:185:111: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:186:9: F841 local variable 'mppt_output_current' is assigned to but never used
+E     ./mppt_package/mppt_node.py:186:58: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:186:86: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:186:100: E501 line too long (142 &gt; 99 characters)
+E     ./mppt_package/mppt_node.py:186:114: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:187:55: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:187:83: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:187:100: E501 line too long (139 &gt; 99 characters)
+E     ./mppt_package/mppt_node.py:187:111: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:188:59: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:188:87: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:188:100: E501 line too long (143 &gt; 99 characters)
+E     ./mppt_package/mppt_node.py:188:115: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:189:58: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:189:86: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:189:100: E501 line too long (142 &gt; 99 characters)
+E     ./mppt_package/mppt_node.py:189:114: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:190:57: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:190:85: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:190:100: E501 line too long (141 &gt; 99 characters)
+E     ./mppt_package/mppt_node.py:190:113: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:191:9: F841 local variable 'mppt_max_out_volt' is assigned to but never used
+E     ./mppt_package/mppt_node.py:191:56: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:191:84: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:191:100: E501 line too long (140 &gt; 99 characters)
+E     ./mppt_package/mppt_node.py:191:112: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:192:9: F841 local variable 'mppt_max_in_current' is assigned to but never used
+E     ./mppt_package/mppt_node.py:192:58: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:192:86: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:192:100: E501 line too long (142 &gt; 99 characters)
+E     ./mppt_package/mppt_node.py:192:114: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:193:9: F841 local variable 'mppt_CAN_RX_err_count' is assigned to but never used
+E     ./mppt_package/mppt_node.py:193:61: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:193:89: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:193:100: E501 line too long (145 &gt; 99 characters)
+E     ./mppt_package/mppt_node.py:193:117: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:194:9: F841 local variable 'mppt_CAN_TX_err_count' is assigned to but never used
+E     ./mppt_package/mppt_node.py:194:61: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:194:89: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:194:100: E501 line too long (145 &gt; 99 characters)
+E     ./mppt_package/mppt_node.py:194:117: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:195:53: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:195:81: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:195:100: E501 line too long (137 &gt; 99 characters)
+E     ./mppt_package/mppt_node.py:195:109: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:196:53: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:196:81: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:196:100: E501 line too long (137 &gt; 99 characters)
+E     ./mppt_package/mppt_node.py:196:109: E231 missing whitespace after ','
+E     ./mppt_package/mppt_node.py:199:9: E265 block comment should start with '# '
+E     ./mppt_package/mppt_node.py:204:30: E225 missing whitespace around operator
+E     ./mppt_package/mppt_node.py:206:9: F841 local variable 'supply_3V_tol' is assigned to but never used
+E     ./mppt_package/mppt_node.py:208:1: W293 blank line contains whitespace
+E     ./mppt_package/mppt_node.py:209:9: E265 block comment should start with '# '
+E     ./mppt_package/mppt_node.py:225:1: W293 blank line contains whitespace
+E     ./mppt_package/mppt_node.py:227:9: E303 too many blank lines (2)
+E     ./mppt_package/mppt_node.py:250:1: W293 blank line contains whitespace
+E     ./mppt_package/mppt_node.py:268:9: E303 too many blank lines (2)
+E     ./mppt_package/mppt_node.py:331:1: W293 blank line contains whitespace
+E     ./mppt_package/mppt_node.py:332:1: W293 blank line contains whitespace
+E     ./mppt_package/mppt_node.py:333:9: E303 too many blank lines (2)
+E     ./mppt_package/mppt_node.py:398:9: E303 too many blank lines (2)
+E     ./mppt_package/mppt_node.py:398:9: E265 block comment should start with '# '
+E     ./mppt_package/mppt_node.py:403:56: E225 missing whitespace around operator
+E     ./mppt_package/mppt_node.py:414:1: W293 blank line contains whitespace
+E     ./mppt_package/mppt_node.py:416:9: E303 too many blank lines (2)
+E     ./mppt_package/mppt_node.py:439:1: W293 blank line contains whitespace
+E     ./mppt_package/mppt_node.py:457:9: E303 too many blank lines (2)
+E     ./mppt_package/mppt_node.py:520:1: W293 blank line contains whitespace
+E     ./mppt_package/mppt_node.py:521:1: W293 blank line contains whitespace
+E     ./mppt_package/mppt_node.py:522:9: E303 too many blank lines (2)
+E     ./mppt_package/mppt_node.py:586:9: E265 block comment should start with '# '
+E     ./mppt_package/mppt_node.py:591:56: E225 missing whitespace around operator
+E     ./mppt_package/mppt_node.py:602:1: W293 blank line contains whitespace
+E     ./mppt_package/mppt_node.py:604:9: E303 too many blank lines (2)
+E     ./mppt_package/mppt_node.py:627:1: W293 blank line contains whitespace
+E     ./mppt_package/mppt_node.py:645:9: E303 too many blank lines (2)
+E     ./mppt_package/mppt_node.py:708:1: W293 blank line contains whitespace
+E     ./mppt_package/mppt_node.py:709:1: W293 blank line contains whitespace
+E     ./mppt_package/mppt_node.py:710:9: E303 too many blank lines (2)
+E     ./mppt_package/mppt_node.py:773:1: W293 blank line contains whitespace
+E     ./mppt_package/mppt_node.py:774:9: E265 block comment should start with '# '
+E     ./mppt_package/mppt_node.py:790:1: W293 blank line contains whitespace
+E     ./mppt_package/mppt_node.py:792:9: E303 too many blank lines (2)
+E     ./mppt_package/mppt_node.py:815:1: W293 blank line contains whitespace
+E     ./mppt_package/mppt_node.py:833:9: E303 too many blank lines (2)
+E     ./mppt_package/mppt_node.py:896:1: W293 blank line contains whitespace
+E     ./mppt_package/mppt_node.py:897:1: W293 blank line contains whitespace
+E     ./mppt_package/mppt_node.py:898:9: E303 too many blank lines (2)
+E     ./mppt_package/mppt_node.py:961:1: W293 blank line contains whitespace
+E     ./mppt_package/mppt_node.py:962:1: E305 expected 2 blank lines after class or function definition, found 1
+E     ./mppt_package/mppt_node.py:962:12: E225 missing whitespace around operator
+E     ./mppt_package/mppt_node.py:963:11: W292 no newline at end of file
+E   assert 1 == 0</failure></testcase><testcase classname="mppt_package.test.test_pep257" name="test_pep257" time="0.093" /></testsuite></testsuites>

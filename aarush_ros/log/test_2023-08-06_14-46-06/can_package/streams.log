@@ -1,0 +1,328 @@
+[0.391s] Invoking command in '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/can_package': AMENT_PREFIX_PATH=/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/install/can_package:${AMENT_PREFIX_PATH} PYTEST_ADDOPTS=--tb=short --junit-xml=/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/build/can_package/pytest.xml --junit-prefix=can_package -o cache_dir=/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/build/can_package/.pytest_cache PYTHONPATH=/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/install/can_package/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -m pytest
+[2.363s] [1m============================= test session starts ==============================[0m
+[2.363s] platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+[2.363s] cachedir: /home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/build/can_package/.pytest_cache
+[2.363s] rootdir: /home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/can_package
+[2.363s] plugins: ament-xmllint-0.14.1, ament-copyright-0.14.1, ament-flake8-0.14.1, launch-testing-2.0.2, ament-pep257-0.14.1, launch-testing-ros-0.24.0, ament-lint-0.14.1, colcon-core-0.12.1, cov-3.0.0
+[2.363s] [1mcollecting ... [0m[1m
+[2.363s] collected 3 items                                                              [0m
+[2.363s] 
+[2.363s] test/test_copyright.py [33ms[0m[32m                                                 [ 33%][0m
+[2.364s] test/test_flake8.py [31mF[0m[31m                                                    [ 66%][0m
+[2.364s] test/test_pep257.py [32m.[0m[31m                                                    [100%][0m
+[2.364s] 
+[2.364s] =================================== FAILURES ===================================
+[2.364s] [31m[1m_________________________________ test_flake8 __________________________________[0m
+[2.364s] [1m[31mtest/test_flake8.py[0m:23: in test_flake8
+[2.364s]     [94massert[39;49;00m rc == [94m0[39;49;00m, \
+[2.364s] [1m[31mE   AssertionError: Found 52 code style errors / warnings:[0m
+[2.364s] [1m[31mE     ./can_package/sample_CAN.py:7:75: W291 trailing whitespace[0m
+[2.364s] [1m[31mE     ./can_package/can_node_sim.py:6:1: E302 expected 2 blank lines, found 1[0m
+[2.365s] [1m[31mE     ./can_package/can_node_sim.py:18:19: E231 missing whitespace after ','[0m
+[2.365s] [1m[31mE     ./can_package/can_node_sim.py:18:25: E231 missing whitespace after ','[0m
+[2.365s] [1m[31mE     ./can_package/can_node_sim.py:18:29: E231 missing whitespace after ','[0m
+[2.365s] [1m[31mE     ./can_package/can_node_sim.py:18:46: E231 missing whitespace after ','[0m
+[2.365s] [1m[31mE     ./can_package/can_node_sim.py:19:19: E231 missing whitespace after ','[0m
+[2.365s] [1m[31mE     ./can_package/can_node_sim.py:19:25: E231 missing whitespace after ','[0m
+[2.365s] [1m[31mE     ./can_package/can_node_sim.py:19:29: E231 missing whitespace after ','[0m
+[2.365s] [1m[31mE     ./can_package/can_node_sim.py:19:46: E231 missing whitespace after ','[0m
+[2.365s] [1m[31mE     ./can_package/can_node_sim.py:38:1: W293 blank line contains whitespace[0m
+[2.365s] [1m[31mE     ./can_package/can_node_sim.py:39:50: E231 missing whitespace after ','[0m
+[2.365s] [1m[31mE     ./can_package/can_node_sim.py:48:1: E302 expected 2 blank lines, found 1[0m
+[2.366s] [1m[31mE     ./can_package/can_node_sim.py:57:1: W293 blank line contains whitespace[0m
+[2.366s] [1m[31mE     ./can_package/can_node_sim.py:59:5: E303 too many blank lines (3)[0m
+[2.366s] [1m[31mE     ./can_package/can_tx_node.py:5:1: E302 expected 2 blank lines, found 1[0m
+[2.366s] [1m[31mE     ./can_package/can_tx_node.py:31:41: W291 trailing whitespace[0m
+[2.366s] [1m[31mE     ./can_package/can_rx_node_v3.py:4:1: F401 'random' imported but unused[0m
+[2.366s] [1m[31mE     ./can_package/can_rx_node_v3.py:6:1: E265 block comment should start with '# '[0m
+[2.366s] [1m[31mE     ./can_package/can_rx_node_v3.py:8:1: F401 'time.sleep' imported but unused[0m
+[2.366s] [1m[31mE     ./can_package/can_rx_node_v3.py:10:1: E302 expected 2 blank lines, found 1[0m
+[2.366s] [1m[31mE     ./can_package/can_rx_node_v3.py:18:9: E265 block comment should start with '# '[0m
+[2.366s] [1m[31mE     ./can_package/can_rx_node_v3.py:19:100: E501 line too long (149 > 99 characters)[0m
+[2.366s] [1m[31mE     ./can_package/can_rx_node_v3.py:31:28: W291 trailing whitespace[0m
+[2.367s] [1m[31mE     ./can_package/can_rx_node_v3.py:40:36: E222 multiple spaces after operator[0m
+[2.367s] [1m[31mE     ./can_package/can_rx_node_v3.py:40:100: E501 line too long (109 > 99 characters)[0m
+[2.367s] [1m[31mE     ./can_package/can_rx_node_v3.py:42:46: E231 missing whitespace after ','[0m
+[2.367s] [1m[31mE     ./can_package/can_rx_node_v3.py:51:9: E303 too many blank lines (4)[0m
+[2.367s] [1m[31mE     ./can_package/can_rx_node_v3.py:51:9: E265 block comment should start with '# '[0m
+[2.367s] [1m[31mE     ./can_package/can_rx_node_v3.py:52:9: E265 block comment should start with '# '[0m
+[2.367s] [1m[31mE     ./can_package/can_rx_node_v3.py:53:9: E265 block comment should start with '# '[0m
+[2.367s] [1m[31mE     ./can_package/can_rx_node_v3.py:54:9: E265 block comment should start with '# '[0m
+[2.367s] [1m[31mE     ./can_package/can_rx_node_v3.py:55:9: E265 block comment should start with '# '[0m
+[2.367s] [1m[31mE     ./can_package/can_rx_node_v3.py:55:42: W291 trailing whitespace[0m
+[2.367s] [1m[31mE     ./can_package/can_rx_node_v3.py:59:13: E265 block comment should start with '# '[0m
+[2.368s] [1m[31mE     ./can_package/can_rx_node_v3.py:81:5: E303 too many blank lines (3)[0m
+[2.368s] [1m[31mE     ./can_package/can_rx_node_v3.py:87:1: E305 expected 2 blank lines after class or function definition, found 1[0m
+[2.368s] [1m[31mE     ./can_package/py-can-rx.py:2:1: F401 'time.sleep' imported but unused[0m
+[2.368s] [1m[31mE     ./can_package/py-can-rx.py:14:1: W391 blank line at end of file[0m
+[2.368s] [1m[31mE     ./can_package/py-can-tx.py:19:1: W391 blank line at end of file[0m
+[2.368s] [1m[31mE     ./can_package/can_rx_node.py:7:1: E302 expected 2 blank lines, found 1[0m
+[2.368s] [1m[31mE     ./can_package/can_rx_node.py:19:1: W293 blank line contains whitespace[0m
+[2.368s] [1m[31mE     ./can_package/can_rx_node.py:20:28: W291 trailing whitespace[0m
+[2.368s] [1m[31mE     ./can_package/can_rx_node.py:23:43: E231 missing whitespace after ','[0m
+[2.368s] [1m[31mE     ./can_package/can_rx_node.py:24:21: E225 missing whitespace around operator[0m
+[2.368s] [1m[31mE     ./can_package/can_rx_node.py:24:43: E231 missing whitespace after ','[0m
+[2.369s] [1m[31mE     ./can_package/can_rx_node.py:25:9: E265 block comment should start with '# '[0m
+[2.369s] [1m[31mE     ./can_package/can_rx_node.py:26:9: E265 block comment should start with '# '[0m
+[2.369s] [1m[31mE     ./can_package/can_rx_node.py:26:42: W291 trailing whitespace[0m
+[2.369s] [1m[31mE     ./can_package/can_rx_node.py:35:1: E302 expected 2 blank lines, found 1[0m
+[2.369s] [1m[31mE     ./can_package/can_rx_node.py:44:1: W293 blank line contains whitespace[0m
+[2.369s] [1m[31mE     ./can_package/can_rx_node.py:46:5: E303 too many blank lines (3)[0m
+[2.369s] [1m[31mE   assert 1 == 0[0m
+[2.369s] ----------------------------- Captured stdout call -----------------------------
+[2.369s] 
+[2.369s] ./can_package/sample_CAN.py:7:75: W291 trailing whitespace
+[2.369s] msg_h = can.Message(arbitration_id=0x100, data=[16], is_extended_id=False) 
+[2.370s]                                                                           ^
+[2.370s] 
+[2.370s] ./can_package/can_node_sim.py:6:1: E302 expected 2 blank lines, found 1
+[2.370s] class CAN_NODE(Node):
+[2.370s] ^
+[2.370s] 
+[2.370s] ./can_package/can_node_sim.py:18:19: E231 missing whitespace after ','
+[2.370s]             [0x601,23942,4.5,random.randint(1,40)],
+[2.370s]                   ^
+[2.370s] 
+[2.371s] ./can_package/can_node_sim.py:18:25: E231 missing whitespace after ','
+[2.371s]             [0x601,23942,4.5,random.randint(1,40)],
+[2.371s]                         ^
+[2.371s] 
+[2.371s] ./can_package/can_node_sim.py:18:29: E231 missing whitespace after ','
+[2.371s]             [0x601,23942,4.5,random.randint(1,40)],
+[2.371s]                             ^
+[2.371s] 
+[2.371s] ./can_package/can_node_sim.py:18:46: E231 missing whitespace after ','
+[2.371s]             [0x601,23942,4.5,random.randint(1,40)],
+[2.371s]                                              ^
+[2.372s] 
+[2.372s] ./can_package/can_node_sim.py:19:19: E231 missing whitespace after ','
+[2.372s]             [0x604,52341,4.5,random.randint(1,40)]
+[2.372s]                   ^
+[2.372s] 
+[2.372s] ./can_package/can_node_sim.py:19:25: E231 missing whitespace after ','
+[2.372s]             [0x604,52341,4.5,random.randint(1,40)]
+[2.372s]                         ^
+[2.372s] 
+[2.372s] ./can_package/can_node_sim.py:19:29: E231 missing whitespace after ','
+[2.372s]             [0x604,52341,4.5,random.randint(1,40)]
+[2.373s]                             ^
+[2.373s] 
+[2.373s] ./can_package/can_node_sim.py:19:46: E231 missing whitespace after ','
+[2.373s]             [0x604,52341,4.5,random.randint(1,40)]
+[2.373s]                                              ^
+[2.373s] 
+[2.373s] ./can_package/can_node_sim.py:38:1: W293 blank line contains whitespace
+[2.373s]         
+[2.373s] ^
+[2.373s] 
+[2.373s] ./can_package/can_node_sim.py:39:50: E231 missing whitespace after ','
+[2.374s]         self.can_pub_data = data[random.randint(0,len(data)-1)]
+[2.374s]                                                  ^
+[2.374s] 
+[2.374s] ./can_package/can_node_sim.py:48:1: E302 expected 2 blank lines, found 1
+[2.377s] def main(args=None):
+[2.377s] ^
+[2.377s] 
+[2.377s] ./can_package/can_node_sim.py:57:1: W293 blank line contains whitespace
+[2.377s]         
+[2.378s] ^
+[2.378s] 
+[2.378s] ./can_package/can_node_sim.py:59:5: E303 too many blank lines (3)
+[2.378s]     # Destroy the node explicitly
+[2.378s]     ^
+[2.378s] 
+[2.378s] ./can_package/can_tx_node.py:5:1: E302 expected 2 blank lines, found 1
+[2.378s] class CAN_NODE(Node):
+[2.378s] ^
+[2.378s] 
+[2.378s] ./can_package/can_tx_node.py:31:41: W291 trailing whitespace
+[2.378s]             print(can_node.can_sub_data)        
+[2.379s]                                         ^
+[2.379s] 
+[2.379s] ./can_package/can_rx_node_v3.py:4:1: F401 'random' imported but unused
+[2.379s] import random
+[2.379s] ^
+[2.379s] 
+[2.379s] ./can_package/can_rx_node_v3.py:6:1: E265 block comment should start with '# '
+[2.379s] #import struct
+[2.379s] ^
+[2.379s] 
+[2.379s] ./can_package/can_rx_node_v3.py:8:1: F401 'time.sleep' imported but unused
+[2.380s] from time import sleep
+[2.380s] ^
+[2.380s] 
+[2.380s] ./can_package/can_rx_node_v3.py:10:1: E302 expected 2 blank lines, found 1
+[2.380s] class CAN_RX_NODE(Node):
+[2.380s] ^
+[2.380s] 
+[2.380s] ./can_package/can_rx_node_v3.py:18:9: E265 block comment should start with '# '
+[2.380s]         #self.bus = can.interfacer.Bus(bustype='socketcan', channel='can0', bitrate=500000)
+[2.380s]         ^
+[2.380s] 
+[2.381s] ./can_package/can_rx_node_v3.py:19:100: E501 line too long (149 > 99 characters)
+[2.381s]         self.db = cantools.database.load_file('/home/ubuntu/Agnirath_LVS_Strategy/aarush_ros/src/can_package/can_package/DBC_Files/combined_dbc.dbc')
+[2.381s]                                                                                                    ^
+[2.381s] 
+[2.381s] ./can_package/can_rx_node_v3.py:31:28: W291 trailing whitespace
+[2.381s]         # self.can_pub_data 
+[2.381s]                            ^
+[2.381s] 
+[2.381s] ./can_package/can_rx_node_v3.py:40:36: E222 multiple spaces after operator
+[2.381s]                 self.decoded_data =  self.db.decode_message(self.response.arbitration_id, self.response.data)
+[2.381s]                                    ^
+[2.381s] 
+[2.382s] ./can_package/can_rx_node_v3.py:40:100: E501 line too long (109 > 99 characters)
+[2.382s]                 self.decoded_data =  self.db.decode_message(self.response.arbitration_id, self.response.data)
+[2.382s]                                                                                                    ^
+[2.382s] 
+[2.382s] ./can_package/can_rx_node_v3.py:42:46: E231 missing whitespace after ','
+[2.382s]                 self.message_decoded.insert(0,self.message_id)
+[2.382s]                                              ^
+[2.382s] 
+[2.382s] ./can_package/can_rx_node_v3.py:51:9: E303 too many blank lines (4)
+[2.382s]         #self.id = [self.response.arbitration_id]
+[2.382s]         ^
+[2.383s] 
+[2.383s] ./can_package/can_rx_node_v3.py:51:9: E265 block comment should start with '# '
+[2.383s]         #self.id = [self.response.arbitration_id]
+[2.383s]         ^
+[2.383s] 
+[2.383s] ./can_package/can_rx_node_v3.py:52:9: E265 block comment should start with '# '
+[2.383s]         #self.data = list(struct.unpack('f',self.response.data[:4]))
+[2.383s]         ^
+[2.383s] 
+[2.383s] ./can_package/can_rx_node_v3.py:53:9: E265 block comment should start with '# '
+[2.383s]         #self.data +=list(struct.unpack('f',self.response.data[4:]))
+[2.383s]         ^
+[2.383s] 
+[2.384s] ./can_package/can_rx_node_v3.py:54:9: E265 block comment should start with '# '
+[2.384s]         #print(self.id,self.data)
+[2.384s]         ^
+[2.384s] 
+[2.384s] ./can_package/can_rx_node_v3.py:55:9: E265 block comment should start with '# '
+[2.384s]         #print("REC:", self.can_pub_data) 
+[2.384s]         ^
+[2.384s] 
+[2.384s] ./can_package/can_rx_node_v3.py:55:42: W291 trailing whitespace
+[2.384s]         #print("REC:", self.can_pub_data) 
+[2.384s]                                          ^
+[2.384s] 
+[2.384s] ./can_package/can_rx_node_v3.py:59:13: E265 block comment should start with '# '
+[2.385s]             #self.can_pub_data = self.message_decoded
+[2.385s]             ^
+[2.385s] 
+[2.385s] ./can_package/can_rx_node_v3.py:81:5: E303 too many blank lines (3)
+[2.385s]     # Destroy the node explicitly
+[2.385s]     ^
+[2.385s] 
+[2.385s] ./can_package/can_rx_node_v3.py:87:1: E305 expected 2 blank lines after class or function definition, found 1
+[2.385s] if __name__ == "__main__":
+[2.385s] ^
+[2.385s] 
+[2.385s] ./can_package/py-can-rx.py:2:1: F401 'time.sleep' imported but unused
+[2.386s] from time import sleep
+[2.386s] ^
+[2.386s] 
+[2.386s] ./can_package/py-can-rx.py:14:1: W391 blank line at end of file
+[2.386s] 
+[2.386s] ^
+[2.386s] 
+[2.386s] ./can_package/py-can-tx.py:19:1: W391 blank line at end of file
+[2.386s] 
+[2.386s] ^
+[2.387s] 
+[2.387s] ./can_package/can_rx_node.py:7:1: E302 expected 2 blank lines, found 1
+[2.387s] class CAN_RX_NODE(Node):
+[2.387s] ^
+[2.387s] 
+[2.387s] ./can_package/can_rx_node.py:19:1: W293 blank line contains whitespace
+[2.387s] [33m=============================== warnings summary ===============================[0m
+[2.387s] test/test_flake8.py::test_flake8
+[2.387s] test/test_flake8.py::test_flake8
+[2.387s]   Warning: SelectableGroups dict interface is deprecated. Use select.
+[2.387s] 
+[2.388s] -- Docs: https://docs.pytest.org/en/stable/warnings.html
+[2.391s]         
+[2.392s] ^
+[2.392s] 
+[2.392s] ./can_package/can_rx_node.py:20:28: W291 trailing whitespace
+[2.392s]         # self.can_pub_data 
+[2.392s]                            ^
+[2.392s] 
+[2.392s] ./can_package/can_rx_node.py:23:43: E231 missing whitespace after ','
+[2.392s]         self.data = list(struct.unpack('f',self.response.data[:4]))
+[2.392s]                                           ^
+[2.392s] 
+[2.392s] ./can_package/can_rx_node.py:24:21: E225 missing whitespace around operator
+[2.393s]         self.data +=list(struct.unpack('f',self.response.data[4:]))
+[2.393s]                     ^
+[2.393s] 
+[2.393s] ./can_package/can_rx_node.py:24:43: E231 missing whitespace after ','
+[2.393s]         self.data +=list(struct.unpack('f',self.response.data[4:]))
+[2.393s]                                           ^
+[2.393s] 
+[2.393s] ./can_package/can_rx_node.py:25:9: E265 block comment should start with '# '
+[2.393s]         #print(self.id,self.data)
+[2.393s]         ^
+[2.393s] 
+[2.394s] ./can_package/can_rx_node.py:26:9: E265 block comment should start with '# '
+[2.394s]         #print("REC:", self.can_pub_data) 
+[2.394s]         ^
+[2.394s] 
+[2.394s] ./can_package/can_rx_node.py:26:42: W291 trailing whitespace
+[2.394s]         #print("REC:", self.can_pub_data) 
+[2.394s]                                          ^
+[2.394s] 
+[2.394s] ./can_package/can_rx_node.py:35:1: E302 expected 2 blank lines, found 1
+[2.394s] def main(args=None):
+[2.394s] ^
+[2.395s] 
+[2.395s] ./can_package/can_rx_node.py:44:1: W293 blank line contains whitespace
+[2.395s]         
+[2.395s] ^
+[2.395s] 
+[2.395s] ./can_package/can_rx_node.py:46:5: E303 too many blank lines (3)
+[2.395s]     # Destroy the node explicitly
+[2.395s]     ^
+[2.395s] 
+[2.395s] 1     E222 multiple spaces after operator
+[2.395s] 1     E225 missing whitespace around operator
+[2.396s] 12    E231 missing whitespace after ','
+[2.396s] 10    E265 block comment should start with '# '
+[2.396s] 6     E302 expected 2 blank lines, found 1
+[2.396s] 4     E303 too many blank lines (3)
+[2.396s] 1     E305 expected 2 blank lines after class or function definition, found 1
+[2.396s] 2     E501 line too long (149 > 99 characters)
+[2.396s] 3     F401 'random' imported but unused
+[2.396s] 6     W291 trailing whitespace
+[2.396s] 4     W293 blank line contains whitespace
+[2.396s] 2     W391 blank line at end of file
+[2.396s] 
+[2.397s] 12 files checked
+[2.397s] 52 errors
+[2.397s] 
+[2.397s] 'E'-type errors: 37
+[2.397s] 'F'-type errors: 3
+[2.397s] 'W'-type errors: 12
+[2.397s] 
+[2.397s] Checked files:
+[2.397s] 
+[2.397s] * ./setup.py
+[2.397s] * ./test/test_flake8.py
+[2.397s] * ./test/test_pep257.py
+[2.398s] * ./test/test_copyright.py
+[2.398s] * ./can_package/sample_CAN.py
+[2.398s] * ./can_package/can_node_sim.py
+[2.398s] * ./can_package/__init__.py
+[2.398s] * ./can_package/can_tx_node.py
+[2.398s] * ./can_package/can_rx_node_v3.py
+[2.398s] * ./can_package/py-can-rx.py
+[2.398s] * ./can_package/py-can-tx.py
+[2.398s] * ./can_package/can_rx_node.py
+[2.398s] ----------------------------- Captured stderr call -----------------------------
+[2.398s] option --max-complexity: please update from optparse string `type=` to argparse callable `type=` -- this will be an error in the future
+[2.399s] - generated xml file: /home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/build/can_package/pytest.xml -
+[2.399s] =========================== short test summary info ============================
+[2.399s] FAILED test/test_flake8.py::test_flake8 - AssertionError: Found 52 code style...
+[2.399s] [31m============== [31m[1m1 failed[0m, [32m1 passed[0m, [33m1 skipped[0m, [33m2 warnings[0m[31m in 0.22s[0m[31m ==============[0m
+[2.972s] Invoked command in '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/can_package' returned '1': AMENT_PREFIX_PATH=/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/install/can_package:${AMENT_PREFIX_PATH} PYTEST_ADDOPTS=--tb=short --junit-xml=/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/build/can_package/pytest.xml --junit-prefix=can_package -o cache_dir=/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/build/can_package/.pytest_cache PYTHONPATH=/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/install/can_package/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -m pytest

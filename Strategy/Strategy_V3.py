@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 
 
 class Motor:
@@ -16,12 +17,8 @@ class Motor:
     def calculate_power(self, speed, acceleration, slope):
         # Calculate power required to overcome rolling resistance and aerodynamic drag
         self.dynamic_speed_crr = (self.no_of_wheels / 3) * 4.1 * 10 ** (-5) * speed
-        rolling_resistance = (
-            self.mass * 9.8 * (self.zero_speed_crr + self.dynamic_speed_crr)
-        )  # Assume coefficient of friction = 0.01
-        drag_force = (
-            self.frontal_area * 0.5 * self.aerodynamic_coef * 1.225 * speed**2
-        )  # Air density = 1.225 kg/m^3
+        rolling_resistance = (self.mass * 9.8 * (self.zero_speed_crr + self.dynamic_speed_crr))  # Assume coefficient of friction = 0.01
+        drag_force = (self.frontal_area * 0.5 * self.aerodynamic_coef * 1.225 * speed**2)  # Air density = 1.225 kg/m^3
         power = (rolling_resistance + drag_force + self.mass*acceleration + self.mass*9.8*np.sin(slope)) * speed
         return power
 
@@ -82,7 +79,7 @@ class ElectricCar:
         slope = sub_path[1]  # degrees
         time = sub_path[2]  # seconds
         start_speed = start_speed
-        acceleration = 0.00001  # m/s^2
+        acceleration = 0.01  # m/s^2
         drive_results = []
 
         while acceleration <= 2:
@@ -93,11 +90,12 @@ class ElectricCar:
             start_speed = drive_details[2]
             # print(start_speed)
             drive_results.append(drive_details)
-            acceleration += 0.00001
+            acceleration += 0.01
 
-        # for i in drive_results:
-        #     print(i)
-
+        for i in drive_results:
+            print(i)
+        
+        print(time)
         time_filtered_results = []
         for i in range(len(drive_results)):
             if drive_results[i][0] < time:
@@ -105,8 +103,8 @@ class ElectricCar:
                 # print(drive_details[i])
 
         # print("fiter")
-        # for i in time_filtered_results:
-        #     print(i)
+        for i in time_filtered_results:
+            print(i)
 
         best_drive = time_filtered_results[0]
 
@@ -151,12 +149,14 @@ def main():
     frontal_area = 1
     zero_speed_crr = 0.003
     avg_m_per_s = 20
-    route = [[10000, 1*0.015708], [2000, 4*0.015708], [5000, 2*0.015708], [3000, 1*0.015708],[7000, 2*0.015708],[10000, 3*0.015708]]
+    # route = [[10000, 1*0.015708], [2000, 4*0.015708], [5000, 2*0.015708], [3000, 1*0.015708],[7000, 2*0.015708],[10000, 3*0.015708]]
+
+    # Read the CSV file into a DataFrame
+    df = pd.read_csv('route.csv')  # Replace 'output.csv' with the actual CSV file path
+    route = df.values.tolist()
 
     for i in range(len(route)):
         route[i].append(route[i][0] / avg_m_per_s)
-
-    print(route)
     print("")
 
     motor = Motor(

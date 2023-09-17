@@ -16,7 +16,7 @@ class CAN_RX_NODE(Node):
         self.can_publisher = self.create_publisher(rosarray, topic, 100)
         self.can_timer = self.create_timer(timer_period, self.publish_can_data)
         #self.bus = can.interfacer.Bus(bustype='socketcan', channel='can0', bitrate=500000)
-        self.db = cantools.database.load_file('/home/ubuntu/Old_LV/aarush_ros/src/can_package/can_package/DBC_Files/combined_dbc.dbc')
+        self.db = cantools.database.load_file('/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/can_package/can_package/DBC_Files/combined_dbc.dbc')
         self.can_pub_data = None
 
     def init_control_data_publisher(self, topic, timer_period):

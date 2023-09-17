@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'can_rx_node = can_package.can_rx_node:main',
+            'can_rx_node = can_package.can_rx_node_v3:main',
             'can_node_sim = can_package.can_node_sim:main',
             'can_tx_node = can_package.can_tx_node:main',
             'can_rx_node_dup = can_package.can_rx_node_dup:main',

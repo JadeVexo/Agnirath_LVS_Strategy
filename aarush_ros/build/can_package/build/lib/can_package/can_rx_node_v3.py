@@ -16,7 +16,7 @@ class CAN_RX_NODE(Node):
         self.can_publisher = self.create_publisher(rosarray, topic, 100)
         self.can_timer = self.create_timer(timer_period, self.publish_can_data)
         #self.bus = can.interfacer.Bus(bustype='socketcan', channel='can0', bitrate=500000)
-        self.db = cantools.database.load_file('/home/ubuntu/Old_LV/aarush_ros/src/can_package/can_package/DBC_Files/combined_dbc.dbc')
+        self.db = cantools.database.load_file('/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/can_package/can_package/DBC_Files/combined_dbc.dbc')
         self.can_pub_data = None
 
     def init_control_data_publisher(self, topic, timer_period):
@@ -33,11 +33,13 @@ class CAN_RX_NODE(Node):
         with can.interface.Bus('can0', bustype='socketcan', bitrate=500000) as bus:
         
             self.response = bus.recv(timeout=2)
+            self.message_id = self.response.arbitration_id
             self.message_decoded = None
             self.signal_names = None
             try:
                 self.decoded_data =  self.db.decode_message(self.response.arbitration_id, self.response.data)
                 self.message_decoded = list(self.decoded_data.values())
+                self.message_decoded.insert(0,self.message_id)
                 self.signal_names = list(self.decoded_data.keys())
 
             except KeyError:
@@ -55,7 +57,6 @@ class CAN_RX_NODE(Node):
         
         if self.can_pub_data is not None:
             #self.can_pub_data = self.message_decoded
-            print("hi")
             self.can_pub_msg = rosarray()
             self.can_pub_msg.data = self.can_pub_data
             self.can_publisher.publish(self.can_pub_msg)

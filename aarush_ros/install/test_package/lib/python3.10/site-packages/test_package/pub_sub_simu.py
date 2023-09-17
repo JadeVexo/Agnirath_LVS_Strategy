@@ -38,7 +38,7 @@ def main(args=None):
 
     pub_sub_node = sample_publisher_subscriber("sample_node")
     pub_sub_node.init_pub()
-    pub_sub_node.init_sub()
+    # pub_sub_node.init_sub()
 
     while rclpy.ok():
 
@@ -67,10 +67,10 @@ def main(args=None):
         if latest_pub_data is not None:
             print("PUB:",latest_pub_data)
 
-        latest_sub_data = pub_sub_node.latest_sub_data
+        # latest_sub_data = pub_sub_node.latest_sub_data
 
-        if latest_sub_data is not None:
-            print("SUB:",latest_sub_data)
+        # if latest_sub_data is not None:
+        #     print("SUB:",latest_sub_data)
 
         
 

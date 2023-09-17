@@ -420,8 +420,9 @@ class MAIN_NODE(Node):
             self.final_data_pub_msg = rosarray()
             self.final_data_pub_msg.data = self.final_pub_data        
             self.final_data_publisher.publish(self.final_data_pub_msg)
-            self.final_pub_data = self.final_data_pub_msg.data
-            print("Final_PUB:", self.final_pub_data)
+            self.final_pub_data = [round(x,3) for x in self.final_data_pub_msg.data]
+            # print(len(self.final_pub_data))
+            # print("Final_PUB:", self.final_pub_data)
 
     # Parsed publisher
     def init_parsed_data_publisher(self, topic, timer_period):
@@ -437,7 +438,7 @@ class MAIN_NODE(Node):
             self.parsed_data_pub_msg.data = self.parsed_pub_data
             self.parsed_data_publisher.publish(self.parsed_data_pub_msg)
             self.parsed_pub_data = self.parsed_data_pub_msg.data
-            print("Parse_PUB:", self.parsed_pub_data)
+            # print("Parse_PUB:", self.parsed_pub_data)
 
 
 def main(args=None):
@@ -450,7 +451,7 @@ def main(args=None):
     main_node.init_imu_subscriber("imu_data")
 
     main_node.init_can_publisher("can_tx_data", 1)
-    main_node.init_final_data_publisher("final_data", 1)
+    main_node.init_final_data_publisher("final_data", 2)
     main_node.init_parsed_data_publisher("parsed_data", 1)
 
     final_data = [0]*266
@@ -489,8 +490,9 @@ def main(args=None):
         mppt_2_fd_index = 125
         mppt_3_fd_index = 157
         mppt_4_fd_index = 189
-        evdc_fd_index = 263
         mc_fd_index = 221
+        evdc_fd_index = 263
+        
 
 
         CAN_codes = [[0x12,163],[0x25,293]]
@@ -528,7 +530,7 @@ def main(args=None):
                 parsed_data[bms_index+6:bms_index+10] = can_sub_data[1:5]
                 final_data[bms_index+9:bms_index+13] = can_sub_data[1:5]
 
-            
+            # print("1.",len(final_data))
 
             # CMU 2
             
@@ -661,7 +663,7 @@ def main(args=None):
                 final_data[mppt_1_fd_index + 8:mppt_1_fd_index + 10] = can_sub_data[1:3]
 
 
-            #  Status - 16 strings for controls are 7 X "error flags", 8 X "limit flags" and 1 X "mode"
+            # Status - 16 strings for controls are 7 X "error flags", 8 X "limit flags" and 1 X "mode"
             if can_sub_data[0] == mppt_1_base_address + 5:
                 parsed_data[mppt_1_index+8:mppt_1_index+24] = can_sub_data[4:20]
                 final_data[mppt_1_fd_index + 10:mppt_1_fd_index + 30] = can_sub_data[1:22]
@@ -676,7 +678,7 @@ def main(args=None):
             '''------------------------------------------------------------------'''
 
             # MPPT 2
-            # Input Measurements print(f"Temperature threshold crossed for {threshold_crossing_time} seconds: {temperature}°C")
+            # Input Measurements "print"(f"Temperature threshold crossed for {threshold_crossing_time} seconds: {temperature}°C")
             if can_sub_data[0] == mppt_2_base_address + 0: 
                 parsed_data[mppt_2_index+0:mppt_2_index+2] = can_sub_data[1:3]
                 final_data[mppt_2_fd_index+0:mppt_2_fd_index+2] = can_sub_data[1:3]
@@ -785,7 +787,6 @@ def main(args=None):
                 final_data[mppt_4_fd_index + 30:mppt_4_fd_index + 32] = can_sub_data[1:3]
 
             '''-----------------------------------------------------------'''
-
             # EVDC ### FIX INDEXING
             # Motor Current and Motor Velocity
             if can_sub_data[0] == evdc_base_address + 1:
@@ -800,6 +801,7 @@ def main(args=None):
             # Motor Controller
             #Serial No and ID
             if can_sub_data[0] == mc_base_address + 0:
+                
                 final_data[mc_fd_index+0:mc_fd_index+2] = can_sub_data[1:3]
 
 
@@ -812,6 +814,7 @@ def main(args=None):
             if can_sub_data[0] == mc_base_address + 2:
                 parsed_data[mc_index+9:mc_index+11] = can_sub_data[1:3]
                 final_data[mc_fd_index+21:mc_fd_index+23] = can_sub_data[1:3]
+                # print(can_sub_data)
 
             #Velocity Measurement
             if can_sub_data[0] == mc_base_address + 3:
@@ -836,9 +839,10 @@ def main(args=None):
                 final_data[mc_fd_index+31:mc_fd_index+33] = can_sub_data[1:3]
 
             # 15V Voltage Rail
-            if can_sub_data[0] == mc_base_address + 8:
-                parsed_data[mc_index+15] = can_sub_data[1]
-                final_data[mc_fd_index+33] = can_sub_data[1]
+            # if can_sub_data[0] == mc_base_address + 8:
+            #     print("15 V data",can_sub_data)
+            #     parsed_data[mc_index+15] = can_sub_data[1]
+            #     final_data[mc_fd_index+33] = can_sub_data[1]
 
             # 3.3V, 1.9V Voltage Rails
             if can_sub_data[0] == mc_base_address + 9:
@@ -851,16 +855,22 @@ def main(args=None):
                 final_data[mc_fd_index+36:mc_fd_index+38] = can_sub_data[1:3]
 
             # DSP Board Temperature
-            if can_sub_data[0] == mc_base_address + 12:
-                parsed_data[mc_index+20] = can_sub_data[1]
-                final_data[mc_fd_index+38] = can_sub_data[1]
+            # if can_sub_data[0] == mc_base_address + 12:
+            #     parsed_data[mc_index+20] = can_sub_data[1]
+            #     final_data[mc_fd_index+38] = can_sub_data[1]
 
             #Odometer and Bus Amp-hrs
             if can_sub_data[0] == mc_base_address + 14:
                 final_data[mc_fd_index+39:mc_fd_index+41] = can_sub_data[1:3]
 
+            final_data = [round(x,3) for x in final_data]
+            print(len(final_data))
+            # print(final_data[93:125])
+    
             main_node.parsed_pub_data = parsed_data
             main_node.final_pub_data = final_data
+
+            # print(final_data[221:263])
 
         # if control_sub_data is not None:
         #     print("SUB:", control_sub_data)

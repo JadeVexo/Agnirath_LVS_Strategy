@@ -11,6 +11,7 @@ setup.py
 ../../build/mppt_package/mppt_package.egg-info/zip-safe
 mppt_package/__init__.py
 mppt_package/mppt_node.py
+mppt_package/mppt_node_bkup.py
 resource/mppt_package
 test/test_copyright.py
 test/test_flake8.py

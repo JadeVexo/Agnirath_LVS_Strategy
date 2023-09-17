@@ -486,7 +486,7 @@ def main(args=None):
         #Base indices for final data array
 
         mppt_1_fd_index = 93
-        mppt_2__fd_index = 125
+        mppt_2_fd_index = 125
         mppt_3_fd_index = 157
         mppt_4_fd_index = 189
         evdc_fd_index = 263

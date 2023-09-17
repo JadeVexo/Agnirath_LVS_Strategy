@@ -26,11 +26,11 @@ class MyWindow(QMainWindow):
         #BUTTONS VBoxlayout
         button_layout = QVBoxLayout()
         main_layout.addLayout(button_layout)
-        button1_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/home.png")
-        button2_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/volt_amps.png")
-        button3_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Temps.png")
-        button4_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/circuit.png")
-        button5_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/TBD.png")
+        button1_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/home.png")
+        button2_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/volt_amps.png")
+        button3_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Temps.png")
+        button4_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/circuit.png")
+        button5_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/TBD.png")
 
         self.button1 = QPushButton(self)
         self.button1.setIcon(QIcon(button1_image))
@@ -131,11 +131,11 @@ class MyWindow(QMainWindow):
         Hwidgets_layout.addWidget(self.drive_widget)
         Hwidgets_layout.addWidget(self.strategy_widget)
 
-        pixmap_telemetry = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Telemetry_widget.png")
+        pixmap_telemetry = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Telemetry_widget.png")
         self.telemetry_widget.setPixmap(pixmap_telemetry.scaled(320, 320))
-        pixmap_drive = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Drive_widget.png")
+        pixmap_drive = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Drive_widget.png")
         self.drive_widget.setPixmap(pixmap_drive.scaled(320, 320))
-        pixmap_strategy = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Startegy_widget.png")
+        pixmap_strategy = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Startegy_widget.png")
         self.strategy_widget.setPixmap(pixmap_strategy.scaled(320, 320))        
 
         # 3 Widgets
@@ -153,11 +153,11 @@ class MyWindow(QMainWindow):
         Vwidgets_layout.addWidget(self.battery_widget)
         Vwidgets_layout.addWidget(self.mc_widget)
 
-        pixmap_solar = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Solar_widget.png")
+        pixmap_solar = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Solar_widget.png")
         self.solar_widget.setPixmap(pixmap_solar.scaled(320, 320))
-        pixmap_battery = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Battery_widget.png")
+        pixmap_battery = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Battery_widget.png")
         self.battery_widget.setPixmap(pixmap_battery.scaled(320, 320))
-        pixmap_MC = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/MC_widget.png")
+        pixmap_MC = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/MC_widget.png")
         self.mc_widget.setPixmap(pixmap_MC.scaled(320, 320))
 
         #SOLAR LAYOUT
@@ -876,126 +876,126 @@ class MyWindow(QMainWindow):
         self.grid = QGridLayout()
         self.batcol0_layout.addLayout(self.grid) 
 
-        self.soc_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/SOC_def.png',
-                           '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/SOC_red.png']
+        self.soc_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/SOC_def.png',
+                           '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/SOC_red.png']
         
-        self.sob_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/SOB_def.png',
-                           '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/SOB_red.png']
+        self.sob_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/SOB_def.png',
+                           '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/SOB_red.png']
         
-        self.loadvolt_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Loadvolt_def.png',
-                                '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Loadvolt_red.png']
+        self.loadvolt_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Loadvolt_def.png',
+                                '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Loadvolt_red.png']
         
-        self.battvolt_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Battvolt_def.png',
-                                '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Battvolt_red.png']
+        self.battvolt_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Battvolt_def.png',
+                                '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Battvolt_red.png']
         
-        self.totcurr_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Totcurr_def.png',
-                               '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Totcurr_red.png']
+        self.totcurr_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Totcurr_def.png',
+                               '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Totcurr_red.png']
         
-        self.nodecount_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/nodecount_def.png',
-                                 '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/nodecount_red.png']
+        self.nodecount_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/nodecount_def.png',
+                                 '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/nodecount_red.png']
         
-        self.maxcellvolt_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/maxcellvolt_def.png',
-                                   '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/maxcellvolt_red.png']
+        self.maxcellvolt_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/maxcellvolt_def.png',
+                                   '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/maxcellvolt_red.png']
         
-        self.mincellvolt_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/mincellvolt_def.png',
-                                   '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/mincellvolt_red.png']
+        self.mincellvolt_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/mincellvolt_def.png',
+                                   '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/mincellvolt_red.png']
         
-        self.maxtemp_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/maxtemp_def.png',
-                               '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/maxtemp_red.png']
+        self.maxtemp_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/maxtemp_def.png',
+                               '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/maxtemp_red.png']
         
-        self.mintemp_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/mintemp_def.png',
-                               '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/mintemp_red.png']
+        self.mintemp_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/mintemp_def.png',
+                               '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/mintemp_red.png']
         
-        self.init_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/init.png',
-                            '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/init_gr.png']
+        self.init_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/init.png',
+                            '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/init_gr.png']
 
-        self.precharge_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/precharge.png',
-                                 '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/precharge_gr.png']
+        self.precharge_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/precharge.png',
+                                 '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/precharge_gr.png']
         
-        self.discharge_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/discharge.png',
-                                 '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/discharge_gr.png']
+        self.discharge_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/discharge.png',
+                                 '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/discharge_gr.png']
         
-        self.charge_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/charge.png',
-                              '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/charge_gr.png']
+        self.charge_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/charge.png',
+                              '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/charge_gr.png']
         
-        self.all_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/all.png',
-                           '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/all_gr.png']
+        self.all_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/all.png',
+                           '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/all_gr.png']
         
-        self.dischargepre_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/dischargepre.png',
-                                    '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/dischargepre_gr.png']
+        self.dischargepre_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/dischargepre.png',
+                                    '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/dischargepre_gr.png']
         
-        self.chargepre_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/chargepre.png',
-                                 '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/chargepre_gr.png']
+        self.chargepre_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/chargepre.png',
+                                 '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/chargepre_gr.png']
         
-        self.allpre_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/allpre.png',
-                              '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/allpre_gr.png']
+        self.allpre_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/allpre.png',
+                              '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/allpre_gr.png']
         
-        self.error_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/error.png',
-                             '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/error_gr.png']
+        self.error_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/error.png',
+                             '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/error_gr.png']
         
-        self.calibrated_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/calibrated.png']
+        self.calibrated_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/calibrated.png']
 
-        self.connected_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/connected.png']
+        self.connected_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/connected.png']
 
-        self.standalone_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/standalone.png']
+        self.standalone_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/standalone.png']
 
-        self.sense_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/sense.png']
+        self.sense_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/sense.png']
 
-        self.overvolt_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/overvolt.png']
+        self.overvolt_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/overvolt.png']
 
-        self.undervolt_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/undervolt.png']
+        self.undervolt_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/undervolt.png']
 
-        self.overtemp_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/overtemp.png']
+        self.overtemp_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/overtemp.png']
 
-        self.undertemp_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/undertemp.png']
+        self.undertemp_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/undertemp.png']
 
-        self.criticaloc_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/criticalOC.png']
+        self.criticaloc_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/criticalOC.png']
 
-        self.criticalov_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/criticalOV.png']
+        self.criticalov_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/criticalOV.png']
 
-        self.criticaluv_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/criticalUV.png']
+        self.criticaluv_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/criticalUV.png']
 
-        self.balancing_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/balancing.png']
+        self.balancing_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/balancing.png']
 
-        self.fail_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/fail.png']
+        self.fail_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/fail.png']
 
-        self.invalid_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/invalid.png']
+        self.invalid_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/invalid.png']
 
-        self.nocan_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/nocan.png']
+        self.nocan_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/nocan.png']
 
-        self.vehiclecomms_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/vehicomms.png']
+        self.vehiclecomms_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/vehicomms.png']
 
-        self.cmucomms_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/cmucomms.png']
+        self.cmucomms_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/cmucomms.png']
 
-        self.prechargeerror_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/prechargerror.png']
+        self.prechargeerror_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/prechargerror.png']
 
-        self.prechargeidle_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/prechargeidle.png']
+        self.prechargeidle_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/prechargeidle.png']
 
-        self.onandr_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/onandr.png']
+        self.onandr_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/onandr.png']
 
-        self.cellov_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/cellvoltage.png']
+        self.cellov_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/cellvoltage.png']
 
-        self.celluv_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/cellunderv.png']
+        self.celluv_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/cellunderv.png']
 
-        self.cellot_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/cellovert.png']
+        self.cellot_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/cellovert.png']
 
-        self.trusterror_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/trusterror.png']
+        self.trusterror_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/trusterror.png']
 
-        self.packisofail_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/packisofail.png']
+        self.packisofail_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/packisofail.png']
 
-        self.contactorstuck_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/contactorstuck.png']
+        self.contactorstuck_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/contactorstuck.png']
 
-        self.contactorclosed_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/contactorclosed.png']
+        self.contactorclosed_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/contactorclosed.png']
 
-        self.can12vlow_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/can12vlow.png']
+        self.can12vlow_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/can12vlow.png']
 
-        self.cmupwrstat_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/cmupwrstatus.png']
+        self.cmupwrstat_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/cmupwrstatus.png']
 
-        self.extracell_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/extracell.png']
+        self.extracell_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/extracell.png']
 
-        self.socinvalid_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/socinvalid.png']
+        self.socinvalid_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/socinvalid.png']
 
-        self.bmusetup_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/bmu.png']
+        self.bmusetup_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/bmu.png']
 
         self.batinfo = QLabel()
         self.batinfo.setText("Battery Info")
@@ -1779,7 +1779,7 @@ class MyWindow(QMainWindow):
         self.bmusetup.setPixmap(pixmap_bmu)
                 
         #Solar Widget
-        pixmap_solar = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Solar_widget.png")
+        pixmap_solar = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Solar_widget.png")
         painter_solar = QPainter(pixmap_solar)
         painter_solar.setFont(QFont('Bookman Uralic', 25))  
         painter_solar.setPen(Qt.white)  
@@ -1788,7 +1788,7 @@ class MyWindow(QMainWindow):
         painter_solar.end()
         self.solar_widget.setPixmap(pixmap_solar.scaled(320, 320))
         #Battery Widget
-        pixmap_battery = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Battery_widget.png")
+        pixmap_battery = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Battery_widget.png")
         painter_battery = QPainter(pixmap_battery)
         painter_battery.setFont(QFont('Bookman Uralic', 25))  
         painter_battery.setPen(Qt.white)  
@@ -1797,7 +1797,7 @@ class MyWindow(QMainWindow):
         painter_battery.end()
         self.battery_widget.setPixmap(pixmap_battery.scaled(320, 320))
         #MC Widget
-        pixmap_MC = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/MC_widget.png")
+        pixmap_MC = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/MC_widget.png")
         painter_MC = QPainter(pixmap_MC)
         painter_MC.setFont(QFont('Bookman Uralic', 25))  
         painter_MC.setPen(Qt.white)  
@@ -1806,7 +1806,7 @@ class MyWindow(QMainWindow):
         painter_MC.end()
         self.mc_widget.setPixmap(pixmap_MC.scaled(320, 320))
         #Telemetry Widget
-        pixmap_telemetry = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Telemetry_widget.png")
+        pixmap_telemetry = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Telemetry_widget.png")
         painter_telemetry = QPainter(pixmap_telemetry)
         painter_telemetry.setFont(QFont('Bookman Uralic', 25))  
         painter_telemetry.setPen(Qt.white)  
@@ -1815,7 +1815,7 @@ class MyWindow(QMainWindow):
         painter_telemetry.end()
         self.telemetry_widget.setPixmap(pixmap_telemetry.scaled(320, 320))
         #Drive Widget
-        pixmap_drive = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Drive_widget.png")
+        pixmap_drive = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Drive_widget.png")
         painter_drive = QPainter(pixmap_drive)
         painter_drive.setFont(QFont('Bookman Uralic', 25))  
         painter_drive.setPen(Qt.white)  
@@ -1824,7 +1824,7 @@ class MyWindow(QMainWindow):
         painter_drive.end()
         self.drive_widget.setPixmap(pixmap_drive.scaled(320, 320))
         #Strategy Widget
-        pixmap_strategy = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Startegy_widget.png")
+        pixmap_strategy = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/src/assets/Startegy_widget.png")
         painter_strategy = QPainter(pixmap_strategy)
         painter_strategy.setFont(QFont('Bookman Uralic', 25)) 
         painter_strategy.setPen(Qt.white)  

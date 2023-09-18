@@ -1292,7 +1292,6 @@ class MyWindow(QMainWindow):
                 print("Connected")
                 self.ros_thread = RosThread(self.node)   # Create ros thread 
                 self.ros_thread.start()
-
         except:
             pass
 
@@ -1300,36 +1299,56 @@ class MyWindow(QMainWindow):
         self.data = msg.data
         self.data = [round(x,3) for x in self.data]
         print(self.data)
-        print(self.data[242])
-        # self.update_float_data_label()
 
     def display_widget(self):
         # print(self.data)
-        new_y = np.random.randint(100)
-        new_y1 = np.random.randint(100)
+        graph_limit = 30
         #MPPTs Graph
         self.mppt1_input_data['y'].append(self.data[93])
         self.mppt1_output_data['y'].append(self.data[93]*self.data[94])
         self.mppt1_input_data['x'].append(timestamp())
         self.mppt1_output_data['x'].append(timestamp())
+        if len(self.mppt1_input_data['y']) > graph_limit:
+            self.mppt1_input_data['y']= self.mppt1_input_data['y'][-30:]
+            self.mppt1_input_data['x']= self.mppt1_input_data['x'][-30:]
+            self.mppt1_output_data['y']= self.mppt1_output_data['y'][-30:]
+            self.mppt1_output_data['x']= self.mppt1_output_data['x'][-30:]
         self.mppt1_input_plot.plot(self.mppt1_input_data['x'],self.mppt1_input_data['y'], pen='y')
         self.mppt1_output_plot.plot(self.mppt1_output_data['x'],self.mppt1_output_data['y'], pen='y')
+
         self.mppt2_input_data['y'].append(self.data[125])
         self.mppt2_output_data['y'].append(self.data[125]*self.data[126])
         self.mppt2_input_data['x'].append(timestamp())
         self.mppt2_output_data['x'].append(timestamp())
+        if len(self.mppt2_input_data['y']) > graph_limit:
+            self.mppt2_input_data['y']= self.mppt2_input_data['y'][-30:]
+            self.mppt2_input_data['x']= self.mppt2_input_data['x'][-30:]
+            self.mppt2_output_data['y']= self.mppt2_output_data['y'][-30:]
+            self.mppt2_output_data['x']= self.mppt2_output_data['x'][-30:]
         self.mppt2_input_plot.plot(self.mppt2_input_data['x'],self.mppt2_input_data['y'], pen='y')
         self.mppt2_output_plot.plot(self.mppt2_output_data['x'],self.mppt2_output_data['y'], pen='y')
+
         self.mppt3_input_data['y'].append(self.data[157])
         self.mppt3_output_data['y'].append(self.data[157]*self.data[158])
         self.mppt3_input_data['x'].append(timestamp())
         self.mppt3_output_data['x'].append(timestamp())
+        if len(self.mppt3_input_data['y']) > graph_limit:
+            self.mppt3_input_data['y']= self.mppt3_input_data['y'][-30:]
+            self.mppt3_input_data['x']= self.mppt3_input_data['x'][-30:]
+            self.mppt3_output_data['y']= self.mppt3_output_data['y'][-30:]
+            self.mppt3_output_data['x']= self.mppt3_output_data['x'][-30:]
         self.mppt3_input_plot.plot(self.mppt3_input_data['x'],self.mppt3_input_data['y'], pen='y')
         self.mppt3_output_plot.plot(self.mppt3_output_data['x'],self.mppt3_output_data['y'], pen='y')
-        self.mppt4_input_data['y'].append(self.data[189])
+
+        self.mppt4_input_data['y'].append(self.data[389])
         self.mppt4_output_data['y'].append(self.data[189]*self.data[190])
         self.mppt4_input_data['x'].append(timestamp())
         self.mppt4_output_data['x'].append(timestamp())
+        if len(self.mppt4_input_data['y']) > graph_limit:
+            self.mppt4_input_data['y']= self.mppt4_input_data['y'][-30:]
+            self.mppt4_input_data['x']= self.mppt4_input_data['x'][-30:]
+            self.mppt4_output_data['y']= self.mppt4_output_data['y'][-30:]
+            self.mppt4_output_data['x']= self.mppt4_output_data['x'][-30:]
         self.mppt4_input_plot.plot(self.mppt4_input_data['x'],self.mppt4_input_data['y'], pen='y')
         self.mppt4_output_plot.plot(self.mppt4_output_data['x'],self.mppt4_output_data['y'], pen='y')
         
@@ -1338,6 +1357,11 @@ class MyWindow(QMainWindow):
         self.velocity_data['y'].append(self.data[245])
         self.buspwr_data['x'].append(timestamp())
         self.velocity_data['x'].append(timestamp())
+        if len(self.buspwr_data['y']) > graph_limit:
+            self.buspwr_data['y']= self.buspwr_data['y'][-30:]
+            self.buspwr_data['x']= self.buspwr_data['x'][-30:]
+            self.velocity_data['y']= self.velocity_data['y'][-30:]
+            self.velocity_data['x']= self.velocity_data['x'][-30:]
         self.buspwr_plot.plot(self.velocity_data['x'],self.buspwr_data['y'], pen='y')
         self.velocity_plot.plot(self.velocity_data['x'],self.buspwr_data['y'], pen='y')
         

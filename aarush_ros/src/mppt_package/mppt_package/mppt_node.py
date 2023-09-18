@@ -1,21 +1,6 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float32MultiArray as rosarray
-import time
-
-class Timer:
-    def __init__(self, threshold_crossing_time):
-        self.threshold_crossing_time = threshold_crossing_time
-        self.start_time = None
-
-    def start(self):
-        self.start_time = time.time()
-
-    def elapsed(self):
-        return time.time() - self.start_time
-
-    def reset(self):
-        self.start_time = None
 
 class MPPT_NODE(Node):
     def __init__(self, node):
@@ -71,103 +56,6 @@ def main(args=None):
     mppt_node.init_mppt_subscriber("mppt_data")
     mppt_node.init_peripheral_subscriber("peripheral_data")
     mppt_node.init_control_data_publisher("control_data", 1)
-
-        
-    mppt_1_input_volt_timer = Timer(threshold_crossing_time)
-    mppt_1_input_current_timer = Timer(threshold_crossing_time)
-    mppt_1_output_volt_timer = Timer(threshold_crossing_time)
-    mppt_1_mosfet_temp_timer = Timer(threshold_crossing_time)
-    mppt_1_controller_temp_timer = Timer(threshold_crossing_time)
-    mppt_1_12V_aux_timer = Timer(threshold_crossing_time)
-    mppt_1_3V_aux_timer = Timer(threshold_crossing_time)
-    mppt_1_err_0_timer = Timer(threshold_crossing_time)
-    mppt_1_err_1_timer = Timer(threshold_crossing_time)
-    mppt_1_err_2_timer = Timer(threshold_crossing_time)
-    mppt_1_err_3_timer = Timer(threshold_crossing_time)
-    mppt_1_err_4_timer = Timer(threshold_crossing_time)
-    mppt_1_err_5_timer = Timer(threshold_crossing_time)
-    mppt_1_err_6_timer = Timer(threshold_crossing_time)
-    mppt_1_err_7_timer = Timer(threshold_crossing_time)
-    mppt_1_lim_0_timer = Timer(threshold_crossing_time)
-    mppt_1_lim_1_timer = Timer(threshold_crossing_time)
-    mppt_1_lim_2_timer = Timer(threshold_crossing_time)
-    mppt_1_lim_3_timer = Timer(threshold_crossing_time)
-    mppt_1_lim_4_timer = Timer(threshold_crossing_time)
-    mppt_1_lim_5_timer = Timer(threshold_crossing_time)
-    mppt_1_lim_6_timer = Timer(threshold_crossing_time)
-    mppt_1_lim_7_timer = Timer(threshold_crossing_time)
-
-    mppt_2_input_volt_timer = Timer(threshold_crossing_time)
-    mppt_2_input_current_timer = Timer(threshold_crossing_time)
-    mppt_2_output_volt_timer = Timer(threshold_crossing_time)
-    mppt_2_mosfet_temp_timer = Timer(threshold_crossing_time)
-    mppt_2_controller_temp_timer = Timer(threshold_crossing_time)
-    mppt_2_12V_aux_timer = Timer(threshold_crossing_time)
-    mppt_2_3V_aux_timer = Timer(threshold_crossing_time)
-    mppt_2_err_0_timer = Timer(threshold_crossing_time)
-    mppt_2_err_1_timer = Timer(threshold_crossing_time)
-    mppt_2_err_2_timer = Timer(threshold_crossing_time)
-    mppt_2_err_3_timer = Timer(threshold_crossing_time)
-    mppt_2_err_4_timer = Timer(threshold_crossing_time)
-    mppt_2_err_5_timer = Timer(threshold_crossing_time)
-    mppt_2_err_6_timer = Timer(threshold_crossing_time)
-    mppt_2_err_7_timer = Timer(threshold_crossing_time)
-    mppt_2_lim_0_timer = Timer(threshold_crossing_time)
-    mppt_2_lim_1_timer = Timer(threshold_crossing_time)
-    mppt_2_lim_2_timer = Timer(threshold_crossing_time)
-    mppt_2_lim_3_timer = Timer(threshold_crossing_time)
-    mppt_2_lim_4_timer = Timer(threshold_crossing_time)
-    mppt_2_lim_5_timer = Timer(threshold_crossing_time)
-    mppt_2_lim_6_timer = Timer(threshold_crossing_time)
-    mppt_2_lim_7_timer = Timer(threshold_crossing_time)
-
-    mppt_3_input_volt_timer = Timer(threshold_crossing_time)
-    mppt_3_input_current_timer = Timer(threshold_crossing_time)
-    mppt_3_output_volt_timer = Timer(threshold_crossing_time)
-    mppt_3_mosfet_temp_timer = Timer(threshold_crossing_time)
-    mppt_3_controller_temp_timer = Timer(threshold_crossing_time)
-    mppt_3_12V_aux_timer = Timer(threshold_crossing_time)
-    mppt_3_3V_aux_timer = Timer(threshold_crossing_time)
-    mppt_3_err_0_timer = Timer(threshold_crossing_time)
-    mppt_3_err_1_timer = Timer(threshold_crossing_time)
-    mppt_3_err_2_timer = Timer(threshold_crossing_time)
-    mppt_3_err_3_timer = Timer(threshold_crossing_time)
-    mppt_3_err_4_timer = Timer(threshold_crossing_time)
-    mppt_3_err_5_timer = Timer(threshold_crossing_time)
-    mppt_3_err_6_timer = Timer(threshold_crossing_time)
-    mppt_3_err_7_timer = Timer(threshold_crossing_time)
-    mppt_3_lim_0_timer = Timer(threshold_crossing_time)
-    mppt_3_lim_1_timer = Timer(threshold_crossing_time)
-    mppt_3_lim_2_timer = Timer(threshold_crossing_time)
-    mppt_3_lim_3_timer = Timer(threshold_crossing_time)
-    mppt_3_lim_4_timer = Timer(threshold_crossing_time)
-    mppt_3_lim_5_timer = Timer(threshold_crossing_time)
-    mppt_3_lim_6_timer = Timer(threshold_crossing_time)
-    mppt_3_lim_7_timer = Timer(threshold_crossing_time)
-
-    mppt_4_input_volt_timer = Timer(threshold_crossing_time)
-    mppt_4_input_current_timer = Timer(threshold_crossing_time)
-    mppt_4_output_volt_timer = Timer(threshold_crossing_time)
-    mppt_4_mosfet_temp_timer = Timer(threshold_crossing_time)
-    mppt_4_controller_temp_timer = Timer(threshold_crossing_time)
-    mppt_4_12V_aux_timer = Timer(threshold_crossing_time)
-    mppt_4_3V_aux_timer = Timer(threshold_crossing_time)
-    mppt_4_err_0_timer = Timer(threshold_crossing_time)
-    mppt_4_err_1_timer = Timer(threshold_crossing_time)
-    mppt_4_err_2_timer = Timer(threshold_crossing_time)
-    mppt_4_err_3_timer = Timer(threshold_crossing_time)
-    mppt_4_err_4_timer = Timer(threshold_crossing_time)
-    mppt_4_err_5_timer = Timer(threshold_crossing_time)
-    mppt_4_err_6_timer = Timer(threshold_crossing_time)
-    mppt_4_err_7_timer = Timer(threshold_crossing_time)
-    mppt_4_lim_0_timer = Timer(threshold_crossing_time)
-    mppt_4_lim_1_timer = Timer(threshold_crossing_time)
-    mppt_4_lim_2_timer = Timer(threshold_crossing_time)
-    mppt_4_lim_3_timer = Timer(threshold_crossing_time)
-    mppt_4_lim_4_timer = Timer(threshold_crossing_time)
-    mppt_4_lim_5_timer = Timer(threshold_crossing_time)
-    mppt_4_lim_6_timer = Timer(threshold_crossing_time)
-    mppt_4_lim_7_timer = Timer(threshold_crossing_time)
 
     while rclpy.ok():
         rclpy.spin_once(mppt_node)
@@ -226,756 +114,295 @@ def main(args=None):
             
             #MPPT_1
             if mppt_input_volt[0] < min_input_volt:
-                if mppt_1_input_volt_timer.start_time is None:
-                    mppt_1_input_volt_timer.start()
-                if mppt_1_input_volt_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val)
-            else:
-                mppt_1_input_volt_timer.reset()
+                error_codes.append(base_val + 0)
 
             if mppt_input_current[0] > max_input_current:
-                if mppt_1_input_current_timer.start_time is None:
-                    mppt_1_input_current_timer.start()
-                if mppt_1_input_current_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 1)
-            else:
-                mppt_1_input_current_timer.reset()
+                error_codes.append(base_val + 1)
             
 
             if mppt_output_volt[0] > max_output_volt:
-                if mppt_1_output_volt_timer.start_time is None:
-                    mppt_1_output_volt_timer.start()
-                if mppt_1_output_volt_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 2)
-            else:
-                mppt_1_output_volt_timer.reset()
+                error_codes.append(base_val + 2)
 
             if mppt_mosfet_temp[0] > max_mosfet_temp:
-                if mppt_1_mosfet_temp_timer.start_time is None:
-                    mppt_1_mosfet_temp_timer.start()
-                if mppt_1_mosfet_temp_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 3)
-            else:
-                mppt_1_mosfet_temp_timer.reset()
+                error_codes.append(base_val + 3)
 
             if mppt_controller_temp[0] > max_controller_temp:
-                if mppt_1_controller_temp_timer.start_time is None:
-                    mppt_1_controller_temp_timer.start()
-                if mppt_1_controller_temp_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 4)
-            else:
-                mppt_1_controller_temp_timer.reset()
+                error_codes.append(base_val + 4)
             
             if mppt_12V_aux_supply[0] < 12 - supply_12V_tol:
-                if mppt_1_12V_aux_timer.start_time is None:
-                    mppt_1_12V_aux_timer.start()
-                if mppt_1_12V_aux_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 5)
-            else:
-                mppt_1_12V_aux_timer.reset()
+                error_codes.append(base_val + 5)
 
             if mppt_3V_aux_supply[0] < 3 - supply_12V_tol:
-                if mppt_1_3V_aux_timer.start_time is None:
-                    mppt_1_3V_aux_timer.start()
-                if mppt_1_3V_aux_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 6)
-            else:
-                mppt_1_3V_aux_timer.reset()
-
+                error_codes.append(base_val + 6)
 
             if mppt_low_pwr_array[0] == 1.0:
-                if mppt_1_err_0_timer.start_time is None:
-                    mppt_1_err_0_timer.start()
-                if mppt_1_err_0_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 7)
-            else:
-                mppt_1_err_0_timer.reset()
+                error_codes.append(base_val + 7)
 
             if mppt_mosfet_ovrht[0] == 1.0:
-                if mppt_1_err_1_timer.start_time is None:
-                    mppt_1_err_1_timer.start()
-                if mppt_1_err_1_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 8)
-            else:
-                mppt_1_err_1_timer.reset()
+                error_codes.append(base_val + 8)
 
             if mppt_batt_low[0] == 1.0:
-                if mppt_1_err_2_timer.start_time is None:
-                    mppt_1_err_2_timer.start()
-                if mppt_1_err_2_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 9)
-            else:
-                mppt_1_err_2_timer.reset()
+                error_codes.append(base_val + 9)
 
             if mppt_batt_full[0] == 1.0:
-                if mppt_1_err_3_timer.start_time is None:
-                    mppt_1_err_3_timer.start()
-                if mppt_1_err_3_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 10)
-            else:
-                mppt_1_err_3_timer.reset()
+                error_codes.append(base_val + 10)
 
             if mppt_12_undervolt[0] == 1.0:
-                if mppt_1_err_4_timer.start_time is None:
-                    mppt_1_err_4_timer.start()
-                if mppt_1_err_4_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 11)
-            else:
-                mppt_1_err_4_timer.reset()
-
-            # if mppt_hw_overcurrent[0] == 1.0:
-            #     if mppt_1_err_5_timer.start_time is None:
-            #         mppt_1_err_5_timer.start()
-            #     if mppt_1_err_5_timer.elapsed() >= threshold_crossing_time:
-            #         error_codes.append(base_val + 12)
-            # else:
-            #     mppt_1_err_5_timer.reset()
+                error_codes.append(base_val + 11)
 
             if mppt_hw_overcurrent[0] == 1.0:
-                if mppt_1_err_6_timer.start_time is None:
-                    mppt_1_err_6_timer.start()
-                if mppt_1_err_6_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 13)
-            else:
-                mppt_1_err_6_timer.reset()
+                error_codes.append(base_val + 12)
+
+            if mppt_hw_overcurrent[0] == 1.0:
+                error_codes.append(base_val + 13)
 
             if mppt_hw_overvolt[0] == 1.0:
-                if mppt_1_err_7_timer.start_time is None:
-                    mppt_1_err_7_timer.start()
-                if mppt_1_err_7_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 14)
-            else:
-                mppt_1_err_7_timer.reset()
+                error_codes.append(base_val + 14)
             
             
             if mppt_ip_curr_min[0] == 1.0:
-                if mppt_1_lim_0_timer.start_time is None:
-                    mppt_1_lim_0_timer.start()
-                if mppt_1_lim_0_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 15)
-            else:
-                mppt_1_lim_0_timer.reset()
+                error_codes.append(base_val + 15)
 
             if mppt_ip_curr_max[0] == 1.0:
-                if mppt_1_lim_1_timer.start_time is None:
-                    mppt_1_lim_1_timer.start()
-                if mppt_1_lim_1_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 16)
-            else:
-                mppt_1_lim_1_timer.reset()
+                error_codes.append(base_val + 16)
 
             if mppt_op_volt_max[0] == 1.0:
-                if mppt_1_lim_2_timer.start_time is None:
-                    mppt_1_lim_2_timer.start()
-                if mppt_1_lim_2_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 17)
-            else:
-                mppt_1_lim_2_timer.reset()
+                error_codes.append(base_val + 17)
 
             if mppt_mosfet_temp_limit[0] == 1.0:
-                if mppt_1_lim_3_timer.start_time is None:
-                    mppt_1_lim_3_timer.start()
-                if mppt_1_lim_3_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 18)
-            else:
-                mppt_1_lim_3_timer.reset()
+                error_codes.append(base_val + 18)
 
             if mppt_duty_cycle_min[0] == 1.0:
-                if mppt_1_lim_4_timer.start_time is None:
-                    mppt_1_lim_4_timer.start()
-                if mppt_1_lim_4_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 19)
-            else:
-                mppt_1_lim_4_timer.reset()
+                error_codes.append(base_val + 19)
 
             if mppt_duty_cycle_max[0] == 1.0:
-                if mppt_1_lim_5_timer.start_time is None:
-                    mppt_1_lim_5_timer.start()
-                if mppt_1_lim_5_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 20)
-            else:
-                mppt_1_lim_5_timer.reset()
+                error_codes.append(base_val + 20)
 
             if mppt_local_mppt[0] == 1.0:
-                if mppt_1_lim_6_timer.start_time is None:
-                    mppt_1_lim_6_timer.start()
-                if mppt_1_lim_6_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 21)
-            else:
-                mppt_1_lim_6_timer.reset()
+                error_codes.append(base_val + 21)
 
             if mppt_global_mppt[0] == 1.0:
-                if mppt_1_lim_7_timer.start_time is None:
-                    mppt_1_lim_7_timer.start()
-                if mppt_1_lim_7_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 22)
-            else:
-                mppt_1_lim_7_timer.reset()
+                error_codes.append(base_val + 22)
 
 
             #MPPT_2
             if mppt_input_volt[1] < min_input_volt:
-                if mppt_2_input_volt_timer.start_time is None:
-                    mppt_2_input_volt_timer.start()
-                if mppt_2_input_volt_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 23)
-            else:
-                mppt_2_input_volt_timer.reset()
+                error_codes.append(base_val + 23)
 
             if mppt_input_current[1] > max_input_current:
-                if mppt_2_input_current_timer.start_time is None:
-                    mppt_2_input_current_timer.start()
-                if mppt_2_input_current_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 24)
-            else:
-                mppt_2_input_current_timer.reset()
+                error_codes.append(base_val + 24)
             
 
             if mppt_output_volt[1] > max_output_volt:
-                if mppt_2_output_volt_timer.start_time is None:
-                    mppt_2_output_volt_timer.start()
-                if mppt_2_output_volt_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 25)
-            else:
-                mppt_2_output_volt_timer.reset()
+                error_codes.append(base_val + 25)
 
             if mppt_mosfet_temp[1] > max_mosfet_temp:
-                if mppt_2_mosfet_temp_timer.start_time is None:
-                    mppt_2_mosfet_temp_timer.start()
-                if mppt_2_mosfet_temp_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 26)
-            else:
-                mppt_2_mosfet_temp_timer.reset()
+                error_codes.append(base_val + 26)
 
             if mppt_controller_temp[1] > max_controller_temp:
-                if mppt_2_controller_temp_timer.start_time is None:
-                    mppt_2_controller_temp_timer.start()
-                if mppt_2_controller_temp_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 27)
-            else:
-                mppt_2_controller_temp_timer.reset()
+                error_codes.append(base_val + 27)
             
             if mppt_12V_aux_supply[1] < 12 - supply_12V_tol:
-                if mppt_2_12V_aux_timer.start_time is None:
-                    mppt_2_12V_aux_timer.start()
-                if mppt_2_12V_aux_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 28)
-            else:
-                mppt_2_12V_aux_timer.reset()
+                error_codes.append(base_val + 28)
 
             if mppt_3V_aux_supply[1] < 3 - supply_12V_tol:
-                if mppt_2_3V_aux_timer.start_time is None:
-                    mppt_2_3V_aux_timer.start()
-                if mppt_2_3V_aux_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 29)
-            else:
-                mppt_2_3V_aux_timer.reset()
+                error_codes.append(base_val + 29)
 
 
             if mppt_low_pwr_array[1] == 1.0:
-                if mppt_2_err_0_timer.start_time is None:
-                    mppt_2_err_0_timer.start()
-                if mppt_2_err_0_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 30)
-            else:
-                mppt_2_err_0_timer.reset()
+                error_codes.append(base_val + 30)
 
             if mppt_mosfet_ovrht[1] == 1.0:
-                if mppt_2_err_1_timer.start_time is None:
-                    mppt_2_err_1_timer.start()
-                if mppt_2_err_1_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 31)
-            else:
-                mppt_2_err_1_timer.reset()
+                error_codes.append(base_val + 31)
 
             if mppt_batt_low[1] == 1.0:
-                if mppt_2_err_2_timer.start_time is None:
-                    mppt_2_err_2_timer.start()
-                if mppt_2_err_2_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 32)
-            else:
-                mppt_2_err_2_timer.reset()
+                error_codes.append(base_val + 32)
 
             if mppt_batt_full[1] == 1.0:
-                if mppt_2_err_3_timer.start_time is None:
-                    mppt_2_err_3_timer.start()
-                if mppt_2_err_3_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 33)
-            else:
-                mppt_2_err_3_timer.reset()
+                error_codes.append(base_val + 33)
 
             if mppt_12_undervolt[1] == 1.0:
-                if mppt_2_err_4_timer.start_time is None:
-                    mppt_2_err_4_timer.start()
-                if mppt_2_err_4_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 34)
-            else:
-                mppt_2_err_4_timer.reset()
-
-            # if mppt_hw_overcurrent[1] == 1.0:
-            #     if mppt_2_err_5_timer.start_time is None:
-            #         mppt_2_err_5_timer.start()
-            #     if mppt_2_err_5_timer.elapsed() >= threshold_crossing_time:
-            #         error_codes.append(base_val + 35)
-            # else:
-            #     mppt_2_err_5_timer.reset()
+                error_codes.append(base_val + 34)
 
             if mppt_hw_overcurrent[1] == 1.0:
-                if mppt_2_err_6_timer.start_time is None:
-                    mppt_2_err_6_timer.start()
-                if mppt_2_err_6_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 36)
-            else:
-                mppt_2_err_6_timer.reset()
+                error_codes.append(base_val + 35)
+
+            if mppt_hw_overcurrent[1] == 1.0:
+                error_codes.append(base_val + 36)
 
             if mppt_hw_overvolt[1] == 1.0:
-                if mppt_2_err_7_timer.start_time is None:
-                    mppt_2_err_7_timer.start()
-                if mppt_2_err_7_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 37)
-            else:
-                mppt_2_err_7_timer.reset()
+                error_codes.append(base_val + 37)
             
             
             if mppt_ip_curr_min[1] == 1.0:
-                if mppt_2_lim_0_timer.start_time is None:
-                    mppt_2_lim_0_timer.start()
-                if mppt_2_lim_0_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 38)
-            else:
-                mppt_2_lim_0_timer.reset()
+                error_codes.append(base_val + 38)
 
             if mppt_ip_curr_max[1] == 1.0:
-                if mppt_2_lim_1_timer.start_time is None:
-                    mppt_2_lim_1_timer.start()
-                if mppt_2_lim_1_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 39)
-            else:
-                mppt_2_lim_1_timer.reset()
+                error_codes.append(base_val + 39)
 
             if mppt_op_volt_max[1] == 1.0:
-                if mppt_2_lim_2_timer.start_time is None:
-                    mppt_2_lim_2_timer.start()
-                if mppt_2_lim_2_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 40)
-            else:
-                mppt_2_lim_2_timer.reset()
+                error_codes.append(base_val + 40)
 
             if mppt_mosfet_temp_limit[1] == 1.0:
-                if mppt_2_lim_3_timer.start_time is None:
-                    mppt_2_lim_3_timer.start()
-                if mppt_2_lim_3_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 41)
-            else:
-                mppt_2_lim_3_timer.reset()
+                error_codes.append(base_val + 41)
 
             if mppt_duty_cycle_min[1] == 1.0:
-                if mppt_2_lim_4_timer.start_time is None:
-                    mppt_2_lim_4_timer.start()
-                if mppt_2_lim_4_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 42)
-            else:
-                mppt_2_lim_4_timer.reset()
+                error_codes.append(base_val + 42)
 
             if mppt_duty_cycle_max[1] == 1.0:
-                if mppt_2_lim_5_timer.start_time is None:
-                    mppt_2_lim_5_timer.start()
-                if mppt_2_lim_5_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 43)
-            else:
-                mppt_2_lim_5_timer.reset()
+                error_codes.append(base_val + 43)
 
             if mppt_local_mppt[1] == 1.0:
-                if mppt_2_lim_6_timer.start_time is None:
-                    mppt_2_lim_6_timer.start()
-                if mppt_2_lim_6_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 44)
-            else:
-                mppt_2_lim_6_timer.reset()
+                error_codes.append(base_val + 44)
 
             if mppt_global_mppt[1] == 1.0:
-                if mppt_2_lim_7_timer.start_time is None:
-                    mppt_2_lim_7_timer.start()
-                if mppt_2_lim_7_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 45)
-            else:
-                mppt_2_lim_7_timer.reset()
+                error_codes.append(base_val + 45)
 
             #MPPT_3
             if mppt_input_volt[2] < min_input_volt:
-                if mppt_3_input_volt_timer.start_time is None:
-                    mppt_3_input_volt_timer.start()
-                if mppt_3_input_volt_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 46)
-            else:
-                mppt_3_input_volt_timer.reset()
+                error_codes.append(base_val + 46)
 
             if mppt_input_current[2] > max_input_current:
-                if mppt_3_input_current_timer.start_time is None:
-                    mppt_3_input_current_timer.start()
-                if mppt_3_input_current_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 47)
-            else:
-                mppt_3_input_current_timer.reset()
+                error_codes.append(base_val + 47)
             
 
             if mppt_output_volt[2] > max_output_volt:
-                if mppt_3_output_volt_timer.start_time is None:
-                    mppt_3_output_volt_timer.start()
-                if mppt_3_output_volt_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 48)
-            else:
-                mppt_3_output_volt_timer.reset()
+                error_codes.append(base_val + 48)
 
             if mppt_mosfet_temp[2] > max_mosfet_temp:
-                if mppt_3_mosfet_temp_timer.start_time is None:
-                    mppt_3_mosfet_temp_timer.start()
-                if mppt_3_mosfet_temp_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 49)
-            else:
-                mppt_3_mosfet_temp_timer.reset()
+                error_codes.append(base_val + 49)
 
             if mppt_controller_temp[2] > max_controller_temp:
-                if mppt_3_controller_temp_timer.start_time is None:
-                    mppt_3_controller_temp_timer.start()
-                if mppt_3_controller_temp_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 50)
-            else:
-                mppt_3_controller_temp_timer.reset()
+                error_codes.append(base_val + 50)
             
             if mppt_12V_aux_supply[2] < 12 - supply_12V_tol:
-                if mppt_3_12V_aux_timer.start_time is None:
-                    mppt_3_12V_aux_timer.start()
-                if mppt_3_12V_aux_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 51)
-            else:
-                mppt_3_12V_aux_timer.reset()
+                error_codes.append(base_val + 51)
 
             if mppt_3V_aux_supply[2] < 3 - supply_12V_tol:
-                if mppt_3_3V_aux_timer.start_time is None:
-                    mppt_3_3V_aux_timer.start()
-                if mppt_3_3V_aux_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 52)
-            else:
-                mppt_3_3V_aux_timer.reset()
+                error_codes.append(base_val + 52)
 
 
             if mppt_low_pwr_array[2] == 1.0:
-                if mppt_3_err_0_timer.start_time is None:
-                    mppt_3_err_0_timer.start()
-                if mppt_3_err_0_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 53)
-            else:
-                mppt_3_err_0_timer.reset()
+                error_codes.append(base_val + 53)
 
             if mppt_mosfet_ovrht[2] == 1.0:
-                if mppt_3_err_1_timer.start_time is None:
-                    mppt_3_err_1_timer.start()
-                if mppt_3_err_1_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 54)
-            else:
-                mppt_3_err_1_timer.reset()
+                error_codes.append(base_val + 54)
 
             if mppt_batt_low[2] == 1.0:
-                if mppt_3_err_2_timer.start_time is None:
-                    mppt_3_err_2_timer.start()
-                if mppt_3_err_2_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 55)
-            else:
-                mppt_3_err_2_timer.reset()
+                error_codes.append(base_val + 55)
 
             if mppt_batt_full[2] == 1.0:
-                if mppt_3_err_3_timer.start_time is None:
-                    mppt_3_err_3_timer.start()
-                if mppt_3_err_3_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 56)
-            else:
-                mppt_3_err_3_timer.reset()
+                error_codes.append(base_val + 56)
 
             if mppt_12_undervolt[2] == 1.0:
-                if mppt_3_err_4_timer.start_time is None:
-                    mppt_3_err_4_timer.start()
-                if mppt_3_err_4_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 57)
-            else:
-                mppt_3_err_4_timer.reset()
-
-            # if mppt_hw_overcurrent[2] == 1.0:
-            #     if mppt_3_err_5_timer.start_time is None:
-            #         mppt_3_err_5_timer.start()
-            #     if mppt_3_err_5_timer.elapsed() >= threshold_crossing_time:
-            #         error_codes.append(base_val + 58)
-            # else:
-            #     mppt_3_err_5_timer.reset()
+                error_codes.append(base_val + 57)
 
             if mppt_hw_overcurrent[2] == 1.0:
-                if mppt_3_err_6_timer.start_time is None:
-                    mppt_3_err_6_timer.start()
-                if mppt_3_err_6_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 59)
-            else:
-                mppt_3_err_6_timer.reset()
+                error_codes.append(base_val + 58)
+
+            if mppt_hw_overcurrent[2] == 1.0:
+                error_codes.append(base_val + 59)
 
             if mppt_hw_overvolt[2] == 1.0:
-                if mppt_3_err_7_timer.start_time is None:
-                    mppt_3_err_7_timer.start()
-                if mppt_3_err_7_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 60)
-            else:
-                mppt_3_err_7_timer.reset()
+                error_codes.append(base_val + 60)
             
             
             if mppt_ip_curr_min[2] == 1.0:
-                if mppt_3_lim_0_timer.start_time is None:
-                    mppt_3_lim_0_timer.start()
-                if mppt_3_lim_0_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 61)
-            else:
-                mppt_3_lim_0_timer.reset()
+                error_codes.append(base_val + 61)
 
             if mppt_ip_curr_max[2] == 1.0:
-                if mppt_3_lim_1_timer.start_time is None:
-                    mppt_3_lim_1_timer.start()
-                if mppt_3_lim_1_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 62)
-            else:
-                mppt_3_lim_1_timer.reset()
+                error_codes.append(base_val + 62)
 
             if mppt_op_volt_max[2] == 1.0:
-                if mppt_3_lim_2_timer.start_time is None:
-                    mppt_3_lim_2_timer.start()
-                if mppt_3_lim_2_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 63)
-            else:
-                mppt_3_lim_2_timer.reset()
+                error_codes.append(base_val + 63)
 
             if mppt_mosfet_temp_limit[2] == 1.0:
-                if mppt_3_lim_3_timer.start_time is None:
-                    mppt_3_lim_3_timer.start()
-                if mppt_3_lim_3_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 64)
-            else:
-                mppt_3_lim_3_timer.reset()
+                error_codes.append(base_val + 64)
 
             if mppt_duty_cycle_min[2] == 1.0:
-                if mppt_3_lim_4_timer.start_time is None:
-                    mppt_3_lim_4_timer.start()
-                if mppt_3_lim_4_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 65)
-            else:
-                mppt_3_lim_4_timer.reset()
+                error_codes.append(base_val + 65)
 
             if mppt_duty_cycle_max[2] == 1.0:
-                if mppt_3_lim_5_timer.start_time is None:
-                    mppt_3_lim_5_timer.start()
-                if mppt_3_lim_5_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 66)
-            else:
-                mppt_3_lim_5_timer.reset()
+                error_codes.append(base_val + 66)
 
             if mppt_local_mppt[2] == 1.0:
-                if mppt_3_lim_6_timer.start_time is None:
-                    mppt_3_lim_6_timer.start()
-                if mppt_3_lim_6_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 67)
-            else:
-                mppt_3_lim_6_timer.reset()
+                error_codes.append(base_val + 67)
 
             if mppt_global_mppt[2] == 1.0:
-                if mppt_3_lim_7_timer.start_time is None:
-                    mppt_3_lim_7_timer.start()
-                if mppt_3_lim_7_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 68)
-            else:
-                mppt_3_lim_7_timer.reset()
+                error_codes.append(base_val + 68)
             
             #MPPT_4
             if mppt_input_volt[3] < min_input_volt:
-                if mppt_4_input_volt_timer.start_time is None:
-                    mppt_4_input_volt_timer.start()
-                if mppt_4_input_volt_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 69)
-            else:
-                mppt_4_input_volt_timer.reset()
+                error_codes.append(base_val + 69)
 
             if mppt_input_current[3] > max_input_current:
-                if mppt_4_input_current_timer.start_time is None:
-                    mppt_4_input_current_timer.start()
-                if mppt_4_input_current_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 70)
-            else:
-                mppt_4_input_current_timer.reset()
+                error_codes.append(base_val + 70)
             
 
             if mppt_output_volt[3] > max_output_volt:
-                if mppt_4_output_volt_timer.start_time is None:
-                    mppt_4_output_volt_timer.start()
-                if mppt_4_output_volt_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 71)
-            else:
-                mppt_4_output_volt_timer.reset()
+                error_codes.append(base_val + 71)
 
             if mppt_mosfet_temp[3] > max_mosfet_temp:
-                if mppt_4_mosfet_temp_timer.start_time is None:
-                    mppt_4_mosfet_temp_timer.start()
-                if mppt_4_mosfet_temp_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 72)
-            else:
-                mppt_4_mosfet_temp_timer.reset()
+                error_codes.append(base_val + 72)
 
             if mppt_controller_temp[3] > max_controller_temp:
-                if mppt_4_controller_temp_timer.start_time is None:
-                    mppt_4_controller_temp_timer.start()
-                if mppt_4_controller_temp_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 73)
-            else:
-                mppt_4_controller_temp_timer.reset()
+                error_codes.append(base_val + 73)
             
             if mppt_12V_aux_supply[3] < 12 - supply_12V_tol:
-                if mppt_4_12V_aux_timer.start_time is None:
-                    mppt_4_12V_aux_timer.start()
-                if mppt_4_12V_aux_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 74)
-            else:
-                mppt_4_12V_aux_timer.reset()
+                error_codes.append(base_val + 74)
 
             if mppt_3V_aux_supply[3] < 3 - supply_12V_tol:
-                if mppt_4_3V_aux_timer.start_time is None:
-                    mppt_4_3V_aux_timer.start()
-                if mppt_4_3V_aux_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 75)
-            else:
-                mppt_4_3V_aux_timer.reset()
+                error_codes.append(base_val + 75)
 
 
             if mppt_low_pwr_array[3] == 1.0:
-                if mppt_4_err_0_timer.start_time is None:
-                    mppt_4_err_0_timer.start()
-                if mppt_4_err_0_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 76)
-            else:
-                mppt_4_err_0_timer.reset()
+                error_codes.append(base_val + 76)
 
             if mppt_mosfet_ovrht[3] == 1.0:
-                if mppt_4_err_1_timer.start_time is None:
-                    mppt_4_err_1_timer.start()
-                if mppt_4_err_1_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 77)
-            else:
-                mppt_4_err_1_timer.reset()
+                error_codes.append(base_val + 77)
 
             if mppt_batt_low[3] == 1.0:
-                if mppt_4_err_2_timer.start_time is None:
-                    mppt_4_err_2_timer.start()
-                if mppt_4_err_2_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 78)
-            else:
-                mppt_4_err_2_timer.reset()
+                error_codes.append(base_val + 78)
 
             if mppt_batt_full[3] == 1.0:
-                if mppt_4_err_3_timer.start_time is None:
-                    mppt_4_err_3_timer.start()
-                if mppt_4_err_3_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 79)
-            else:
-                mppt_4_err_3_timer.reset()
+                error_codes.append(base_val + 79)
 
             if mppt_12_undervolt[3] == 1.0:
-                if mppt_4_err_4_timer.start_time is None:
-                    mppt_4_err_4_timer.start()
-                if mppt_4_err_4_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 80)
-            else:
-                mppt_4_err_4_timer.reset()
-
-            # if mppt_hw_overcurrent[3] == 1.0:
-            #     if mppt_4_err_5_timer.start_time is None:
-            #         mppt_4_err_5_timer.start()
-            #     if mppt_4_err_5_timer.elapsed() >= threshold_crossing_time:
-            #         error_codes.append(base_val + 81)
-            # else:
-            #     mppt_4_err_5_timer.reset()
+                error_codes.append(base_val + 80)
 
             if mppt_hw_overcurrent[3] == 1.0:
-                if mppt_4_err_6_timer.start_time is None:
-                    mppt_4_err_6_timer.start()
-                if mppt_4_err_6_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 82)
-            else:
-                mppt_4_err_6_timer.reset()
+               error_codes.append(base_val + 81)
+
+            if mppt_hw_overcurrent[3] == 1.0:
+                error_codes.append(base_val + 82)
 
             if mppt_hw_overvolt[3] == 1.0:
-                if mppt_4_err_7_timer.start_time is None:
-                    mppt_4_err_7_timer.start()
-                if mppt_4_err_7_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 83)
-            else:
-                mppt_4_err_7_timer.reset()
+                error_codes.append(base_val + 83)
             
             
             if mppt_ip_curr_min[3] == 1.0:
-                if mppt_4_lim_0_timer.start_time is None:
-                    mppt_4_lim_0_timer.start()
-                if mppt_4_lim_0_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 84)
-            else:
-                mppt_4_lim_0_timer.reset()
+                error_codes.append(base_val + 84)
 
             if mppt_ip_curr_max[3] == 1.0:
-                if mppt_4_lim_1_timer.start_time is None:
-                    mppt_4_lim_1_timer.start()
-                if mppt_4_lim_1_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 85)
-            else:
-                mppt_4_lim_1_timer.reset()
+                error_codes.append(base_val + 85)
 
             if mppt_op_volt_max[3] == 1.0:
-                if mppt_4_lim_2_timer.start_time is None:
-                    mppt_4_lim_2_timer.start()
-                if mppt_4_lim_2_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 86)
-            else:
-                mppt_4_lim_2_timer.reset()
+                error_codes.append(base_val + 86)
 
             if mppt_mosfet_temp_limit[3] == 1.0:
-                if mppt_4_lim_3_timer.start_time is None:
-                    mppt_4_lim_3_timer.start()
-                if mppt_4_lim_3_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 87)
-            else:
-                mppt_4_lim_3_timer.reset()
+                error_codes.append(base_val + 87)
 
             if mppt_duty_cycle_min[3] == 1.0:
-                if mppt_4_lim_4_timer.start_time is None:
-                    mppt_4_lim_4_timer.start()
-                if mppt_4_lim_4_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 88)
-            else:
-                mppt_4_lim_4_timer.reset()
+                error_codes.append(base_val + 88)
 
             if mppt_duty_cycle_max[3] == 1.0:
-                if mppt_4_lim_5_timer.start_time is None:
-                    mppt_4_lim_5_timer.start()
-                if mppt_4_lim_5_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 89)
-            else:
-                mppt_4_lim_5_timer.reset()
+                error_codes.append(base_val + 89)
 
             if mppt_local_mppt[3] == 1.0:
-                if mppt_4_lim_6_timer.start_time is None:
-                    mppt_4_lim_6_timer.start()
-                if mppt_4_lim_6_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 90)
-            else:
-                mppt_4_lim_6_timer.reset()
+                error_codes.append(base_val + 90)
 
             if mppt_global_mppt[3] == 1.0:
-                if mppt_4_lim_7_timer.start_time is None:
-                    mppt_4_lim_7_timer.start()
-                if mppt_4_lim_7_timer.elapsed() >= threshold_crossing_time:
-                    error_codes.append(base_val + 91)
-            else:
-                mppt_4_lim_7_timer.reset()
+                error_codes.append(base_val + 91)
             
             mppt_node.control_pub_data = error_codes
 

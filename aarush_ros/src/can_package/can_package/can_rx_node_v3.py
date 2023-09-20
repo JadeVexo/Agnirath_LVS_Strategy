@@ -3,6 +3,7 @@ from rclpy.node import Node
 from std_msgs.msg import Float32MultiArray as rosarray
 import random
 import can
+import subprocess
 #import struct
 import cantools
 from time import sleep
@@ -15,6 +16,8 @@ class CAN_RX_NODE(Node):
     def init_can_publisher(self, topic, timer_period):
         self.can_publisher = self.create_publisher(rosarray, topic, 100)
         self.can_timer = self.create_timer(timer_period, self.publish_can_data)
+        print(subprocess.run(["/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/can_package/can_package/can_start.sh",
+                "arguments"], shell=True))
         #self.bus = can.interfacer.Bus(bustype='socketcan', channel='can0', bitrate=500000)
         self.db = cantools.database.load_file('/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/can_package/can_package/DBC_Files/combined_dbc.dbc')
         self.can_pub_data = None

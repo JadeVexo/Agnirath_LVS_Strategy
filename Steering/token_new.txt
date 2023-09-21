@@ -1,1 +1,11 @@
 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
+"P9_12", - buzzer 
+"P8_11", - r4
+"P8_12", - r3
+"P8_15", - r2
+"P8_16", - r1
+"P8_17", - mid
+"P8_7",  - l1
+"P8_8",  - l2
+"P8_9",  - l3
+"P8_10"  - l4

@@ -19,6 +19,8 @@ import can
 from time import sleep
 import struct
 
+outPins = ["P9_12", "P8_11", "P8_12", "P8_15", "P8_16", "P8_17", "P8_7", "P8_8", "P8_9", "P8_10"]
+
 class Button:
     def __init__(self, PIN):
         self.PIN = PIN  # give pin no. as a string like P9_13
@@ -107,35 +109,25 @@ class MPU_6050:
 
 
 class Indicator:
-    def __init__(self, IND_X_PIN, IND_SW_PIN):
-        self.IND_X_PIN = IND_X_PIN
-        self.IND_SW_PIN = IND_SW_PIN
+    def __init__(self, IND_R_PIN, IND_L_PIN):
+        self.IND_R_PIN = IND_R_PIN
+        self.IND_L_PIN = IND_L_PIN
 
-        # Set thresholds for right and left indication
-
-        self.rt_th = 0.75
-        self.lt_th = 0.25
-
-        # make instances of the Classes you are using to get inputs from the joystick
-
-        self.xIn = AnalogIn(self.IND_X_PIN)
-        self.swIn = Button(self.IND_SW_PIN)
+        self.L_ind = Button(self.IND_L_PIN)
+        self.R_ind = Button(self.IND_R_PIN)
 
     def indicate(self):
-        self.xVal = self.xIn.readVal()
-        # self.yVal = self.yIn.readVal()
-        self.swVal = self.swIn.isPressed()
+        self.L_val = self.L_ind.isPressed()
+        self.R_val = self.R_ind.isPressed()
 
-        if self.xVal >= self.rt_th:
-            print("R On")
-            return 1
 
-        if self.xVal <= self.lt_th:
-            print("L On")
+        if self.L_val:
+            print("L on")
             return 2
-
-        if self.swVal:
-            print("Indicator Off")
+        elif self.R_val:
+            print("R on")
+            return 1
+        else:
             return 0
 
 
@@ -197,8 +189,8 @@ DS_Y_PIN = "P9_39"
 DS_SW_PIN = "P8_14"
 
 # Indicator Pins
-IND_X_PIN = "P9_38"
-IND_SW_PIN = "P9_41"
+IND_R_PIN = "P9_42"
+IND_L_PIN = "P9_41"
 
 # OTHER BUTTON PINS
 HORN_PIN = "P9_11"
@@ -215,7 +207,7 @@ horn = Button(HORN_PIN)
 button3 = Button(B3_PIN)
 button4 = Button(B4_PIN)
 button5 = Button(B5_PIN)
-indicator = Indicator(IND_X_PIN, IND_SW_PIN)
+indicator = Indicator(IND_R_PIN, IND_L_PIN)
 
 
 class VariableThread(QThread):
@@ -237,6 +229,7 @@ class VariableThread(QThread):
         self.motor_velocity = 0
         self.vehicle_velocity = 0
         self.battery_SOC = 0
+        self.old_state = 0
         self.state = 0
         self.variables = [
             "speed",
@@ -262,6 +255,8 @@ class VariableThread(QThread):
             elif state == 0:
                 message = can.Message(arbitration_id = 200, data = 0)
                 bus.send(message)
+                for pin in outPins:
+                    GPIO.output(pin,GPIO.LOW)
         except can.CanError:
             print("CAN error")
         finally:
@@ -276,6 +271,8 @@ class VariableThread(QThread):
             elif state == 0:
                 message = can.Message(arbitration_id = 201, data = 0)
                 bus.send(message)
+                for pin in outPins:
+                    GPIO.output(pin,GPIO.LOW)
         except can.CanError:
             print("CAN error")
         finally:
@@ -304,6 +301,8 @@ class VariableThread(QThread):
             elif state == 0:
                 message = can.Message(arbitration_id = 203, data = 0)
                 bus.send(message)
+                for pin in outPins:
+                    GPIO.output(pin,GPIO.LOW)
         except can.CanError:
             print("CAN error")
         finally:
@@ -318,6 +317,8 @@ class VariableThread(QThread):
             print("CAN error")
         finally:
             bus.shutdown()
+
+   
             
             
     def run(self):
@@ -343,10 +344,37 @@ class VariableThread(QThread):
                     self.battery_SOC = struct('<f',data[4:8])
                 if arbitration_id == 0: #Change to what the main PCB transmits for state
                     self.state = int(data)
+                    
+
+                if self.old_state != self.state:
+                    cgpins =  ['P8_10', 'P8_9', 'P8_8', 'P8_7', 'P8_17', 'P8_16', 'P8_15', 'P8_12', 'P8_11']
+                    for i in range(5):
+                        for pin in cgpins:
+                            GPIO.output(pin, GPIO.HIGH)
+                        sleep(0.5)  
+                        for pin in cgpins:
+                            GPIO.output(pin, GPIO.LOW)
+                        sleep(0.5)  
+                    self.old_state = self.state
+
+                else:
+                    for pin in outPins:
+                        GPIO.output(pin,GPIO.LOW)
+
+
 
                 if button3.isPressed():
                     self.hazard(1)
                     self.hazardval = 1
+                    rpins = ['P8_17', 'P8_16', 'P8_15', 'P8_12', 'P8_11']
+                    lpins = ['P8_17', 'P8_7', 'P8_8', 'P8_9', 'P8_10']
+                    for pin1, pin2 in zip(rpins,lpins):
+                        GPIO.output(pin1, GPIO.HIGH)
+                        GPIO.output(pin2, GPIO.HIGH)
+                        sleep(0.5)
+                        GPIO.output(pin1, GPIO.LOW)
+                        GPIO.output(pin2, GPIO.LOW)
+    
                 else:
                     self.hazardval = 0
 
@@ -377,16 +405,29 @@ class VariableThread(QThread):
                     self.right_indicator(1)
                     self.Lindicator = 0
                     self.left_indicator(0)
+                    routPins = ["P8_17","P8_16","P8_15","P8_12","P8_11","P9_12"]
+                    for pin in routPins:
+                        GPIO.output(pin,GPIO.HIGH)
+                        sleep(0.07)
+                        GPIO.output(pin,GPIO.LOW)
                 elif indicator.indicate() == 2:
                     self.Lindicator = 1
                     self.left_indicator(1)
                     self.Rindicator = 0
                     self.right_indicator(0)
+                    loutPins = ["P8_17","P8_7","P8_8","P8_9","P8_10","P9_12"]
+                    for pin in loutPins:
+                        GPIO.output(pin,GPIO.HIGH)
+                        sleep(0.07)
+                        GPIO.output(pin,GPIO.LOW)
+
                 else:
                     self.Rindicator = 0
                     self.right_indicator(0)
                     self.Lindicator = 0
                     self.left_indicator(0)
+                    for pin in outPins:
+                        GPIO.output(pin,GPIO.LOW)
                 
                 values = [self.motor_current,self.motor_velocity,self.vehicle_velocity,self.battery_SOC,self.state,self.mode,self.hazardval,self.hornval,self.radio,self.cruiseval,self.Lindicator,self.Rindicator,self.disrem ]
                 self.variables_received.emit(values)
@@ -406,6 +447,9 @@ class SteeringDisplay(QWidget):
         # self.setGeometry(500, 100, 800, 480)
         self.setFixedSize(800, 480)
 
+        for pin in outPins:
+            GPIO.setup(pin, GPIO.OUT)
+
         self.speed = 0
         self.max_speed = 150
 
@@ -423,6 +467,7 @@ class SteeringDisplay(QWidget):
         self.battery_max = 100
 
         self.mode = 0
+        self.State = 0
         self.horn_value = 0
         self.radio_value = 0
         self.cruise_value = 0
@@ -440,7 +485,7 @@ class SteeringDisplay(QWidget):
         self.speed_label.setAlignment(Qt.AlignCenter)
         self.speed_label.setStyleSheet(
             "font-family: 'Good Times'; font-size: 40px; font-weight: 400; "
-            "line-height: 48px; letter-spacing: 0em; color: #FF4D00; "
+            "line-height: 48px; color: #FF4D00; "
             "background-color: #1E1E1E"
         )
 
@@ -449,35 +494,45 @@ class SteeringDisplay(QWidget):
         self.dist_label.setAlignment(Qt.AlignCenter)
         self.dist_label.setStyleSheet(
             "font-family: 'Good Times'; font-size: 15px; font-weight: 400; "
-            "line-height: 48px; letter-spacing: 0em; color: #FFFFFF; "
+            "line-height: 48px; color: #FFFFFF; "
             "background-color: #1E1E1E"
         )
-        self.dist_label.setText("DST.RMN\n3000")
+        self.dist_label.setText("DST\nRMN\n3000")
 
-        self.regen_label = QLabel(self)
-        self.regen_label.setGeometry(640, 400, 100, 50)
-        self.regen_label.setAlignment(Qt.AlignCenter)
-        self.regen_label.setStyleSheet(
-            "font-family: 'Good Times'; font-size: 12px; font-weight: 400; "
-            "line-height: 48px; letter-spacing: 0em; color: #FFFFFF; "
+        self.state_label = QLabel(self)
+        self.state_label.setGeometry(640, 357, 100, 50)
+        self.state_label.setAlignment(Qt.AlignCenter)
+        self.state_label.setStyleSheet(
+            "font-family: 'Good Times'; font-size: 30px; font-weight: 400; "
+            "line-height: 48px; color: #FFFFFF; "
+            "background-color: #1E1E1E"
         )
-        self.regen_label.setText("0%")
+        self.state_label.setText("OFF")
+
+        # self.regen_label = QLabel(self)
+        # self.regen_label.setGeometry(640, 400, 100, 50)
+        # self.regen_label.setAlignment(Qt.AlignCenter)
+        # self.regen_label.setStyleSheet(
+        #     "font-family: 'Good Times'; font-size: 12px; font-weight: 400; "
+        #     "line-height: 48px; color: #FFFFFF; "
+        # )
+        # self.regen_label.setText("0%")
 
         self.rpm_label = QLabel(self)
         self.rpm_label.setGeometry(65, 400, 100, 50)
         self.rpm_label.setAlignment(Qt.AlignCenter)
         self.rpm_label.setStyleSheet(
             "font-family: 'Good Times'; font-size: 12px; font-weight: 400; "
-            "line-height: 48px; letter-spacing: 0em; color: #FFFFFF; "
+            "line-height: 48px; color: #FFFFFF; "
         )
         self.rpm_label.setText("0")
 
         self.dmode_label = QLabel(self)
-        self.dmode_label.setGeometry(350, 265, 100, 50)
+        self.dmode_label.setGeometry(350, 260, 100, 50)
         self.dmode_label.setAlignment(Qt.AlignCenter)
         self.dmode_label.setStyleSheet(
             "font-family: 'Good Times'; font-size: 35px; font-weight: 400; "
-            "line-height: 48px; letter-spacing: 0em; color: #FFFFFF; "
+            "line-height: 48px; color: #FFFFFF; "
         )
         self.dmode_label.setText("N")
 
@@ -517,7 +572,7 @@ class SteeringDisplay(QWidget):
         self.regenellipse.setGeometry(600, 290, 350, 175)
         self.regenellipse.setPixmap(
             QPixmap(
-                "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/Regen.png"
+                "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/state.png"
             ).scaled(350, 175, Qt.AspectRatioMode.KeepAspectRatio)
         )
 
@@ -554,11 +609,9 @@ class SteeringDisplay(QWidget):
         self.cruise_inactive = QImage(
             "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/cruise_inactive.png"
         )
-
         self.hazard_active = QImage(
             "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/hazard_active.png"
         )
-
         self.hazard_inactive = QImage(
             "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/hazard_inactive.png"
         )
@@ -567,6 +620,8 @@ class SteeringDisplay(QWidget):
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_time)
         self.timer.start(1000)
+
+        
 
     def update_time(self):
         current = QTime.currentTime()
@@ -580,6 +635,8 @@ class SteeringDisplay(QWidget):
         self.update_rpm()
         self.mode_value = values[5]
         self.update_mode()
+        self.state_value = values[4]
+        self.update_state()
         self.battery_value = values[3]
         self.update_battery()
         self.disrem_value = values[12]
@@ -607,7 +664,7 @@ class SteeringDisplay(QWidget):
 
         self.draw_needlerpm(painter)
 
-        self.draw_needleregen(painter)
+        # self.draw_needleregen(painter)
 
         self.batterystatus(painter)
 
@@ -660,8 +717,19 @@ class SteeringDisplay(QWidget):
             self.dmode_label.setText("R")
         # self.update()
 
+    def update_state(self):
+        self.State = self.state_value
+        if self.State == 0:
+            self.state_label.setText("SAFE")
+        elif self.State == 1:
+            self.state_label.setText("OFF")
+        elif self.State == 2:
+            self.state_label.setText("ON")
+        else:
+            self.state_label.setText("DRIVE")
+
     def update_disrem(self):
-        self.dist_label.setText("DST.RMN\n" + str(self.disrem_value))
+        self.dist_label.setText("DST\nRMN\n" + str(self.disrem_value))
         # self.update()
 
     def draw_indicators(self, painter):
@@ -694,18 +762,18 @@ class SteeringDisplay(QWidget):
             painter.drawImage(radio_rect, self.radio_inactive)
 
         # Draw cruise control status
-        cruise_rect = QRectF(375, 125, 40, 40)
+        cruise_rect = QRectF(375, 130, 40, 40)
         if self.cruise_value:
             painter.drawImage(cruise_rect, self.cruise_active)
         else:
             painter.drawImage(cruise_rect, self.cruise_inactive)
 
         # Draw hazard light status
-        #hazard_rect = (380, 325, 40, 40)
-        #if self.hazard_value:
-        #    painter.drawImage(hazard_rect, self.hazard_active)
-        #else:
-        #    painter.drawImage(hazard_rect, self.hazard_inactive)
+        hazard_rect = QRectF(380, 332, 40, 40)
+        if self.hazard_value:
+           painter.drawImage(hazard_rect, self.hazard_active)
+        else:
+           painter.drawImage(hazard_rect, self.hazard_inactive)
 
     def update_battery(self):
         self.battery = self.battery_value
@@ -790,40 +858,40 @@ class SteeringDisplay(QWidget):
         # Reset the painter transform
         painter.resetTransform()
 
-    def update_regen(self):
-        self.regen = self.regen_value
-        self.regen_label.setText(str(self.regen))
-        # self.update()
+    # def update_regen(self):
+    #     self.regen = self.regen_value
+    #     self.regen_label.setText(str(self.regen))
+    #     # self.update()
 
-    def draw_needleregen(self, painter):
-        needle_length = self.regen_needle_length
-        needle_center = QPoint(self.width() - 113, self.height() - 100)
+    # def draw_needleregen(self, painter):
+    #     needle_length = self.regen_needle_length
+    #     needle_center = QPoint(self.width() - 113, self.height() - 100)
 
-        # Calculate the angle based on the RPM value
-        regen_angle = (self.regen / self.regen_max) * 270
+    #     # Calculate the angle based on the RPM value
+    #     regen_angle = (self.regen / self.regen_max) * 270
 
-        # Rotate the painter to the desired angle
-        painter.translate(needle_center)
-        painter.rotate(45 + regen_angle)
-        painter.translate(-needle_center)
+    #     # Rotate the painter to the desired angle
+    #     painter.translate(needle_center)
+    #     painter.rotate(45 + regen_angle)
+    #     painter.translate(-needle_center)
 
-        # Define the needle shape as a polygon
-        needle_points = QPolygon(
-            [
-                QPoint(needle_center.x() - 3, needle_center.y() - 10),
-                QPoint(needle_center.x() + 3, needle_center.y() - 10),
-                QPoint(needle_center.x(), needle_center.y() + needle_length),
-            ]
-        )
+    #     # Define the needle shape as a polygon
+    #     needle_points = QPolygon(
+    #         [
+    #             QPoint(needle_center.x() - 3, needle_center.y() - 10),
+    #             QPoint(needle_center.x() + 3, needle_center.y() - 10),
+    #             QPoint(needle_center.x(), needle_center.y() + needle_length),
+    #         ]
+    #     )
 
-        # Set the needle color and draw it
-        needle_color = QColor(255, 255, 255)
-        painter.setPen(QPen(needle_color, 2))
-        painter.setBrush(needle_color)
-        painter.drawPolygon(needle_points)
+        # # Set the needle color and draw it
+        # needle_color = QColor(255, 255, 255)
+        # painter.setPen(QPen(needle_color, 2))
+        # painter.setBrush(needle_color)
+        # painter.drawPolygon(needle_points)
 
-        # Reset the painter transform
-        painter.resetTransform()
+        # # Reset the painter transform
+        # painter.resetTransform()
 
     def time(self, painter):
         painter.begin(self)
@@ -831,7 +899,7 @@ class SteeringDisplay(QWidget):
         image = QImage(
             "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/Rectangle.png"
         )
-        painter.drawImage(QPoint(325, 390), image)
+        painter.drawImage(QPoint(330, 390), image)
 
         pen = QPen(Qt.white)
         pen.setWidth(5)
@@ -846,7 +914,7 @@ class SteeringDisplay(QWidget):
         time = self.current_time
         text_width = fm.width(time)
         text_height = fm.height()
-        text_x = 323 + (image.width() - text_width) // 2
+        text_x = 329 + (image.width() - text_width) // 2
         text_y = 430 + (image.height() - text_height) // 2
         painter.drawText(text_x, text_y, time)
 

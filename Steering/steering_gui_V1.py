@@ -227,6 +227,8 @@ class VariableThread(QThread):
         self.Rindicator = 0
         self.Lindicator = 0
         self.disrem = 3000
+        self.cruiseval = 0
+        self.old_cruise = 0
         self.hazardval = 0
         self.hornval = 0
         self.radio = 0
@@ -356,14 +358,14 @@ class VariableThread(QThread):
 
                 if button5.isPressed():
                     if self.old_cruise == 1:
-                        self.cruise = 0
-                        self.old_cruise = self.cruise
+                        self.cruiseval = 0
+                        self.old_cruise = self.cruiseval
                     else:
-                        self.cruise = 1
+                        self.cruiseval = 1
                         self.cruise(vehicle_velocity)
-                        self.old_cruise = self.cruise
+                        self.old_cruise = self.cruiseval
                 else:
-                    self.cruise = self.old_cruise
+                    self.cruiseval = self.old_cruise
                 
                 if indicator.indicate() == 1:
                     self.Rindicator = 1
@@ -381,7 +383,7 @@ class VariableThread(QThread):
                     self.Lindicator = 0
                     self.left_indicator(0)
                 
-                values = [motor_current,motor_velocity,vehicle_velocity,battery_SOC,state,self.mode,self.hazardval,self.hornval,self.radio,self.cruise,self.Lindicator,self.Rindicator,self.disrem ]
+                values = [motor_current,motor_velocity,vehicle_velocity,battery_SOC,state,self.mode,self.hazardval,self.hornval,self.radio,self.cruiseval,self.Lindicator,self.Rindicator,self.disrem ]
                 self.variables_received.emit(values)
 
 

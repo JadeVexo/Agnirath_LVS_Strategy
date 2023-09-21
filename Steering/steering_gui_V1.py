@@ -12,7 +12,210 @@ from PyQt5.QtGui import (
     QFontMetrics,
 )
 from PyQt5.QtCore import Qt, QRectF, QTimer, QThread, pyqtSignal, QPoint, QTime
-import socket
+import Adafruit_BBIO.GPIO as GPIO
+import Adafruit_BBIO.ADC as ADC
+import smbus
+import can
+from time import sleep
+import struct
+
+class Button:
+    def __init__(self, PIN):
+        self.PIN = PIN  # give pin no. as a string like P9_13
+        GPIO.setup(self.PIN, GPIO.IN, initial=GPIO.LOW)
+
+    def isPressed(self):
+        if GPIO.input(self.PIN):
+            return 1
+
+        else:
+            return 0
+
+
+class AnalogIn:
+    def __init__(self, aPin):
+        self.aPin = aPin
+        ADC.setup()
+
+    def readVal(self):
+        self.val = ADC.read(self.aPin)
+        return self.val
+
+
+class MPU_6050:
+    def __init__(self, MPU_BUS_NO):
+        # MPU6050 registers addresses
+        self.MPU6050_ADDR = 0x68
+        self.PWR_MGMT_1 = 0x6B
+        self.SMPLRT_DIV = 0x19
+        self.CONFIG = 0x1A
+        self.GYRO_CONFIG = 0x1B
+        self.ACCEL_CONFIG = 0x1C
+        self.ACCEL_XOUT = 0x3B
+        self.ACCEL_YOUT = 0x3D
+        self.ACCEL_ZOUT = 0x3F
+        self.GYRO_XOUT = 0x43
+        self.GYRO_YOUT = 0x45
+        self.GYRO_ZOUT = 0x47
+
+        self.MPU_BUS_NO = MPU_BUS_NO
+        self.MPU_BUS = smbus.SMBus(self.MPU_BUS_NO)
+        self.MPU_BUS.write_byte_data(self.MPU6050_ADDR, self.PWR_MGMT_1, 0x00)
+        # Configure the accelerometer and gyroscope
+        self.MPU_BUS.write_byte_data(self.MPU6050_ADDR, self.SMPLRT_DIV, 0x07)
+        self.MPU_BUS.write_byte_data(self.MPU6050_ADDR, self.CONFIG, 0x06)
+        self.MPU_BUS.write_byte_data(self.MPU6050_ADDR, self.GYRO_CONFIG, 0x18)
+        self.MPU_BUS.write_byte_data(self.MPU6050_ADDR, self.ACCEL_CONFIG, 0x01)
+
+    def read_raw_data(self, addr):
+        self.high = self.MPU_BUS.read_byte_data(self.MPU6050_ADDR, addr)
+        self.low = self.MPU_BUS.read_byte_data(self.MPU6050_ADDR, addr + 1)
+        self.value = (self.high << 8) + self.low
+
+        if self.value > 32767:
+            self.value = self.value - 65536
+        return self.value
+
+    def get_data(self):
+        #       def read_raw_data(self,addr):
+        #
+        #           self.high = self.MPU_BUS.read_byte_data(self.MPU6050_ADDR, addr)
+        #           self.low = self.MPU_BUS.read_byte_data(self.MPU6050_ADDR, addr + 1)
+        #           self.value = (self.high << 8) + self.lowlow
+        #
+        #           if self.value > 32767:
+        #               self.value = self.value - 65536
+        #           return self.value
+
+        self.accel_x = self.read_raw_data(self.ACCEL_XOUT)
+        self.accel_y = self.read_raw_data(self.ACCEL_YOUT)
+        self.accel_z = self.read_raw_data(self.ACCEL_ZOUT)
+
+        # Read gyroscope data
+        self.gyro_x = self.read_raw_data(self.GYRO_XOUT)
+        self.gyro_y = self.read_raw_data(self.GYRO_YOUT)
+        self.gyro_z = self.read_raw_data(self.GYRO_ZOUT)
+
+        return (
+            self.accel_x,
+            self.accel_y,
+            self.accel_z,
+            self.gyro_x,
+            self.gyro_y,
+            self.gyro_z,
+        )
+
+
+class Indicator:
+    def __init__(self, IND_X_PIN, IND_SW_PIN):
+        self.IND_X_PIN = IND_X_PIN
+        self.IND_SW_PIN = IND_SW_PIN
+
+        # Set thresholds for right and left indication
+
+        self.rt_th = 0.75
+        self.lt_th = 0.25
+
+        # make instances of the Classes you are using to get inputs from the joystick
+
+        self.xIn = AnalogIn(self.IND_X_PIN)
+        self.swIn = Button(self.IND_SW_PIN)
+
+    def indicate(self):
+        self.xVal = self.xIn.readVal()
+        # self.yVal = self.yIn.readVal()
+        self.swVal = self.swIn.isPressed()
+
+        if self.xVal >= self.rt_th:
+            print("R On")
+            return 1
+
+        if self.xVal <= self.lt_th:
+            print("L On")
+            return 2
+
+        if self.swVal:
+            print("Indicator Off")
+            return 0
+
+
+class DriveSelect:
+    def __init__(self, X_PIN, Y_PIN, SW_PIN):
+        self.X_PIN = X_PIN
+        self.Y_PIN = Y_PIN
+        self.SW_PIN = SW_PIN
+
+        self.rt_th = 0.75
+        self.lt_th = 0.25
+        self.up_th = 0.75
+        self.dn_th = 0.25
+
+        self.xIn = AnalogIn(self.X_PIN)
+        self.yIn = AnalogIn(self.Y_PIN)
+        self.swIn = Button(self.SW_PIN)
+        self.mode = 0
+
+    def mode_select(self):
+        self.xVal = self.xIn.readVal()
+        self.yVal = self.yIn.readVal()
+        self.swVal = self.swIn.isPressed()
+
+        if self.xVal >= self.rt_th:
+            print("D1")
+            self.mode = 2
+            return self.mode
+
+        elif self.xVal <= self.lt_th:
+            print("D2")
+            self.mode = 1
+            return self.mode
+
+        elif self.yVal >= self.up_th:
+            print("N")
+            self.mode = 0
+            return self.mode
+
+        elif self.yVal <= self.dn_th:
+            print("R")
+            self.mode = 3
+            return self.mode
+
+        elif self.swVal:
+            print("Cruise off")
+
+        else:
+            return self.mode
+
+
+# MPU PINS AND BUS
+MPU_I2C_BUS = 2
+
+# DRIVE SELECT PINS
+CLUTCH_PIN = "P9_23"  # change this
+DS_X_PIN = "P9_40"
+DS_Y_PIN = "P9_39"
+DS_SW_PIN = "P8_14"
+
+# Indicator Pins
+IND_X_PIN = "P9_38"
+IND_SW_PIN = "P9_41"
+
+# OTHER BUTTON PINS
+HORN_PIN = "P9_11"
+B3_PIN = "P9_27"
+B4_PIN = "P8_26"
+B5_PIN = "P8_19"
+
+# test_stick = Joystick(xpin,ypin,swpin)
+
+# imu1 = MPU_6050(MPU_I2C_BUS)
+clutch = Button(CLUTCH_PIN)
+dr_sel = DriveSelect(DS_X_PIN, DS_Y_PIN, DS_SW_PIN)
+horn = Button(HORN_PIN)
+button3 = Button(B3_PIN)
+button4 = Button(B4_PIN)
+button5 = Button(B5_PIN)
+indicator = Indicator(IND_X_PIN, IND_SW_PIN)
 
 
 class VariableThread(QThread):
@@ -20,6 +223,14 @@ class VariableThread(QThread):
 
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.bus = can.interface.Bus(bustype='socketcan', channel='can1', bitrate=500000)
+        self.Rindicator = 0
+        self.Lindicator = 0
+        self.disrem = 3000
+        self.hazardval = 0
+        self.hornval = 0
+        self.radio = 0
+        self.mode = 0
         self.variables = [
             "speed",
             "rpm",
@@ -34,29 +245,150 @@ class VariableThread(QThread):
             "Lindicator",
             "Rindicator",
         ]
-        self.socket = None
+    
+    def right_indicator(self,state):
+        bus = can.interface.Bus(bustype='socketcan', channel='can1', bitrate=500000)
+        try: 
+            if state == 1:
+                message = can.Message(arbitration_id = 200, data = 1)
+                bus.send(message)
+            elif state == 0:
+                message = can.Message(arbitration_id = 200, data = 0)
+                bus.send(message)
+        except can.CanError:
+            print("CAN error")
+        finally:
+            bus.shutdown()
 
-    def run(self):
-        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.socket.connect(("localhost", 8888))
+    def left_indicator(self,state):
+        bus = can.interface.Bus(bustype='socketcan', channel='can1', bitrate=500000)
+        try:
+            if state == 1:
+                message = can.Message(arbitration_id = 201, data = 1)
+                bus.send(message)
+            elif state == 0:
+                message = can.Message(arbitration_id = 201, data = 0)
+                bus.send(message)
+        except can.CanError:
+            print("CAN error")
+        finally:
+            bus.shutdown()
 
-        while True:
-            variable_data = self.socket.recv(1024)
+    def horn(self,state):
+        bus = can.interface.Bus(bustype='socketcan', channel='can1', bitrate=500000)
+        try:
+            if state == 1:
+                message = can.Message(arbitration_id = 202, data = 1)
+                bus.send(message)
+            elif state == 0:
+                message = can.Message(arbitration_id = 202, data = 0)
+                bus.send(message)
+        except can.CanError:
+            print("CAN error")
+        finally:
+            bus.shutdown()
+
+    def hazard(self,state):
+        bus = can.interface.Bus(bustype='socketcan', channel='can1', bitrate=500000)
+        try:
+            if state == 1:
+                message = can.Message(arbitration_id = 203, data = 1)
+                bus.send(message)
+            elif state == 0:
+                message = can.Message(arbitration_id = 203, data = 0)
+                bus.send(message)
+        except can.CanError:
+            print("CAN error")
+        finally:
+            bus.shutdown()
+
+    def cruise(self,speed):
+        bus = can.interface.Bus(bustype='socketcan', channel='can1', bitrate=500000)
+        try:
+            message = can.Message(arbitration_id = 204, data = speed)
+            bus.send(message)
+        except can.CanError:
+            print("CAN error")
+        finally:
+            bus.shutdown()
             
-            if not variable_data:
-                break
-            variable_values = variable_data.decode().strip().split()
+            
+    def run(self):
+        
+        try:
+            while True:
+                self.disrem -= 10
+                if self.disrem < 0:
+                    self.disrem == 3000
+                self.mode += 1
+                if self.mode > 3:
+                    self.mode = 0
 
-            values = []
-            for i, value in enumerate(variable_values):
-                variable_name = self.variables[i]
-                variable_value = int(value)
-                values.append((variable_name, variable_value))
+                response = self.bus.recv(timeout=2)
+                data = response.data
+                arbitration_id = response.arbitration_id
+                if arbitration_id == 1026:
+                    motor_current = struct('<f',data[4:8])
+                if arbitration_id == 1027:
+                    motor_velocity = struct('<f',data[0:4])
+                    vehicle_velocity = struct('<f',data[4:8])
+                if arbitration_id == 1781:
+                    battery_SOC = struct('<f',data[4:8])
+                if arbitration_id == 0: #Change to what the main PCB transmits for state
+                    state = int(data)
 
-            self.variables_received.emit(values)
-            print(values)
+                if button3.isPressed():
+                    self.hazard(1)
+                    self.hazardval = 1
+                else:
+                    self.hazardval = 0
 
-        self.socket.close()
+                if horn.isPressed():
+                    self.horn(1)
+                    self.hornval = 1
+                else:
+                    self.hornval = 0
+
+                if button4.isPressed():
+                    self.radio = 1
+                else:
+                    self.radio = 0
+
+                if button5.isPressed():
+                    if self.old_cruise == 1:
+                        self.cruise = 0
+                        self.old_cruise = self.cruise
+                    else:
+                        self.cruise = 1
+                        self.cruise(vehicle_velocity)
+                        self.old_cruise = self.cruise
+                else:
+                    self.cruise = self.old_cruise
+                
+                if indicator.indicate() == 1:
+                    self.Rindicator = 1
+                    self.right_indicator(1)
+                    self.Lindicator = 0
+                    self.left_indicator(0)
+                elif indicator.indicate() == 2:
+                    self.Lindicator = 1
+                    self.left_indicator(1)
+                    self.Rindicator = 0
+                    self.right_indicator(0)
+                else:
+                    self.Rindicator = 0
+                    self.right_indicator(0)
+                    self.Lindicator = 0
+                    self.left_indicator(0)
+                
+                values = [motor_current,motor_velocity,vehicle_velocity,battery_SOC,state,self.mode,self.hazardval,self.hornval,self.radio,self.cruise,self.Lindicator,self.Rindicator,self.disrem ]
+                self.variables_received.emit(values)
+
+
+        except can.CanError:
+            print("CAN error")  
+        finally:
+            self.bus.shutdown()        
 
 
 class SteeringDisplay(QWidget):
@@ -89,7 +421,7 @@ class SteeringDisplay(QWidget):
         self.cruise_value = 0
         self.l_indicator_value = 0
         self.r_indicator_value = 0
-        self.brake_value = 0
+        self.hazard_value = 0
 
         self.variable_thread = VariableThread()
         self.variable_thread.variables_received.connect(self.update_values)
@@ -215,6 +547,14 @@ class SteeringDisplay(QWidget):
             "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/cruise_inactive.png"
         )
 
+        self.hazard_active = QImage(
+            "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/hazard_active.png"
+        )
+
+        self.hazard_inactive = QImage(
+            "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/hazard_active.png"
+        )
+
         self.current_time = ""
         self.timer = QTimer()
         self.timer.timeout.connect(self.update_time)
@@ -226,38 +566,22 @@ class SteeringDisplay(QWidget):
         self.update()
 
     def update_values(self, values):
-        for variable_name, variable_value in values:
-            if variable_name == "speed":
-                self.speed_value = variable_value
-                self.update_speed()
-            elif variable_name == "rpm":
-                self.rpm_value = variable_value
-                self.update_rpm()
-            elif variable_name == "mode":
-                self.mode_value = variable_value
-                self.update_mode()
-            elif variable_name == "regen":
-                self.regen_value = variable_value
-                self.update_regen()
-            elif variable_name == "battery":
-                self.battery_value = variable_value
-                self.update_battery()
-            elif variable_name == "disrem":
-                self.disrem_value = variable_value
-                self.update_disrem()
-            elif variable_name == "brake":
-                self.brake_value = variable_value
-            elif variable_name == "horn":
-                self.horn_value = variable_value
-            elif variable_name == "radio":
-                self.radio_value = variable_value
-            elif variable_name == "cruise":
-                self.cruise_value = variable_value
-            elif variable_name == "Lindicator":
-                self.l_indicator_value = variable_value
-            elif variable_name == "Rindicator":
-                self.r_indicator_value = variable_value
-
+        self.speed_value = values[2]
+        self.update_speed()
+        self.rpm_value = values[1]
+        self.update_rpm()
+        self.mode_value = values[5]
+        self.update_mode()
+        self.battery_value = values[3]
+        self.update_battery()
+        self.disrem_value = values[12]
+        self.update_disrem()
+        self.hazard_value = values[6]
+        self.horn_value = values[7]
+        self.radio_value = values[8]
+        self.cruise_value = values[9]
+        self.l_indicator_value = values[10]
+        self.r_indicator_value = values[11]
         self.update()
 
     def paintEvent(self, event):
@@ -367,6 +691,13 @@ class SteeringDisplay(QWidget):
             painter.drawImage(cruise_rect, self.cruise_active)
         else:
             painter.drawImage(cruise_rect, self.cruise_inactive)
+
+        # Draw hazard light status
+        hazard_rect = (380, 325, 40, 40)
+        if self.hazard_value:
+            painter.drawImage(hazard_rect, self.hazard_active)
+        else:
+            painter.drawImage(hazard_rect, self.hazard_inactive)
 
     def update_battery(self):
         self.battery = self.battery_value

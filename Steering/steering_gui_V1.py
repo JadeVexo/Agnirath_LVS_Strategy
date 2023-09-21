@@ -233,6 +233,11 @@ class VariableThread(QThread):
         self.hornval = 0
         self.radio = 0
         self.mode = 0
+        self.motor_current = 0
+        self.motor_velocity = 0
+        self.vehicle_velocity = 0
+        self.battery_SOC = 0
+        self.state = 0
         self.variables = [
             "speed",
             "rpm",
@@ -330,14 +335,14 @@ class VariableThread(QThread):
                 data = response.data
                 arbitration_id = response.arbitration_id
                 if arbitration_id == 1026:
-                    motor_current = struct('<f',data[4:8])
+                    self.motor_current = struct('<f',data[4:8])
                 if arbitration_id == 1027:
-                    motor_velocity = struct('<f',data[0:4])
-                    vehicle_velocity = struct('<f',data[4:8])
+                    self.motor_velocity = struct('<f',data[0:4])
+                    self.vehicle_velocity = struct('<f',data[4:8])
                 if arbitration_id == 1781:
-                    battery_SOC = struct('<f',data[4:8])
+                    self.battery_SOC = struct('<f',data[4:8])
                 if arbitration_id == 0: #Change to what the main PCB transmits for state
-                    state = int(data)
+                    self.state = int(data)
 
                 if button3.isPressed():
                     self.hazard(1)
@@ -383,7 +388,7 @@ class VariableThread(QThread):
                     self.Lindicator = 0
                     self.left_indicator(0)
                 
-                values = [motor_current,motor_velocity,vehicle_velocity,battery_SOC,state,self.mode,self.hazardval,self.hornval,self.radio,self.cruiseval,self.Lindicator,self.Rindicator,self.disrem ]
+                values = [self.motor_current,self.motor_velocity,self.vehicle_velocity,self.battery_SOC,self.state,self.mode,self.hazardval,self.hornval,self.radio,self.cruiseval,self.Lindicator,self.Rindicator,self.disrem ]
                 self.variables_received.emit(values)
 
 
@@ -423,6 +428,7 @@ class SteeringDisplay(QWidget):
         self.cruise_value = 0
         self.l_indicator_value = 0
         self.r_indicator_value = 0
+        self.brake_value = 0
         self.hazard_value = 0
 
         self.variable_thread = VariableThread()
@@ -554,7 +560,7 @@ class SteeringDisplay(QWidget):
         )
 
         self.hazard_inactive = QImage(
-            "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/hazard_active.png"
+            "/home/debian/Agnirath_LVS_Strategy/Steering/Speedometer final/assets/hazard_inactive.png"
         )
 
         self.current_time = ""
@@ -695,11 +701,11 @@ class SteeringDisplay(QWidget):
             painter.drawImage(cruise_rect, self.cruise_inactive)
 
         # Draw hazard light status
-        hazard_rect = (380, 325, 40, 40)
-        if self.hazard_value:
-            painter.drawImage(hazard_rect, self.hazard_active)
-        else:
-            painter.drawImage(hazard_rect, self.hazard_inactive)
+        #hazard_rect = (380, 325, 40, 40)
+        #if self.hazard_value:
+        #    painter.drawImage(hazard_rect, self.hazard_active)
+        #else:
+        #    painter.drawImage(hazard_rect, self.hazard_inactive)
 
     def update_battery(self):
         self.battery = self.battery_value

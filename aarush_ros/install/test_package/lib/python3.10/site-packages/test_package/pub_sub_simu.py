@@ -30,7 +30,7 @@ class sample_publisher_subscriber(Node):
 
     def receive_data(self, sub_msg):
         self.latest_sub_data = sub_msg.data
-        #print("SUB:",self.latest_pub_data)
+        print("SUB:",self.latest_pub_data)
 
 
 def main(args=None):
@@ -38,28 +38,14 @@ def main(args=None):
 
     pub_sub_node = sample_publisher_subscriber("sample_node")
     pub_sub_node.init_pub()
-    # pub_sub_node.init_sub()
+    pub_sub_node.init_sub()
 
     while rclpy.ok():
 
         pub_sub_node.data = [
-            random.randint(0, 1),
-            random.randint(0, 1),
-            random.randint(0, 1),
-            random.randint(0, 1),
-            random.randint(0, 1),
-            random.randint(0, 1),
-            random.randint(0, 100),
-            random.randint(0, 100),
-            random.randint(0, 100),
-            random.randint(0, 100),
-            random.randint(0, 100),
-            random.randint(0, 100),
-            random.randint(0, 100),
-            random.randint(0, 1000),
-
-        ]
-
+            random.randint(0, 100)
+        ]*270
+        # print("hi")
         rclpy.spin_once(pub_sub_node)
 
         latest_pub_data = pub_sub_node.latest_pub_data
@@ -67,10 +53,10 @@ def main(args=None):
         if latest_pub_data is not None:
             print("PUB:",latest_pub_data)
 
-        # latest_sub_data = pub_sub_node.latest_sub_data
+        latest_sub_data = pub_sub_node.latest_sub_data
 
-        # if latest_sub_data is not None:
-        #     print("SUB:",latest_sub_data)
+        if latest_sub_data is not None:
+            print("SUB:",latest_sub_data)
 
         
 

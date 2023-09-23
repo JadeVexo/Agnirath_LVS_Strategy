@@ -43,10 +43,9 @@ def main(args=None):
     while rclpy.ok():
 
         pub_sub_node.data = [
-            random.randint(0, 1),
-            random.randint(0, 1)
-        ]
-
+            random.randint(0, 100)
+        ]*270
+        # print("hi")
         rclpy.spin_once(pub_sub_node)
 
         latest_pub_data = pub_sub_node.latest_pub_data

@@ -58,7 +58,6 @@ class CONTROL_NODE(Node):
             self.mc_data_pub_msg.data = self.mc_pub_data
             self.mc_data_publisher.publish(self.mc_data_pub_msg)
             self.mc_pub_data = self.mc_data_pub_msg.data
-            print("JAIVAL OP")
             print("MC_PUB:", self.mc_pub_data)
 
 

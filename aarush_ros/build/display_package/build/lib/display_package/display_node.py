@@ -7,9 +7,14 @@ from PyQt5.QtCore import Qt, QThread, pyqtSignal, QRect, QUrl, QTimer
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 import random
 from array import array
+import datetime
+import time
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float32MultiArray as rosarray
+
+def timestamp():
+    return int(time.mktime(datetime.datetime.now().timetuple()))
 
 class RosThread(QThread):
     def __init__(self, node):
@@ -560,7 +565,7 @@ class MainWindow(QMainWindow):
         on_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/on_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
         self.button22.setIcon(on_icon)
         self.button22.setCheckable(True)
-        self.button22.clicked.connect(self.state_button_click)
+        self.button22.clicked.connect(self.On_state_button_click)
         self.button22.hide()
 
         self.button23 = QPushButton(self)
@@ -573,7 +578,7 @@ class MainWindow(QMainWindow):
         safe_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/safe_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
         self.button23.setIcon(safe_icon)
         self.button23.setCheckable(True)
-        self.button23.clicked.connect(self.state_button_click)
+        self.button23.clicked.connect(self.Safe_state_button_click)
         self.button23.hide()
 
         self.button24 = QPushButton(self)
@@ -586,7 +591,7 @@ class MainWindow(QMainWindow):
         off_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/off_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
         self.button24.setIcon(off_icon)
         self.button24.setCheckable(True)
-        self.button24.clicked.connect(self.state_button_click)
+        self.button24.clicked.connect(self.Off_state_button_click)
         self.button24.hide()
 
         self.button25 = QPushButton(self)
@@ -599,7 +604,7 @@ class MainWindow(QMainWindow):
         drive_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/drive_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
         self.button25.setIcon(drive_icon)
         self.button25.setCheckable(True)
-        self.button25.clicked.connect(self.state_button_click)
+        self.button25.clicked.connect(self.Drive_state_button_click)
         self.button25.hide()
 
         self.slider1 = QSlider(Qt.Vertical, self)
@@ -707,28 +712,17 @@ class MainWindow(QMainWindow):
             # Error Handle for rclpy timeout
             if ros_connect_time >= timeout_sec_rclpy:
                 print("Couldn't Connect")
-                # self.ui.label_ros2_state_float.setStyleSheet(
-                #     "color: rgb(255,255,255);"
-                #     "background-color: rgb(255,0,51);"
-                #     "border-radius:5px;"
-                # )
             else:
                 print("Connected")
                 self.ros_thread = RosThread(self.node)   # Create ros thread 
                 self.ros_thread.start() 
-                # self.ui.label_ros2_state_float.setStyleSheet(
-                #     "color: rgb(255,255,255);"
-                #     "background-color: rgb(18,230,95);"
-                #     "border-radius:5px;"
-                # )
-
         except:
             pass
 
     def publish_data(self, data):
         msg = rosarray()
         msg.data = data
-        # self.pub.publish(msg)
+        self.pub.publish(msg)
         pass
 
     def publish_random_data(self):
@@ -737,7 +731,6 @@ class MainWindow(QMainWindow):
         # print(data)
         # self.publish_data(data)
         pass
-        
         
     ### ROS2 Data Updater
     def sub_rosarray_callback(self, msg):
@@ -1628,8 +1621,17 @@ class MainWindow(QMainWindow):
     def seq_button_click(self):
         pass
 
-    def state_button_click(self):
-        pass
+    def Safe_state_button_click(self):
+        self.publish_data([1])
+
+    def Off_state_button_click(self):
+        self.publish_data([2])
+
+    def On_state_button_click(self):
+        self.publish_data([3])
+
+    def Drive_state_button_click(self):
+        self.publish_data([4])
 
             
 class Camera(QThread):

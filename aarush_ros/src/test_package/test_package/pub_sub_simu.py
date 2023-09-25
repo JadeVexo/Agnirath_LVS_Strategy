@@ -43,9 +43,8 @@ def main(args=None):
     while rclpy.ok():
 
         pub_sub_node.data = [
-            random.randint(0, 1),
-            random.randint(0, 1)
-        ]
+            random.randint(0, 10),
+        ]*288
 
         rclpy.spin_once(pub_sub_node)
 

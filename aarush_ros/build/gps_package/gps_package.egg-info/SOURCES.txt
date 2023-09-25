@@ -10,7 +10,6 @@ setup.py
 ../../build/gps_package/gps_package.egg-info/top_level.txt
 ../../build/gps_package/gps_package.egg-info/zip-safe
 gps_package/__init__.py
-gps_package/gps_node copy.py
 gps_package/gps_node.py
 resource/gps_package
 test/test_copyright.py

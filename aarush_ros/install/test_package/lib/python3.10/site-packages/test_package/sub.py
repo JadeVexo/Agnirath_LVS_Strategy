@@ -7,7 +7,7 @@ class sample_subscriber(Node):
     def __init__(self,node):
         super().__init__(node)
         self.subscription = self.create_subscription(
-            rosarray, "/parsed_data", self.receive_data, 10
+            rosarray, "/control_data", self.receive_data, 10
         )
         self.subscription  # prevent unused variable warning
         self.latest_data = None
@@ -29,10 +29,6 @@ def main(args=None):
 
         # if latest_sub_data is not None:
         #     print(latest_sub_data)
-
-    # Destroy the node explicitly
-    # (optional - otherwise it will be done automatically
-    # when the garbage collector destroys the node object)
     control_s_node.destroy_node()
     rclpy.shutdown()
 

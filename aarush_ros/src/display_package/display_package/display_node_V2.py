@@ -2742,7 +2742,7 @@ class MainWindow(QMainWindow):
         painter_temp9 = QPainter(pixmap_temp9)
         painter_temp9.setFont(QFont('Good Times', 10, QFont.Bold))  
         painter_temp9.setPen(Qt.black)  
-        text_width_temp9 = painter_temp.fontMetrics().width(str(self.data[255])[:4])
+        text_width_temp9 = painter_temp9.fontMetrics().width(str(self.data[255])[:4])
         x_temp = (pixmap_temp9.width() - text_width_temp9) // 2
         painter_temp9.drawText(x_temp, 80, str(self.data[255])[:4])
         painter_temp9.end()

@@ -44,7 +44,7 @@ def main(args=None):
 
         pub_sub_node.data = [
             random.randint(0, 100)
-        ]*270
+        ]*290
         # print("hi")
         rclpy.spin_once(pub_sub_node)
 

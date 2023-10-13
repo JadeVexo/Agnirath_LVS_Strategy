@@ -17,10 +17,6 @@ class SERIAL_NODE(Node):
         self.final_sub_data = None
         self.ser = serial.Serial(serial_port, baud_rate)
 
-    # def send_float_list_to_arduino(self,float_list):
-    #     data = ','.join(map(str, float_list))
-    #     self.ser.write(data.encode())
-
     def receive_final_data(self, msg):
         self.final_sub_data = msg.data
         data = ','.join(map(str, self.final_sub_data))

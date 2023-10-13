@@ -31,7 +31,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.central_widget)
         self.setFixedSize(1024, 600)
 
-        pixmap = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Bg.png")
+        pixmap = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Bg.png")
         self.central_widget.setAutoFillBackground(True)
         palette = self.central_widget.palette()
         palette.setBrush(QPalette.Window, QBrush(pixmap))
@@ -52,7 +52,7 @@ class MainWindow(QMainWindow):
 
         self.dist_ul = QLabel(self)
         self.dist_ul.setGeometry(250,525, 245, 9)
-        self.dist_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(245, 9))
+        self.dist_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(245, 9))
         self.dist_ul.hide()        
 
         self.solar1 = QLabel(self)
@@ -66,7 +66,7 @@ class MainWindow(QMainWindow):
 
         self.solar1_ul = QLabel(self)
         self.solar1_ul.setGeometry(181, 63 , 123, 5)
-        self.solar1_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
+        self.solar1_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
         self.solar1_ul.hide()
 
         self.solar2 = QLabel(self)
@@ -80,7 +80,7 @@ class MainWindow(QMainWindow):
 
         self.solar2_ul = QLabel(self)
         self.solar2_ul.setGeometry(404, 63 , 123, 5)
-        self.solar2_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
+        self.solar2_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
         self.solar2_ul.hide()
 
         self.solar3 = QLabel(self)
@@ -94,7 +94,7 @@ class MainWindow(QMainWindow):
 
         self.solar3_ul = QLabel(self)
         self.solar3_ul.setGeometry(627,63, 123, 5)
-        self.solar3_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
+        self.solar3_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
         self.solar3_ul.hide()
 
         self.solar4 = QLabel(self)
@@ -108,7 +108,7 @@ class MainWindow(QMainWindow):
 
         self.solar4_ul = QLabel(self)
         self.solar4_ul.setGeometry(849, 63, 123, 5)
-        self.solar4_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
+        self.solar4_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
         self.solar4_ul.hide()
 
         self.solar5 = QLabel(self)
@@ -122,7 +122,7 @@ class MainWindow(QMainWindow):
 
         self.solar5_ul = QLabel(self)
         self.solar5_ul.setGeometry(181, 200 , 123, 5)
-        self.solar5_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
+        self.solar5_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
         self.solar5_ul.hide()
 
         self.solar6 = QLabel(self)
@@ -136,7 +136,7 @@ class MainWindow(QMainWindow):
 
         self.solar6_ul = QLabel(self)
         self.solar6_ul.setGeometry(404, 200 , 123, 5)
-        self.solar6_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
+        self.solar6_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
         self.solar6_ul.hide()
 
         self.solar7 = QLabel(self)
@@ -150,7 +150,7 @@ class MainWindow(QMainWindow):
 
         self.solar7_ul = QLabel(self)
         self.solar7_ul.setGeometry(627,200, 123, 5)
-        self.solar7_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
+        self.solar7_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
         self.solar7_ul.hide()
 
         self.solar8 = QLabel(self)
@@ -164,7 +164,7 @@ class MainWindow(QMainWindow):
 
         self.solar8_ul = QLabel(self)
         self.solar8_ul.setGeometry(849, 200, 123, 5)
-        self.solar8_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
+        self.solar8_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
         self.solar8_ul.hide()
 
         self.solar9 = QLabel(self)
@@ -178,7 +178,7 @@ class MainWindow(QMainWindow):
 
         self.solar9_ul = QLabel(self)
         self.solar9_ul.setGeometry(181, 337 , 123, 5)
-        self.solar9_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
+        self.solar9_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
         self.solar9_ul.hide()
 
         self.solar10 = QLabel(self)
@@ -192,7 +192,7 @@ class MainWindow(QMainWindow):
 
         self.solar10_ul = QLabel(self)
         self.solar10_ul.setGeometry(404, 337 , 123, 5)
-        self.solar10_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
+        self.solar10_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
         self.solar10_ul.hide()
 
         self.solar11 = QLabel(self)
@@ -206,7 +206,7 @@ class MainWindow(QMainWindow):
 
         self.solar11_ul = QLabel(self)
         self.solar11_ul.setGeometry(627,337, 123, 5)
-        self.solar11_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
+        self.solar11_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
         self.solar11_ul.hide()
 
         self.solar12 = QLabel(self)
@@ -220,7 +220,7 @@ class MainWindow(QMainWindow):
 
         self.solar12_ul = QLabel(self)
         self.solar12_ul.setGeometry(849, 337, 123, 5)
-        self.solar12_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
+        self.solar12_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
         self.solar12_ul.hide()
 
         self.cockpit_temp = QLabel(self)
@@ -234,7 +234,7 @@ class MainWindow(QMainWindow):
 
         self.cockpit_temp_ul = QLabel(self)
         self.cockpit_temp_ul.setGeometry(181, 474, 123, 5)
-        self.cockpit_temp_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
+        self.cockpit_temp_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
         self.cockpit_temp_ul.hide()
 
         self.motor_temp = QLabel(self)
@@ -248,7 +248,7 @@ class MainWindow(QMainWindow):
 
         self.motor_temp_ul = QLabel(self)
         self.motor_temp_ul.setGeometry(404, 474, 123, 5)
-        self.motor_temp_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
+        self.motor_temp_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
         self.motor_temp_ul.hide()
 
         self.motorcntrl_temp = QLabel(self)
@@ -262,7 +262,7 @@ class MainWindow(QMainWindow):
 
         self.motorcntrl_temp_ul = QLabel(self)
         self.motorcntrl_temp_ul.setGeometry(627,474, 175, 5)
-        self.motorcntrl_temp_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(185, 5))
+        self.motorcntrl_temp_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(185, 5))
         self.motorcntrl_temp_ul.hide()
 
         self.battery_temp = QLabel(self)
@@ -276,7 +276,7 @@ class MainWindow(QMainWindow):
 
         self.battery_temp_ul = QLabel(self)
         self.battery_temp_ul.setGeometry(849, 474, 123, 5)
-        self.battery_temp_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
+        self.battery_temp_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(123, 5))
         self.battery_temp_ul.hide()
 
         
@@ -291,7 +291,7 @@ class MainWindow(QMainWindow):
 
         self.solar_current_ul = QLabel(self)
         self.solar_current_ul.setGeometry(440,65, 210, 6)
-        self.solar_current_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(210, 6))
+        self.solar_current_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(210, 6))
         self.solar_current_ul.hide()
 
         self.solar_voltage_fr = QLabel(self)
@@ -365,7 +365,7 @@ class MainWindow(QMainWindow):
 
         self.battery_current_ul = QLabel(self)
         self.battery_current_ul.setGeometry(428,335, 250, 6)
-        self.battery_current_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(250, 6))
+        self.battery_current_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(250, 6))
         self.battery_current_ul.hide()
 
         self.battery_soc_fr = QLabel(self)
@@ -395,7 +395,7 @@ class MainWindow(QMainWindow):
 
         self.motorctrl_current_ul = QLabel(self)
         self.motorctrl_current_ul.setGeometry(330,475, 470, 6)
-        self.motorctrl_current_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(470, 9))
+        self.motorctrl_current_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(470, 9))
         self.motorctrl_current_ul.hide()
 
         self.motorctrl_voltage_fr = QLabel(self)
@@ -422,12 +422,12 @@ class MainWindow(QMainWindow):
 
         self.time_ul = QLabel(self)
         self.time_ul.setGeometry(687,525, 250, 9)
-        self.time_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(250, 9))
+        self.time_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(250, 9))
         self.time_ul.hide()
 
         self.mapfr = QLabel(self)
         self.mapfr.setGeometry(185, 27 , 806, 455)
-        self.mapfr.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Map display frame.png").scaled(806, 455, Qt.AspectRatioMode.KeepAspectRatio))
+        self.mapfr.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Map display frame.png").scaled(806, 455, Qt.AspectRatioMode.KeepAspectRatio))
         self.mapfr.hide()
 
         self.distfr = QLabel(self)
@@ -440,7 +440,7 @@ class MainWindow(QMainWindow):
 
         self.ctrlfr = QLabel(self)
         self.ctrlfr.setGeometry(185, 18 , 806, 355)
-        self.ctrlfr.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/control frame.png").scaled(806, 355, Qt.AspectRatioMode.KeepAspectRatio))
+        self.ctrlfr.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/control frame.png").scaled(806, 355, Qt.AspectRatioMode.KeepAspectRatio))
         self.ctrlfr.hide()
 
         self.fan_label = QLabel(self)
@@ -454,7 +454,7 @@ class MainWindow(QMainWindow):
 
         self.fan_ul = QLabel(self)
         self.fan_ul.setGeometry(450,90, 220, 9)
-        self.fan_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(220, 9))
+        self.fan_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(220, 9))
         self.fan_ul.hide() 
 
         self.fan1_label = QLabel(self)
@@ -519,7 +519,7 @@ class MainWindow(QMainWindow):
 
         self.light_ul = QLabel(self)
         self.light_ul.setGeometry(432,90, 300, 9)
-        self.light_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(300, 9))
+        self.light_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(300, 9))
         self.light_ul.hide()
 
         self.sequence_label = QLabel(self)
@@ -542,7 +542,7 @@ class MainWindow(QMainWindow):
 
         self.state_ul = QLabel(self)
         self.state_ul.setGeometry(450,90, 250, 9)
-        self.state_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(250, 9))
+        self.state_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(250, 9))
         self.state_ul.hide() 
 
         self.telemetry_label = QLabel(self)
@@ -556,7 +556,7 @@ class MainWindow(QMainWindow):
 
         self.telemetry_ul = QLabel(self)
         self.telemetry_ul.setGeometry(355,90, 450, 9)
-        self.telemetry_ul.setPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(450, 9))
+        self.telemetry_ul.setPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/underline.png").scaled(450, 9))
         self.telemetry_ul.hide()
 
         self.radio_label = QLabel(self)
@@ -623,29 +623,29 @@ class MainWindow(QMainWindow):
         self.msgsent_label.hide()
 
         
-        button1_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/voltage.png")
-        button2_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Temprature.png")
-        button3_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/current.png")
-        button4_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/map.png")
-        button5_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Controls.png")
-        button6_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/fans.png")
-        button7_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Lights.png")
-        button8_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/State.png")
-        button9_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/radio.png")
-        manual_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/manual.png")
-        light1_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light1.png")
-        light2_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light2.png")
-        light3_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light3.png")
-        light4_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light4.png")
-        light5_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light5.png")
-        light6_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light6.png")
-        seq1_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Seq1.png")
-        seq2_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Seq2.png")
-        seq3_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Seq3.png")
-        on_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/on.png")
-        off_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/off.png")
-        safe_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/safe.png")
-        drive_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/drive.png")
+        button1_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/voltage.png")
+        button2_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Temprature.png")
+        button3_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/current.png")
+        button4_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/map.png")
+        button5_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Controls.png")
+        button6_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/fans.png")
+        button7_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Lights.png")
+        button8_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/State.png")
+        button9_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/radio.png")
+        manual_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/manual.png")
+        light1_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light1.png")
+        light2_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light2.png")
+        light3_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light3.png")
+        light4_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light4.png")
+        light5_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light5.png")
+        light6_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light6.png")
+        seq1_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Seq1.png")
+        seq2_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Seq2.png")
+        seq3_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Seq3.png")
+        on_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/on.png")
+        off_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/off.png")
+        safe_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/safe.png")
+        drive_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/drive.png")
         
         self.button1 = QPushButton(self)
         self.button1.setIcon(QIcon(button1_image))
@@ -720,8 +720,8 @@ class MainWindow(QMainWindow):
         self.button10.setGeometry(239, 221, manual_image.width(), manual_image.height())
         self.button10.setStyleSheet("QPushButton { border: none; background-color: transparent; }")
         manual_icon = QIcon()
-        manual_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/manual.png"), QIcon.Normal, QIcon.Off)  # Original icon
-        manual_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/manual_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
+        manual_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/manual.png"), QIcon.Normal, QIcon.Off)  # Original icon
+        manual_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/manual_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
         self.button10.setIcon(manual_icon)
         self.button10.setCheckable(True)
         self.button10.clicked.connect(self.manual_button1_click)
@@ -733,8 +733,8 @@ class MainWindow(QMainWindow):
         self.button11.setGeometry(489, 221, manual_image.width(), manual_image.height())
         self.button11.setStyleSheet("QPushButton { border: none; background-color: transparent; }")
         manual_icon = QIcon()
-        manual_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/manual.png"), QIcon.Normal, QIcon.Off)  # Original icon
-        manual_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/manual_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
+        manual_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/manual.png"), QIcon.Normal, QIcon.Off)  # Original icon
+        manual_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/manual_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
         self.button11.setIcon(manual_icon)
         self.button11.setCheckable(True)
         self.button11.clicked.connect(self.manual_button2_click)
@@ -746,8 +746,8 @@ class MainWindow(QMainWindow):
         self.button12.setGeometry(736, 221, manual_image.width(), manual_image.height())
         self.button12.setStyleSheet("QPushButton { border: none; background-color: transparent; }")
         manual_icon = QIcon()
-        manual_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/manual.png"), QIcon.Normal, QIcon.Off)  # Original icon
-        manual_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/manual_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
+        manual_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/manual.png"), QIcon.Normal, QIcon.Off)  # Original icon
+        manual_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/manual_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
         self.button12.setIcon(manual_icon)
         self.button12.setCheckable(True)
         self.button12.clicked.connect(self.manual_button3_click)
@@ -759,8 +759,8 @@ class MainWindow(QMainWindow):
         self.button13.setGeometry(261, 142, light1_image.width(), light1_image.height())
         self.button13.setStyleSheet("QPushButton { border: none; background-color: transparent; }")
         light1_icon = QIcon()
-        light1_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light1.png"), QIcon.Normal, QIcon.Off)  # Original icon
-        light1_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light1_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
+        light1_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light1.png"), QIcon.Normal, QIcon.Off)  # Original icon
+        light1_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light1_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
         self.button13.setIcon(light1_icon)
         self.button13.setCheckable(True)
         self.button13.clicked.connect(self.light_button_click)
@@ -772,8 +772,8 @@ class MainWindow(QMainWindow):
         self.button14.setGeometry(514, 142, light2_image.width(), light2_image.height())
         self.button14.setStyleSheet("QPushButton { border: none; background-color: transparent; }")
         light2_icon = QIcon()
-        light2_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light2.png"), QIcon.Normal, QIcon.Off)  # Original icon
-        light2_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light2_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
+        light2_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light2.png"), QIcon.Normal, QIcon.Off)  # Original icon
+        light2_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light2_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
         self.button14.setIcon(light2_icon)
         self.button14.setCheckable(True)
         self.button14.clicked.connect(self.light_button_click)
@@ -785,8 +785,8 @@ class MainWindow(QMainWindow):
         self.button15.setGeometry(784, 142, light3_image.width(), light3_image.height())
         self.button15.setStyleSheet("QPushButton { border: none; background-color: transparent; }")
         light3_icon = QIcon()
-        light3_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light3.png"), QIcon.Normal, QIcon.Off)  # Original icon
-        light3_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light3_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
+        light3_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light3.png"), QIcon.Normal, QIcon.Off)  # Original icon
+        light3_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light3_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
         self.button15.setIcon(light3_icon)
         self.button15.setCheckable(True)
         self.button15.clicked.connect(self.light_button_click)
@@ -798,8 +798,8 @@ class MainWindow(QMainWindow):
         self.button16.setGeometry(261, 272, light4_image.width(), light4_image.height())
         self.button16.setStyleSheet("QPushButton { border: none; background-color: transparent; }")
         light4_icon = QIcon()
-        light4_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light4.png"), QIcon.Normal, QIcon.Off)  # Original icon
-        light4_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light4_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
+        light4_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light4.png"), QIcon.Normal, QIcon.Off)  # Original icon
+        light4_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light4_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
         self.button16.setIcon(light4_icon)
         self.button16.setCheckable(True)
         self.button16.clicked.connect(self.light_button_click)
@@ -811,8 +811,8 @@ class MainWindow(QMainWindow):
         self.button17.setGeometry(514, 272, light5_image.width(), light5_image.height())
         self.button17.setStyleSheet("QPushButton { border: none; background-color: transparent; }")
         light5_icon = QIcon()
-        light5_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light5.png"), QIcon.Normal, QIcon.Off)  # Original icon
-        light5_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light5_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
+        light5_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light5.png"), QIcon.Normal, QIcon.Off)  # Original icon
+        light5_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light5_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
         self.button17.setIcon(light5_icon)
         self.button17.setCheckable(True)
         self.button17.clicked.connect(self.light_button_click)
@@ -824,8 +824,8 @@ class MainWindow(QMainWindow):
         self.button18.setGeometry(788, 272, light6_image.width(), light6_image.height())
         self.button18.setStyleSheet("QPushButton { border: none; background-color: transparent; }")
         light6_icon = QIcon()
-        light6_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light6.png"), QIcon.Normal, QIcon.Off)  # Original icon
-        light6_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light6_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
+        light6_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light6.png"), QIcon.Normal, QIcon.Off)  # Original icon
+        light6_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Light6_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
         self.button18.setIcon(light6_icon)
         self.button18.setCheckable(True)
         self.button18.clicked.connect(self.light_button_click)
@@ -837,8 +837,8 @@ class MainWindow(QMainWindow):
         self.button19.setGeometry(302, 466, seq1_image.width(), seq1_image.height())
         self.button19.setStyleSheet("QPushButton { border: none; background-color: transparent; }")
         seq1_icon = QIcon()
-        seq1_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Seq1.png"), QIcon.Normal, QIcon.Off)  # Original icon
-        seq1_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Seq1_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
+        seq1_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Seq1.png"), QIcon.Normal, QIcon.Off)  # Original icon
+        seq1_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Seq1_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
         self.button19.setIcon(seq1_icon)
         self.button19.setCheckable(True)
         self.button19.clicked.connect(self.seq_button_click)
@@ -850,8 +850,8 @@ class MainWindow(QMainWindow):
         self.button20.setGeometry(546, 466, seq2_image.width(), seq2_image.height())
         self.button20.setStyleSheet("QPushButton { border: none; background-color: transparent; }")
         seq2_icon = QIcon()
-        seq2_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Seq2.png"), QIcon.Normal, QIcon.Off)  # Original icon
-        seq2_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Seq2_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
+        seq2_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Seq2.png"), QIcon.Normal, QIcon.Off)  # Original icon
+        seq2_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Seq2_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
         self.button20.setIcon(seq2_icon)
         self.button20.setCheckable(True)
         self.button20.clicked.connect(self.seq_button_click)
@@ -863,8 +863,8 @@ class MainWindow(QMainWindow):
         self.button21.setGeometry(816, 466, seq3_image.width(), seq3_image.height())
         self.button21.setStyleSheet("QPushButton { border: none; background-color: transparent; }")
         seq3_icon = QIcon()
-        seq3_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Seq3.png"), QIcon.Normal, QIcon.Off)  # Original icon
-        seq3_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Seq3_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
+        seq3_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Seq3.png"), QIcon.Normal, QIcon.Off)  # Original icon
+        seq3_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Seq3_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
         self.button21.setIcon(seq3_icon)
         self.button21.setCheckable(True)
         self.button21.clicked.connect(self.seq_button_click)
@@ -876,8 +876,8 @@ class MainWindow(QMainWindow):
         self.button22.setGeometry(255, 154, on_image.width(), on_image.height())
         self.button22.setStyleSheet("QPushButton { border: none; background-color: transparent; }")
         on_icon = QIcon()
-        on_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/on.png"), QIcon.Normal, QIcon.Off)  # Original icon
-        on_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/on_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
+        on_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/on.png"), QIcon.Normal, QIcon.Off)  # Original icon
+        on_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/on_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
         self.button22.setIcon(on_icon)
         self.button22.setCheckable(True)
         self.button22.clicked.connect(self.on_button_click)
@@ -889,8 +889,8 @@ class MainWindow(QMainWindow):
         self.button23.setGeometry(679, 154, safe_image.width(), safe_image.height())
         self.button23.setStyleSheet("QPushButton { border: none; background-color: transparent; }")
         safe_icon = QIcon()
-        safe_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/safe.png"), QIcon.Normal, QIcon.Off)  # Original icon
-        safe_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/safe_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
+        safe_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/safe.png"), QIcon.Normal, QIcon.Off)  # Original icon
+        safe_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/safe_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
         self.button23.setIcon(safe_icon)
         self.button23.setCheckable(True)
         self.button23.clicked.connect(self.safe_button_click)
@@ -902,8 +902,8 @@ class MainWindow(QMainWindow):
         self.button24.setGeometry(255, 377, off_image.width(), off_image.height())
         self.button24.setStyleSheet("QPushButton { border: none; background-color: transparent; }")
         off_icon = QIcon()
-        off_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/off.png"), QIcon.Normal, QIcon.Off)  # Original icon
-        off_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/off_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
+        off_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/off.png"), QIcon.Normal, QIcon.Off)  # Original icon
+        off_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/off_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
         self.button24.setIcon(off_icon)
         self.button24.setCheckable(True)
         self.button24.clicked.connect(self.off_button_click)
@@ -915,8 +915,8 @@ class MainWindow(QMainWindow):
         self.button25.setGeometry(679, 377, drive_image.width(), drive_image.height())
         self.button25.setStyleSheet("QPushButton { border: none; background-color: transparent; }")
         drive_icon = QIcon()
-        drive_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/drive.png"), QIcon.Normal, QIcon.Off)  # Original icon
-        drive_icon.addPixmap(QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/drive_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
+        drive_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/drive.png"), QIcon.Normal, QIcon.Off)  # Original icon
+        drive_icon.addPixmap(QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/drive_clicked.png"), QIcon.Normal, QIcon.On)  # Clicked icon
         self.button25.setIcon(drive_icon)
         self.button25.setCheckable(True)
         self.button25.clicked.connect(self.drive_button_click)
@@ -960,37 +960,37 @@ class MainWindow(QMainWindow):
         self.hours = 0
         self.seen_errors = [None] * 218
 
-        self.temp_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Tempcool_small.png',
-                            '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/tempok_small.png',
-                            '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/temphot_small.png'
+        self.temp_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Tempcool_small.png',
+                            '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/tempok_small.png',
+                            '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/temphot_small.png'
                             ]
         
-        self.battery_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/battery_indicator.png',
-                            '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/battery_indicator_red.png'
+        self.battery_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/battery_indicator.png',
+                            '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/battery_indicator_red.png'
                             ]
         
-        self.motor_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/motor_indicator.png',
-                             '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/motor_indicator_red.png'
+        self.motor_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/motor_indicator.png',
+                             '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/motor_indicator_red.png'
                             ]
         
-        self.motorcntrl_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/motorcntrl_indicator.png',
-                                  '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/motorcntrl_indicator_red.png'
+        self.motorcntrl_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/motorcntrl_indicator.png',
+                                  '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/motorcntrl_indicator_red.png'
                             ]
         
-        self.mppt_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/mppt_indicator.png',
-                            '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/mppt_indicator_red.png'
+        self.mppt_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/mppt_indicator.png',
+                            '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/mppt_indicator_red.png'
                             ]
         
-        self.solar_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/solar_indicator.png',
-                             '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/solar_indicator_red.png'
+        self.solar_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/solar_indicator.png',
+                             '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/solar_indicator_red.png'
                             ]
         
-        self.lv_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/LV_indicator.png',
-                          '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/LV_indicator_red.png'
+        self.lv_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/LV_indicator.png',
+                          '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/LV_indicator_red.png'
                             ]
         
-        self.radio_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/greenfr.png',
-                             "/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/redfr.png"]
+        self.radio_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/greenfr.png',
+                             "/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/redfr.png"]
 
         self.camera_label.show()
         self.cam.ImageUpdate.connect(self.ImageUpdateSlot)
@@ -1171,7 +1171,7 @@ class MainWindow(QMainWindow):
     def show_popup(self,code):
         msg = QMessageBox()
         msg.setWindowTitle("Error Flags")
-        error_data = pd.read_csv('/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/error_code.csv')
+        error_data = pd.read_csv('/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/error_code.csv')
         error_mapping = {row['code']:{'error':row['error'], 'action':row['action']} for index, row in error_data.iterrows()}
         error_info = error_mapping.get(code)
         error = error_info['error']
@@ -2826,7 +2826,7 @@ class MainWindow(QMainWindow):
         self.temp16_label.setPixmap(pixmap_temp16.scaled(50, 85))
 
         #Current of MPPT1 
-        pixmap_motor = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
+        pixmap_motor = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
         painter_motor = QPainter(pixmap_motor)
         painter_motor.setFont(QFont('Good Times', 17))  
         painter_motor.setPen(Qt.white)  
@@ -2837,7 +2837,7 @@ class MainWindow(QMainWindow):
         self.solar_current_fr.setPixmap(pixmap_motor.scaled(130, 46))
 
         #Current of MPPT2 
-        pixmap_motor = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
+        pixmap_motor = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
         painter_motor = QPainter(pixmap_motor)
         painter_motor.setFont(QFont('Good Times', 17))  
         painter_motor.setPen(Qt.white)  
@@ -2848,7 +2848,7 @@ class MainWindow(QMainWindow):
         self.solar_current_fr2.setPixmap(pixmap_motor.scaled(130, 46))
 
         #Current of MPPT3
-        pixmap_motor = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
+        pixmap_motor = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
         painter_motor = QPainter(pixmap_motor)
         painter_motor.setFont(QFont('Good Times', 17))  
         painter_motor.setPen(Qt.white)  
@@ -2859,7 +2859,7 @@ class MainWindow(QMainWindow):
         self.solar_current_fr3.setPixmap(pixmap_motor.scaled(130, 46))
 
         #Current of MPPT4
-        pixmap_motor = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
+        pixmap_motor = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
         painter_motor = QPainter(pixmap_motor)
         painter_motor.setFont(QFont('Good Times', 17))  
         painter_motor.setPen(Qt.white)  
@@ -2870,7 +2870,7 @@ class MainWindow(QMainWindow):
         self.solar_current_fr4.setPixmap(pixmap_motor.scaled(130, 46))
 
         #Current of MPPT5
-        pixmap_motor = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
+        pixmap_motor = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
         painter_motor = QPainter(pixmap_motor)
         painter_motor.setFont(QFont('Good Times', 17))  
         painter_motor.setPen(Qt.white)  
@@ -2881,7 +2881,7 @@ class MainWindow(QMainWindow):
         self.solar_current_fr5.setPixmap(pixmap_motor.scaled(130, 46))
 
         #Voltage of MPPT1 
-        pixmap_motor = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
+        pixmap_motor = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
         painter_motor = QPainter(pixmap_motor)
         painter_motor.setFont(QFont('Good Times', 17))  
         painter_motor.setPen(Qt.white)  
@@ -2892,7 +2892,7 @@ class MainWindow(QMainWindow):
         self.solar_voltage_fr.setPixmap(pixmap_motor.scaled(130, 46))
 
         #Voltage of MPPT2
-        pixmap_motor = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
+        pixmap_motor = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
         painter_motor = QPainter(pixmap_motor)
         painter_motor.setFont(QFont('Good Times', 17))  
         painter_motor.setPen(Qt.white)  
@@ -2903,7 +2903,7 @@ class MainWindow(QMainWindow):
         self.solar_voltage_fr2.setPixmap(pixmap_motor.scaled(130, 46))
 
         #Voltage of MPPT3
-        pixmap_motor = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
+        pixmap_motor = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
         painter_motor = QPainter(pixmap_motor)
         painter_motor.setFont(QFont('Good Times', 17))  
         painter_motor.setPen(Qt.white)  
@@ -2914,7 +2914,7 @@ class MainWindow(QMainWindow):
         self.solar_voltage_fr3.setPixmap(pixmap_motor.scaled(130, 46))
 
         #Voltage of MPPT4
-        pixmap_motor = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
+        pixmap_motor = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
         painter_motor = QPainter(pixmap_motor)
         painter_motor.setFont(QFont('Good Times', 17))  
         painter_motor.setPen(Qt.white)  
@@ -2925,7 +2925,7 @@ class MainWindow(QMainWindow):
         self.solar_voltage_fr4.setPixmap(pixmap_motor.scaled(130, 46))
 
         #Voltage of MPPT4
-        pixmap_motor = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
+        pixmap_motor = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
         painter_motor = QPainter(pixmap_motor)
         painter_motor.setFont(QFont('Good Times', 17))  
         painter_motor.setPen(Qt.white)  
@@ -2936,7 +2936,7 @@ class MainWindow(QMainWindow):
         self.solar_voltage_fr5.setPixmap(pixmap_motor.scaled(130, 46))
 
         #Power of MPPT1 
-        pixmap_motor = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
+        pixmap_motor = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
         painter_motor = QPainter(pixmap_motor)
         painter_motor.setFont(QFont('Good Times', 17))  
         painter_motor.setPen(Qt.white)  
@@ -2947,7 +2947,7 @@ class MainWindow(QMainWindow):
         self.solar_power_fr.setPixmap(pixmap_motor.scaled(130, 46))
 
         #Power of MPPT2
-        pixmap_motor = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
+        pixmap_motor = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
         painter_motor = QPainter(pixmap_motor)
         painter_motor.setFont(QFont('Good Times', 17))  
         painter_motor.setPen(Qt.white)  
@@ -2958,7 +2958,7 @@ class MainWindow(QMainWindow):
         self.solar_power_fr2.setPixmap(pixmap_motor.scaled(130, 46))
 
         #Power of MPPT3
-        pixmap_motor = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
+        pixmap_motor = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
         painter_motor = QPainter(pixmap_motor)
         painter_motor.setFont(QFont('Good Times', 17))  
         painter_motor.setPen(Qt.white)  
@@ -2969,7 +2969,7 @@ class MainWindow(QMainWindow):
         self.solar_power_fr3.setPixmap(pixmap_motor.scaled(130, 46))
 
         #Power of MPPT4
-        pixmap_motor = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
+        pixmap_motor = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
         painter_motor = QPainter(pixmap_motor)
         painter_motor.setFont(QFont('Good Times', 17))  
         painter_motor.setPen(Qt.white)  
@@ -2980,7 +2980,7 @@ class MainWindow(QMainWindow):
         self.solar_power_fr4.setPixmap(pixmap_motor.scaled(130, 46))
 
         #Power of MPPT5
-        pixmap_motor = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
+        pixmap_motor = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
         painter_motor = QPainter(pixmap_motor)
         painter_motor.setFont(QFont('Good Times', 17))  
         painter_motor.setPen(Qt.white)  
@@ -2991,7 +2991,7 @@ class MainWindow(QMainWindow):
         self.solar_power_fr5.setPixmap(pixmap_motor.scaled(130, 46))
 
         #Current of motor controller
-        pixmap_motorctrl = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
+        pixmap_motorctrl = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
         painter_motorctrl = QPainter(pixmap_motorctrl)
         painter_motorctrl.setFont(QFont('Good Times', 17))  # Set the font and size of the variable text
         painter_motorctrl.setPen(Qt.white)  # Set the color of the variable text
@@ -3002,7 +3002,7 @@ class MainWindow(QMainWindow):
         self.motorctrl_current_fr.setPixmap(pixmap_motorctrl.scaled(130, 46))
 
         #Voltage of motor controller
-        pixmap_motorctrl = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
+        pixmap_motorctrl = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
         painter_motorctrl = QPainter(pixmap_motorctrl)
         painter_motorctrl.setFont(QFont('Good Times', 17))  # Set the font and size of the variable text
         painter_motorctrl.setPen(Qt.white)  # Set the color of the variable text
@@ -3013,7 +3013,7 @@ class MainWindow(QMainWindow):
         self.motorctrl_voltage_fr.setPixmap(pixmap_motorctrl.scaled(130, 46))
 
         #Power of motor controller
-        pixmap_motorctrl = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
+        pixmap_motorctrl = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
         painter_motorctrl = QPainter(pixmap_motorctrl)
         painter_motorctrl.setFont(QFont('Good Times', 17))  # Set the font and size of the variable text
         painter_motorctrl.setPen(Qt.white)  # Set the color of the variable text
@@ -3024,7 +3024,7 @@ class MainWindow(QMainWindow):
         self.motorctrl_power_fr.setPixmap(pixmap_motorctrl.scaled(130, 46))
 
         #Current of battery 
-        pixmap_battery = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
+        pixmap_battery = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
         painter_battery = QPainter(pixmap_battery)
         painter_battery.setFont(QFont('Good Times', 17))  # Set the font and size of the variable text
         painter_battery.setPen(Qt.white)  # Set the color of the variable text
@@ -3035,7 +3035,7 @@ class MainWindow(QMainWindow):
         self.battery_current_fr.setPixmap(pixmap_battery.scaled(130, 46))
 
         #Voltage of battery 
-        pixmap_battery = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
+        pixmap_battery = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
         painter_battery = QPainter(pixmap_battery)
         painter_battery.setFont(QFont('Good Times', 17))  # Set the font and size of the variable text
         painter_battery.setPen(Qt.white)  # Set the color of the variable text
@@ -3046,7 +3046,7 @@ class MainWindow(QMainWindow):
         self.battery_voltage_fr.setPixmap(pixmap_battery.scaled(130, 46))
 
         #SOC of battery 
-        pixmap_battery = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
+        pixmap_battery = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
         painter_battery = QPainter(pixmap_battery)
         painter_battery.setFont(QFont('Good Times', 17))  # Set the font and size of the variable text
         painter_battery.setPen(Qt.white)  # Set the color of the variable text
@@ -3057,7 +3057,7 @@ class MainWindow(QMainWindow):
         self.battery_soc_fr.setPixmap(pixmap_battery.scaled(130, 46))
 
         #Power of battery 
-        pixmap_battery = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
+        pixmap_battery = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/curr_fr.png")
         painter_battery = QPainter(pixmap_battery)
         painter_battery.setFont(QFont('Good Times', 17))  # Set the font and size of the variable text
         painter_battery.setPen(Qt.white)  # Set the color of the variable text
@@ -3068,7 +3068,7 @@ class MainWindow(QMainWindow):
         self.battery_power_fr.setPixmap(pixmap_battery.scaled(130, 46))
 
         #Distance Travelled
-        pixmap_distance = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Distance_time frame.png")
+        pixmap_distance = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Distance_time frame.png")
         painter_distance = QPainter(pixmap_distance)
         painter_distance.setFont(QFont('Good Times', 20))  # Set the font and size of the variable text
         painter_distance.setPen(Qt.white)  # Set the color of the variable text
@@ -3079,7 +3079,7 @@ class MainWindow(QMainWindow):
         self.distfr.setPixmap(pixmap_distance.scaled(175, 46))
 
         #RF RSSI
-        pixmap_rssi = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/radiofr.png")
+        pixmap_rssi = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/radiofr.png")
         painter_rssi = QPainter(pixmap_rssi)
         painter_rssi.setFont(QFont('Red Rose', 20))  # Set the font and size of the variable text
         painter_rssi.setPen(Qt.white)  # Set the color of the variable text
@@ -3090,7 +3090,7 @@ class MainWindow(QMainWindow):
         self.rssi_fr.setPixmap(pixmap_rssi.scaled(221, 52))
 
         #SNR
-        pixmap_snr = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/radiofr.png")
+        pixmap_snr = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/radiofr.png")
         painter_snr = QPainter(pixmap_snr)
         painter_snr.setFont(QFont('Red Rose', 20))  # Set the font and size of the variable text
         painter_snr.setPen(Qt.white)  # Set the color of the variable text
@@ -3101,7 +3101,7 @@ class MainWindow(QMainWindow):
         self.snr_fr.setPixmap(pixmap_snr.scaled(221, 52))
 
         #Message Received
-        pixmap_msgrec = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/msgfr.png")
+        pixmap_msgrec = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/msgfr.png")
         painter_msgrec = QPainter(pixmap_msgrec)
         painter_msgrec.setFont(QFont('Red Rose', 20))  # Set the font and size of the variable text
         painter_msgrec.setPen(Qt.white)  # Set the color of the variable text
@@ -3112,7 +3112,7 @@ class MainWindow(QMainWindow):
         self.msgrec_fr.setPixmap(pixmap_msgrec.scaled(585, 52))
 
         #Message Received
-        pixmap_msgsent = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/msgfr.png")
+        pixmap_msgsent = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/msgfr.png")
         painter_msgsent = QPainter(pixmap_msgsent)
         painter_msgsent.setFont(QFont('Red Rose', 20))  # Set the font and size of the variable text
         painter_msgsent.setPen(Qt.white)  # Set the color of the variable text
@@ -3124,7 +3124,7 @@ class MainWindow(QMainWindow):
 
         #Time
         # print(time_str, end='\r')
-        pixmap_time = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Distance_time frame.png")
+        pixmap_time = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Distance_time frame.png")
         painter_time = QPainter(pixmap_time)
         painter_time.setFont(QFont('Good Times', 15))  # Set the font and size of the variable text
         painter_time.setPen(Qt.white)  # Set the color of the variable text
@@ -3141,7 +3141,7 @@ class MainWindow(QMainWindow):
             self.web_view.hide()
 
     def ImageUpdateSlot(self, image):
-        frame_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Rearviewframe.png")
+        frame_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/Rearviewframe.png")
         overlay_image = QImage(frame_image.size(), QImage.Format_ARGB32)
         # overlay_image.fill(Qt.transparent)
 
@@ -3249,10 +3249,10 @@ class MainWindow(QMainWindow):
         data = array('f', [random.random()])
         if self.button22.isChecked():
             self.publish_data(data)
-            self.button22.setIcon(QIcon("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/on_clicked.png"))
-            self.button23.setIcon(QIcon("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/safe.png"))
-            self.button24.setIcon(QIcon("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/off.png"))
-            self.button25.setIcon(QIcon("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/drive.png"))
+            self.button22.setIcon(QIcon("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/on_clicked.png"))
+            self.button23.setIcon(QIcon("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/safe.png"))
+            self.button24.setIcon(QIcon("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/off.png"))
+            self.button25.setIcon(QIcon("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/drive.png"))
         else:
             pass
 
@@ -3260,10 +3260,10 @@ class MainWindow(QMainWindow):
         data = array('f', [random.random()])
         if self.button23.isChecked():
             self.publish_data(data)
-            self.button23.setIcon(QIcon("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/safe_clicked.png"))
-            self.button22.setIcon(QIcon("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/on.png"))
-            self.button24.setIcon(QIcon("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/off.png"))
-            self.button25.setIcon(QIcon("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/drive.png"))
+            self.button23.setIcon(QIcon("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/safe_clicked.png"))
+            self.button22.setIcon(QIcon("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/on.png"))
+            self.button24.setIcon(QIcon("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/off.png"))
+            self.button25.setIcon(QIcon("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/drive.png"))
         else:
             pass
     
@@ -3271,10 +3271,10 @@ class MainWindow(QMainWindow):
         data = array('f', [random.random()])
         if self.button24.isChecked():
             self.publish_data(data)
-            self.button24.setIcon(QIcon("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/off_clicked.png"))
-            self.button23.setIcon(QIcon("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/safe.png"))
-            self.button22.setIcon(QIcon("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/on.png"))
-            self.button25.setIcon(QIcon("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/drive.png"))
+            self.button24.setIcon(QIcon("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/off_clicked.png"))
+            self.button23.setIcon(QIcon("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/safe.png"))
+            self.button22.setIcon(QIcon("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/on.png"))
+            self.button25.setIcon(QIcon("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/drive.png"))
         else:
             pass
 
@@ -3282,10 +3282,10 @@ class MainWindow(QMainWindow):
         data = array('f', [random.random()])
         if self.button25.isChecked():
             self.publish_data(data)
-            self.button25.setIcon(QIcon("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/drive_clicked.png"))
-            self.button23.setIcon(QIcon("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/safe.png"))
-            self.button24.setIcon(QIcon("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/off.png"))
-            self.button22.setIcon(QIcon("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/on.png"))
+            self.button25.setIcon(QIcon("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/drive_clicked.png"))
+            self.button23.setIcon(QIcon("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/safe.png"))
+            self.button24.setIcon(QIcon("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/off.png"))
+            self.button22.setIcon(QIcon("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/display_package/display_package/Dashboard/assets/on.png"))
         else:
             pass
     

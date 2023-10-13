@@ -58,8 +58,8 @@ class MyWindow(QMainWindow):
         self.start_qwidget.setLayout(self.start_layout)
         self.start_stack.addWidget(self.start_qwidget)
         
-        ros_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/ros.png")
-        serial_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/serial.png")
+        ros_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/ros.png")
+        serial_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/serial.png")
 
         self.ros_button = QPushButton(self)
         self.ros_button.setIcon(QIcon(ros_image))
@@ -85,11 +85,11 @@ class MyWindow(QMainWindow):
         #BUTTONS VBoxlayout
         button_layout = QVBoxLayout()
         main_layout.addLayout(button_layout)
-        button1_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/home.png")
-        button2_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/volt_amps.png")
-        button3_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/Temps.png")
-        button4_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/cabin.png")
-        button5_image = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/circuit.png")
+        button1_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/home.png")
+        button2_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/volt_amps.png")
+        button3_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/Temps.png")
+        button4_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/cabin.png")
+        button5_image = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/circuit.png")
 
         self.button1 = QPushButton(self)
         self.button1.setIcon(QIcon(button1_image))
@@ -193,11 +193,11 @@ class MyWindow(QMainWindow):
         Hwidgets_layout.addWidget(self.drive_widget)
         Hwidgets_layout.addWidget(self.strategy_widget)
 
-        pixmap_telemetry = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/Telemetry_widget.png")
+        pixmap_telemetry = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/Telemetry_widget.png")
         self.telemetry_widget.setPixmap(pixmap_telemetry.scaled(320, 320))
-        pixmap_drive = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/Drive_widget.png")
+        pixmap_drive = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/Drive_widget.png")
         self.drive_widget.setPixmap(pixmap_drive.scaled(320, 320))
-        pixmap_strategy = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/Startegy_widget.png")
+        pixmap_strategy = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/Startegy_widget.png")
         self.strategy_widget.setPixmap(pixmap_strategy.scaled(320, 320))        
 
         # 3 Widgets
@@ -215,11 +215,11 @@ class MyWindow(QMainWindow):
         Vwidgets_layout.addWidget(self.battery_widget)
         Vwidgets_layout.addWidget(self.mc_widget)
 
-        pixmap_solar = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/Solar_widget.png")
+        pixmap_solar = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/Solar_widget.png")
         self.solar_widget.setPixmap(pixmap_solar.scaled(320, 320))
-        pixmap_battery = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/Battery_widget.png")
+        pixmap_battery = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/Battery_widget.png")
         self.battery_widget.setPixmap(pixmap_battery.scaled(320, 320))
-        pixmap_MC = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/MC_widget.png")
+        pixmap_MC = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/MC_widget.png")
         self.mc_widget.setPixmap(pixmap_MC.scaled(320, 320))
 
         #SOLAR LAYOUT
@@ -956,41 +956,41 @@ class MyWindow(QMainWindow):
 
         #BATTERY Layout
         
-        self.nocan_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/nocan.png']
+        self.nocan_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/nocan.png']
 
-        self.vehiclecomms_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/vehicomms.png']
+        self.vehiclecomms_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/vehicomms.png']
 
-        self.cmucomms_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/cmucomms.png']
+        self.cmucomms_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/cmucomms.png']
 
-        self.prechargeerror_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/prechargerror.png']
+        self.prechargeerror_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/prechargerror.png']
 
-        self.prechargeidle_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/prechargeidle.png']
+        self.prechargeidle_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/prechargeidle.png']
 
-        self.onandr_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/onandr.png']
+        self.onandr_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/onandr.png']
 
-        self.cellov_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/cellvoltage.png']
+        self.cellov_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/cellvoltage.png']
 
-        self.celluv_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/cellunderv.png']
+        self.celluv_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/cellunderv.png']
 
-        self.cellot_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/cellovert.png']
+        self.cellot_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/cellovert.png']
 
-        self.trusterror_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/trusterror.png']
+        self.trusterror_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/trusterror.png']
 
-        self.packisofail_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/packisofail.png']
+        self.packisofail_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/packisofail.png']
 
-        self.contactorstuck_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/contactorstuck.png']
+        self.contactorstuck_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/contactorstuck.png']
 
-        self.contactorclosed_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/contactorclosed.png']
+        self.contactorclosed_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/contactorclosed.png']
 
-        self.can12vlow_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/can12vlow.png']
+        self.can12vlow_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/can12vlow.png']
 
-        self.cmupwrstat_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/cmupwrstatus.png']
+        self.cmupwrstat_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/cmupwrstatus.png']
 
-        self.extracell_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/extracell.png']
+        self.extracell_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/extracell.png']
 
-        self.socinvalid_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/socinvalid.png']
+        self.socinvalid_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/socinvalid.png']
 
-        self.bmusetup_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/bmu.png']
+        self.bmusetup_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/bmu.png']
 
         self.grid1 = QGridLayout()
         self.battery_layout.addLayout(self.grid1) 
@@ -1513,9 +1513,9 @@ class MyWindow(QMainWindow):
         
 
         #VOLT/AMPS
-        self.curr_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/currgr_fr.png',
-                            '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/curr_fr.png',
-                            '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/currred_fr.png']
+        self.curr_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/currgr_fr.png',
+                            '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/curr_fr.png',
+                            '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/currred_fr.png']
 
         self.solar_label = QLabel(self)
         self.solar_label.setAlignment(Qt.AlignCenter)
@@ -1616,9 +1616,9 @@ class MyWindow(QMainWindow):
         self.motorctrl_grid.addWidget(self.motorctrl_power_fr, 0,2, Qt.AlignCenter)
 
         #TEMPS
-        self.temp_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/Tempcool.png',
-                            '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/tempok.png',
-                            '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/temphot.png',
+        self.temp_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/Tempcool.png',
+                            '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/tempok.png',
+                            '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/temphot.png',
                             ]
 
         self.solar1 = QLabel(self)
@@ -1876,8 +1876,8 @@ class MyWindow(QMainWindow):
         self.temps_layout.addWidget(self.temp23_label, 7,4, Qt.AlignCenter)
 
         #TELEMETRY
-        self.radio_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/greenfr.png',
-                             "/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/redfr.png"]
+        self.radio_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/greenfr.png',
+                             "/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/redfr.png"]
 
         self.telemetry_label = QLabel(self)
         self.telemetry_label.setAlignment(Qt.AlignCenter)
@@ -1974,9 +1974,9 @@ class MyWindow(QMainWindow):
         telecol2.addWidget(self.msgsent_fr,Qt.AlignCenter)
 
         #CABIN
-        self.cabin_images = ['/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/cabingr_fr.png',
-                             '/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/radiofr.png',
-                             "/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/cabinred_fr.png"]
+        self.cabin_images = ['/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/cabingr_fr.png',
+                             '/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/radiofr.png',
+                             "/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/cabinred_fr.png"]
 
         self.cabin_label = QLabel(self)
         self.cabin_label.setAlignment(Qt.AlignCenter)
@@ -3271,7 +3271,7 @@ class MyWindow(QMainWindow):
         self.recst_label.setPixmap(pixmap_recst.scaled(221, 52))
 
         #RF RSSI
-        pixmap_rssi = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/radiofr.png")
+        pixmap_rssi = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/radiofr.png")
         painter_rssi = QPainter(pixmap_rssi)
         painter_rssi.setFont(QFont('Red Rose', 25))  # Set the font and size of the variable text
         painter_rssi.setPen(Qt.white)  # Set the color of the variable text
@@ -3282,7 +3282,7 @@ class MyWindow(QMainWindow):
         self.rssi_fr.setPixmap(pixmap_rssi.scaled(221, 52))
 
         #SNR
-        pixmap_snr = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/radiofr.png")
+        pixmap_snr = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/radiofr.png")
         painter_snr = QPainter(pixmap_snr)
         painter_snr.setFont(QFont('Red Rose', 25))  # Set the font and size of the variable text
         painter_snr.setPen(Qt.white)  # Set the color of the variable text
@@ -3293,7 +3293,7 @@ class MyWindow(QMainWindow):
         self.snr_fr.setPixmap(pixmap_snr.scaled(221, 52))
 
         #Message Received
-        pixmap_msgrec = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/msgfr.png")
+        pixmap_msgrec = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/msgfr.png")
         painter_msgrec = QPainter(pixmap_msgrec)
         painter_msgrec.setFont(QFont('Red Rose', 25))  # Set the font and size of the variable text
         painter_msgrec.setPen(Qt.white)  # Set the color of the variable text
@@ -3304,7 +3304,7 @@ class MyWindow(QMainWindow):
         self.msgrec_fr.setPixmap(pixmap_msgrec.scaled(900, 52))
 
         #Message Received
-        pixmap_msgsent = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/msgfr.png")
+        pixmap_msgsent = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/msgfr.png")
         painter_msgsent = QPainter(pixmap_msgsent)
         painter_msgsent.setFont(QFont('Red Rose', 25))  # Set the font and size of the variable text
         painter_msgsent.setPen(Qt.white)  # Set the color of the variable text
@@ -3481,7 +3481,7 @@ class MyWindow(QMainWindow):
 
                 
         #Solar Widget
-        pixmap_solar = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/Solar_widget.png")
+        pixmap_solar = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/Solar_widget.png")
         painter_solar = QPainter(pixmap_solar)
         painter_solar.setFont(QFont('Bookman Uralic', 25))  
         painter_solar.setPen(Qt.white)  
@@ -3490,7 +3490,7 @@ class MyWindow(QMainWindow):
         painter_solar.end()
         self.solar_widget.setPixmap(pixmap_solar.scaled(320, 320))
         #Battery Widget
-        pixmap_battery = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/Battery_widget.png")
+        pixmap_battery = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/Battery_widget.png")
         painter_battery = QPainter(pixmap_battery)
         painter_battery.setFont(QFont('Bookman Uralic', 25))  
         painter_battery.setPen(Qt.white)  
@@ -3499,7 +3499,7 @@ class MyWindow(QMainWindow):
         painter_battery.end()
         self.battery_widget.setPixmap(pixmap_battery.scaled(320, 320))
         #MC Widget
-        pixmap_MC = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/MC_widget.png")
+        pixmap_MC = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/MC_widget.png")
         painter_MC = QPainter(pixmap_MC)
         painter_MC.setFont(QFont('Bookman Uralic', 25))  
         painter_MC.setPen(Qt.white)  
@@ -3508,7 +3508,7 @@ class MyWindow(QMainWindow):
         painter_MC.end()
         self.mc_widget.setPixmap(pixmap_MC.scaled(320, 320))
         #Telemetry Widget
-        pixmap_telemetry = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/Telemetry_widget.png")
+        pixmap_telemetry = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/Telemetry_widget.png")
         painter_telemetry = QPainter(pixmap_telemetry)
         painter_telemetry.setFont(QFont('Bookman Uralic', 25))  
         painter_telemetry.setPen(Qt.white)  
@@ -3517,7 +3517,7 @@ class MyWindow(QMainWindow):
         painter_telemetry.end()
         self.telemetry_widget.setPixmap(pixmap_telemetry.scaled(400, 320))
         #Drive Widget
-        pixmap_drive = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/Drive_widget.png")
+        pixmap_drive = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/Drive_widget.png")
         painter_drive = QPainter(pixmap_drive)
         painter_drive.setFont(QFont('Bookman Uralic', 25))  
         painter_drive.setPen(Qt.white)  
@@ -3526,7 +3526,7 @@ class MyWindow(QMainWindow):
         painter_drive.end()
         self.drive_widget.setPixmap(pixmap_drive.scaled(400, 320))
         #Strategy Widget
-        pixmap_strategy = QPixmap("/home/veadesh/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/Startegy_widget.png")
+        pixmap_strategy = QPixmap("/home/jaay/Agnirath/Agnirath_LVS_Strategy/aarush_ros/src/daq_package/daq_package/assets/Startegy_widget.png")
         painter_strategy = QPainter(pixmap_strategy)
         painter_strategy.setFont(QFont('Bookman Uralic', 25)) 
         painter_strategy.setPen(Qt.white)  

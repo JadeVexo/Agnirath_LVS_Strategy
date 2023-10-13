@@ -11,7 +11,8 @@ setup.py
 ../../build/display_package/display_package.egg-info/zip-safe
 display_package/__init__.py
 display_package/display_node.py
-display_package/display_node_1.py
+display_package/display_node_V1.py
+display_package/display_node_V2.py
 resource/display_package
 test/test_copyright.py
 test/test_flake8.py

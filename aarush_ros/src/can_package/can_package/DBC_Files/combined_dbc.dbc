@@ -128,7 +128,7 @@ BO_ 1026 MC_Bus_Measurement: 8 Vector__XXX
         SG_ Bus_Current : 32|32@1+ (1,0) [0|0] "Ampere" Vector__XXX
 
 BO_ 1027 MC_Velocity: 8 Vector__XXX
-        SG_ Motor_Velocity : 0|32@1+ (1,0) [0|0] "RMP" Vector__XXX
+        SG_ Motor_Velocity : 0|32@1+ (1,0) [0|0] "RPM" Vector__XXX
         SG_ Vehicle_Velocity : 32|32@1+ (1,0) [0|0] "m/s" Vector__XXX
 
 BO_ 1028 MC_Phase_Current: 8 Vector__XXX

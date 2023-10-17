@@ -48,21 +48,10 @@ def main(args=None):
             battery_data = control_node.parsed_sub_data[0:59]
             mppt_data = control_node.parsed_sub_data[59:163]
             mc_data = control_node.parsed_sub_data[163:184]
-            imu_data = control_node.parsed_sub_data[184:170]
-            lights_data = control_node.parsed_sub_data[184:170]
-            mc_precharge_data = control_node.parsed_sub_data[184:170]
+            imu_data = control_node.parsed_sub_data[184:190]
+            mc_precharge_data = control_node.parsed_sub_data[190:195]
             mppt_precharge_data = control_node.parsed_sub_data[184:170]
-            fans_data = control_node.parsed_sub_data[184:170]
             
-        
-
-        peripherals = [
-            0,0,0,0,0,0,0,0, #8x MPPT
-            0,0,0,0, # MPPT Precharge
-            0,0,0,0,  # MC Precharge
-            0,         # Motor Contactor
-            0, #Battery Contactor
-                       ]
 
         # Parsing the Data
         control_data_list = []

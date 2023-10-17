@@ -3,24 +3,7 @@ from rclpy.node import Node
 import struct
 import can
 from std_msgs.msg import Float32MultiArray as rosarray
-
-
-
-def float_to_hex(f):
-    return hex(struct.unpack('<I', struct.pack('<f', f))[0])
-
-slow_inst = [0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00]
-open_bms_c = [0x01,0x01,0x00,0x00,0x00,0x00,0x00,0x00]
-open_mc_c = [0x01,0x01,0x00,0x00,0x00,0x00,0x00,0x00]
-open_m_c = [0x01,0x01,0x00,0x00,0x00,0x00,0x00,0x00]
-set_current_0 = [0x01,0x01,0x00,0x00,0x00,0x00,0x00,0x00]
-red_current = [0x01,0x01,0x00,0x00,0x00,0x00,0x00,0x00]
-open_c_pre_mppt = [0x01,0x01,0x00,0x00,0x00,0x00,0x00,0x00]
-open_c_post_mppt = [0x01,0x01,0x00,0x00,0x00,0x00,0x00,0x00]
-
-bus = can.interface.Bus('can0', bustype='socketcan', bitrate=500000)
         
-
 class CAN_NODE(Node):
     def __init__(self, node):
         super().__init__(node)
@@ -31,10 +14,43 @@ class CAN_NODE(Node):
             rosarray, topic, self.receive_can_data, 10
         )
         self.can_subscriber  # prevent unused variable warning
+        self.bus = can.interface.Bus('can0', bustype='socketcan', bitrate=500000)
         self.can_sub_data = None
 
     def receive_can_data(self, msg):
         self.can_sub_data = msg.data
+
+    def send_two_floats(self, can_id, float1, float2):
+        try:
+            # Pack the two floats into bytes (little-endian format)
+            data_bytes = struct.pack('<ff', float1, float2)
+
+            # Create a CAN message with the specified ID and data
+            message = can.Message(arbitration_id=can_id, data=data_bytes, extended_id=False,dlc=8)
+
+            # Send the CAN message
+            self.bus.send(message)
+            print(f"Sent CAN message: {message}")
+
+        except Exception as e:
+            print(f"Error: {e}")
+
+    
+    def send_four_int(self,message_id, data1, data2, data3, data4):
+        try:
+            # Create a CAN message
+            message = can.Message(arbitration_id=message_id, data=[data1 & 0xFF, (data1 >> 8) & 0xFF,
+                                                                data2 & 0xFF, (data2 >> 8) & 0xFF,
+                                                                data3 & 0xFF, (data3 >> 8) & 0xFF,
+                                                                data4 & 0xFF, (data4 >> 8) & 0xFF],
+                                dlc=8)
+
+            # Send the CAN message
+            self.bus.send(message)
+            print(f"Sent CAN message with ID {message_id}")
+
+        except Exception as e:
+            print(f"Error: {e}")
 
 
 def main(args=None):
@@ -48,93 +64,44 @@ def main(args=None):
 
         if can_node.can_sub_data is not None:
             print(can_node.can_sub_data) 
-            error_flags = can_node.can_sub_data
+            control_flags = can_node.can_sub_data
 
-            for error in error_codes:
-
-                if error in range(1,6) or error in range(11,16) or error == 102 or error == 104:
-                    message = can.Message(arbitration_id = placeholder, data = slow_inst)
-                    bus.send(message)
-
-                if error in range(6,11) or error in range(16,102) or error == 103 or error == 105 or error == 106:
-                    message = can.Message(arbitration_id = placeholder, data = slow_inst)
-                    bus.send(message)
-                    #Arbitration I D must be according to EVDC datatsheet
-                    message = can.Message(arbitration_id = 512, data = open_bms_c)
-                    bus.send(message)
+            for data in control_flags:
+                if data in range(6,11) or data in range(16,102) or data == 103 or data == 105 or data == 106:
+                    can_node.send_four_int(0x505, 0x0000, 0x0000, 0x0000, 0x0000)
                     
 
-                if error in range(107,111) or error in range(113,115) or error == 116 or error == 118 or error in range(121,124):
-                    message = can.Message(arbitration_id = 513, data = open_mc_c)
-                    bus.send(message)
-                    message = can.Message(arbitration_id = 514, data = open_m_c)
-                    bus.send(message)
+                if data in range(107,111) or data in range(113,115) or data == 116 or data == 118 or data in range(121,124):
+                    can_node.send_four_int(0x104, 1, 1, 1, 1)
 
-                if error == 111:
-                    #ID according to EVDC Datasheet
-                    message = can.Message(arbitration_id = placeholder, data = set_current_0)
-                    bus.send(message)
+                if data == 111 or data == 125:
+                    can_node.send_two_floats(0x530, 0, 0)
 
-                if error in range(119,121):
-                    message = can.Message(arbitration_id = 514, data = open_m_c)
-                    bus.send(message)
+                if data in range(119,121):
+                    can_node.send_four_int(0x505, 0x0000, 0x0000, 0x0000, 0x0000)
 
-                if error == 124 or error ==126 : 
-                    message = can.Message(arbitration_id = placeholder, data = slow_inst)
-                    bus.send(message)
-                
-                if error == 125: 
-                    message = can.Message(arbitration_id = placeholder, data = slow_inst)
-                    bus.send(message)
-                    message = can.Message(arbitration_id = placeholder, data = red_current)
-                    bus.send(message)
+                #MPPT 1 datas
 
-                #MPPT 1 errors
+                if data in range(128,132) or data == 142 or data == 143 or data == 145 or data == 149:
+                    can_node.send_four_int(0x108, 1, 1, 1, 1)
 
-                if error == 128 or error == 149 :
-                    message = can.Message(arbitration_id = placeholder, data = open_c_post_mppt)
-                    bus.send(message)
-
-                if error == 142 or error == 143 :
-                    message = can.Message(arbitration_id = placeholder, data = open_c_pre_mppt)
-                    bus.send(message)
-
-                #MPPT 2 error
+                #MPPT 2 data
                     
-                if error == 151 or error == 172 :
-                    message = can.Message(arbitration_id = placeholder, data = open_c_post_mppt)
-                    bus.send(message)
-
-                if error == 165 or error == 166 :
-                    message = can.Message(arbitration_id = placeholder, data = open_c_pre_mppt)
-                    bus.send(message)
+                if data in range(151,155) or data == 165 or data == 166 or data == 168 or data == 172:
+                    can_node.send_four_int(0x108, 1, 1, 1, 1)
 
                 #MPPT 3 errror
 
-                if error == 174 or error == 195 :
-                    message = can.Message(arbitration_id = placeholder, data = open_c_post_mppt)
-                    bus.send(message)
+                if data in range(174,178) or data == 188 or data == 189 or data == 191 or data == 195:
+                    can_node.send_four_int(0x108, 1, 1, 1, 1)
 
-                if error == 188 or error == 189 :
-                    message = can.Message(arbitration_id = placeholder, data = open_c_pre_mppt)
-                    bus.send(message)
+                #MPPT 4 data
 
-                #MPPT 4 error
+                if data in range(197,201) or data == 211 or data == 212 or data == 214 or data == 218:
+                    can_node.send_four_int(0x108, 1, 1, 1, 1)
 
-                if error == 197 or error == 218 :
-                    message = can.Message(arbitration_id = placeholder, data = open_c_post_mppt)
-                    bus.send(message)
-
-                if error == 211 or error == 212 :
-                    message = can.Message(arbitration_id = placeholder, data = open_c_pre_mppt)
-                    bus.send(message)
-
-
-                
-
-        # Map Error codes to corresponding messages
-
-
+                if data in range(1,6) or data in range(11,16):
+                    can_node.send_four_int(0x124, 50, 50, 50, 0)
 
     # Destroy the node explicitly
     # (optional - otherwise it will be done automatically

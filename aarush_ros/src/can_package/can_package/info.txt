@@ -1,9 +1,9 @@
 Procedure for Enabling CAN (pins 19 and 20) on BeagleBone after boot up:
 1) sudo ip link set can0 up type can bitrate 500000
-2) sudo if config can0 up
+2) sudo ifconfig can0 up
 
 Incase python program gives CAN error, reset CAN:
-1) sudo if config can0 down
+1) sudo ifconfig can0 down
 2) sudo ip link set can0 up type can bitrate 500000
 
 Link for online bcd file editor

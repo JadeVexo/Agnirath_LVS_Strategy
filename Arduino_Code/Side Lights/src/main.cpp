@@ -7,18 +7,19 @@
 #define INT_PIN 2
 
 // DRL Pins
-#define HORN_PIN
-#define CSL_PIN
+#define HORN_PIN 2
+#define CSL_PIN 3
 
 // Indicator Pins
-#define RIGHT_IND_PIN
-#define LEFT_IND_PIN
+#define RIGHT_IND_PIN 4
+#define LEFT_IND_PIN 5
 
 // Set CAN bus baud rate
 #define CAN_BAUDRATE (250000)
 
 // Instantiate CAN object
 Adafruit_MCP2515 mcp(CS_PIN);
+long prev_time;
 
 void blink(int pin, int interval, uint32_t id);
 
@@ -97,7 +98,7 @@ void onReceive(int packetSize)
 
       if (mcp.packetId() == 322)
       {
-        blink(CSL__PIN, 200, mcp.packetId());
+        blink(CSL_PIN, 200, mcp.packetId());
       }
 
       // Hazard
@@ -106,6 +107,7 @@ void onReceive(int packetSize)
         blink(CSL_PIN, 100, mcp.packetId());
         blink(RIGHT_IND_PIN, 100, mcp.packetId());
         blink(LEFT_IND_PIN, 100, mcp.packetId());
+        blink(HORN_PIN, 100, mcp.packetId());
       }
 
       // REVERSE
@@ -137,7 +139,7 @@ void onReceive(int packetSize)
 
     Serial.println();
   }
-
+}
   void blink(int pin, int interval, uint32_t id)
   {
     digitalWrite(pin, HIGH);

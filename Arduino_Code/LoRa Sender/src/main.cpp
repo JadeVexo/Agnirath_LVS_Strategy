@@ -5,6 +5,9 @@
 const int csPin = 10;   // LoRa radio chip select
 const int resetPin = 9; // LoRa radio reset
 const int irqPin = 2;   // change for your board; must be a hardware interrupt pin
+const int buzzerPin = 2;
+const int safeStatePin = 2;
+const int fanPin = 2;
 
 String outgoing; // outgoing message
 String concatenatedValues = "";
@@ -44,6 +47,10 @@ void setup()
   LoRa.setSpreadingFactor(spreadingFactor);
   LoRa.setCodingRate4(codingRate);
   Serial.println("LoRa init succeeded.");
+
+  pinMode(buzzerPin, OUTPUT);
+  pinMode(safeStatePin, OUTPUT);
+  pinMode(fanPin, OUTPUT);
 }
 
 void loop()
@@ -51,7 +58,7 @@ void loop()
   if (Serial.available() > 0){
     String receivedData = Serial.readStringUntil('\n');
     // Process the received comma-separated string of float values
-    float receivedFloats[10]; // Adjust the array size as needed
+    float receivedFloats[300]; // Adjust the array size as needed
     int floatCount = 0;
 
     char *token = strtok(const_cast<char *>(receivedData.c_str()), ",");
@@ -81,7 +88,14 @@ void loop()
     }
     // parse for a packet, and call onReceive with the result:
     onReceive(LoRa.parsePacket());
+    if (receivedFloats[266] == 1){
+      digitalWrite(safeStatePin, HIGH);
+    }else{
+      digitalWrite(safeStatePin, LOW);
+    }
+    
   }
+  digitalWrite(fanPin, HIGH);
 }
 
 void sendMessage(String outgoing)

@@ -454,7 +454,7 @@ def main(args=None):
     main_node.init_final_data_publisher("final_data", 2)
     main_node.init_parsed_data_publisher("parsed_data", 1)
 
-    final_data = [0]*266
+    final_data = [0]*300
     parsed_data = [0]*187
     # can_data = None
     print("Starting Main Node")
@@ -492,23 +492,22 @@ def main(args=None):
         mppt_4_fd_index = 189
         mc_fd_index = 221
         evdc_fd_index = 263
+        safe_state_trigger = 266
+        buzzer_trigger = 267
         
-
-
-        CAN_codes = [[0x12,163],[0x25,293]]
         can_tx_list = []
 
         #print(control_sub_data)
         if control_sub_data is not None:
             # print(control_sub_data)
-            for sub_data in control_sub_data:
-                if sub_data == 1:
-                    can_tx_list += CAN_codes[0]
-                if sub_data == 2:
-                    can_tx_list += CAN_codes[1]
+            # for sub_data in control_sub_data:
+            #     if sub_data == 1:
+            #         can_tx_list += CAN_codes[0]
+            #     if sub_data == 2:
+            #         can_tx_list += CAN_codes[1]
 
             
-            main_node.can_pub_data = can_tx_list
+            main_node.can_pub_data = control_sub_data
 
 
         # Parsing data from CAN Messages; Used in Control Loops
@@ -863,10 +862,15 @@ def main(args=None):
             if can_sub_data[0] == mc_base_address + 14:
                 final_data[mc_fd_index+39:mc_fd_index+41] = can_sub_data[1:3]
 
-            final_data = [round(x,3) for x in final_data]
-            print(len(final_data))
+            for data in control_sub_data:
+                if data in range(6,11) or data in range(16,102) or data in range(119,121) or data == 103 or data == 105 or data == 106:
+                    final_data[safe_state_trigger] = 1
+                else:
+                    final_data[safe_state_trigger] = 0
+
+            # print(len(final_data))
             # print(final_data[93:125])
-    
+            final_data = [round(x,3) for x in final_data]
             main_node.parsed_pub_data = parsed_data
             main_node.final_pub_data = final_data
 

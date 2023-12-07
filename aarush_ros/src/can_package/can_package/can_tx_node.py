@@ -69,7 +69,8 @@ def main(args=None):
             for data in control_flags:
                 if data in range(6,11) or data in range(16,102) or data == 103 or data == 105 or data == 106:
                     can_node.send_four_int(0x505, 0x0000, 0x0000, 0x0000, 0x0000)
-                    
+                     
+                     
 
                 if data in range(107,111) or data in range(113,115) or data == 116 or data == 118 or data in range(121,124):
                     can_node.send_four_int(0x104, 1, 1, 1, 1)
